@@ -1,0 +1,86 @@
+<div class="app" id="app">
+<section class="screen" id="screen-home" aria-label="Home">
+<header class="hdr"><h1 class="hdr-title">Home</h1>{{badge:home}}</header>
+<div id="home-body"></div>
+</section>
+<section class="screen" id="screen-read" aria-label="Read">
+<header class="hdr"><h1 class="hdr-title">Read</h1><button class="icon-btn" id="read-chapters" type="button" aria-label="Chapters" aria-haspopup="dialog" hidden><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg></button>{{badge:read}}<div class="rprog" id="rprog" style="--p:0" aria-hidden="true"><i></i></div></header>
+<div id="read-body"></div>
+</section>
+<section class="screen" id="screen-learn" aria-label="Learn">
+<header class="hdr"><h1 class="hdr-title">Learn</h1>{{badge:learn}}</header>
+<div id="learn-body"></div>
+</section>
+<section class="screen" id="screen-script" aria-label="Script">
+<header class="hdr"><h1 class="hdr-title">Script</h1>{{badge:script}}</header>
+<div id="script-body"></div>
+</section>
+<section class="screen" id="screen-quiz" aria-label="Quiz">
+<header class="hdr"><h1 class="hdr-title">Quiz</h1><button class="icon-btn" id="quiz-sound" type="button" aria-label="Sound effects" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></button>{{badge:quiz}}</header>
+<div id="quiz-body"></div>
+</section>
+<section class="screen" id="screen-qa" aria-label="Questions">
+<header class="hdr"><h1 class="hdr-title">Questions</h1><button class="icon-btn" id="qa-sound" type="button" aria-label="Sound effects" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></button>{{badge:qa}}</header>
+<div id="qa-body"></div>
+</section>
+</div>
+<nav class="tabbar" id="tabbar" aria-label="Sections"><div class="tabbar-in" id="tabbar-in"><span class="tab-hl" id="tab-hl" aria-hidden="true"></span>
+<button class="tab" id="tab-home" type="button" data-s="home"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><span>Home</span></button>
+<button class="tab" id="tab-read" type="button" data-s="read"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-read"/></svg></span><span>Read</span></button>
+<button class="tab" id="tab-learn" type="button" data-s="learn"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-learn"/></svg></span><span>Learn</span></button>
+<button class="tab" id="tab-script" type="button" data-s="script"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-mic"/></svg></span><span>Script</span></button>
+<button class="tab" id="tab-quiz" type="button" data-s="quiz"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-quiz"/></svg></span><span>Quiz</span></button>
+<button class="tab" id="tab-qa" type="button" data-s="qa"><span class="box"><svg class="ic" aria-hidden="true"><use href="#i-qa"/></svg></span><span>Q&amp;A</span></button>
+</div></nav>
+
+<div class="session" id="lesson" role="dialog" aria-modal="true" aria-label="Lesson" hidden>
+<div class="session-in">
+<div class="s-top" id="lesson-top"><button class="icon-btn" id="lesson-close" type="button" aria-label="Close lesson"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button><div class="s-mid"><div class="dots" id="lesson-dots" aria-hidden="true"></div></div><span id="lesson-listen-wrap"></span></div>
+<div class="s-body" id="lesson-body"><div class="stack" id="lesson-stack"><div class="lcard" id="lesson-card"></div></div></div>
+<div class="actions" id="lesson-actions"><button class="btn plain" id="lesson-back" type="button">Back</button><button class="btn" id="lesson-next" type="button">Next</button></div>
+<div class="s-body" id="lesson-donebox" hidden></div>
+</div>
+</div>
+
+<div class="session" id="quiz-run" role="dialog" aria-modal="true" aria-label="Quiz round" hidden>
+<div class="session-in">
+<div class="s-top" id="quiz-top"><button class="icon-btn" id="quiz-close" type="button" aria-label="Close quiz"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button><div class="s-mid"><div class="pbar" id="quiz-bar" style="--p:0"><i></i></div></div><button class="icon-btn" id="quiz-run-sound" type="button" aria-label="Sound effects" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></button></div>
+<div class="s-body" id="quiz-round"></div>
+</div>
+</div>
+<div class="fb" id="quiz-feedback" role="group" aria-label="Answer" hidden><div class="fb-in" id="quiz-fb-in"></div></div>
+
+<div class="session" id="qa-run" role="dialog" aria-modal="true" aria-label="Questions round" hidden>
+<div class="session-in">
+<div class="s-top" id="qa-top"><button class="icon-btn" id="qa-close" type="button" aria-label="Close questions"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button><div class="s-mid"><div class="pbar" id="qa-bar" style="--p:0"><i></i></div></div><button class="icon-btn" id="qa-run-sound" type="button" aria-label="Sound effects" aria-pressed="true"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></button></div>
+<div class="s-body" id="qa-round"></div>
+<div id="qa-actions"></div>
+</div>
+</div>
+
+<div class="spop-scrim" id="spop-scrim" hidden></div>
+<div class="spop" id="spop" hidden><div class="card" id="streak-card" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="streak-title"></div></div>
+
+<div class="sheet-scrim" id="sheet-scrim" hidden></div>
+<div class="sheet" id="sheet-sentence" role="dialog" aria-modal="true" aria-labelledby="sheet-kick" hidden>
+<div class="grab"></div>
+<div class="sheet-head"><div class="sheet-kick" id="sheet-kick"></div><button class="icon-btn sm" id="sheet-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div class="sheet-body" id="sheet-sentence-body"></div>
+<div class="sheet-foot"><div class="actions"><button class="btn plain" id="sentence-back" type="button">Back</button><button class="btn" id="sentence-next" type="button">Next sentence</button></div></div>
+</div>
+<div class="sheet" id="sheet-packs" role="dialog" aria-modal="true" aria-labelledby="packs-title" hidden>
+<div class="grab"></div>
+<div class="sheet-head"><h2 class="sheet-title" id="packs-title">Presentations</h2><button class="icon-btn sm" id="packs-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div class="sheet-body" id="packs-body"></div>
+</div>
+<div class="sheet" id="sheet-readiness" role="dialog" aria-modal="true" aria-labelledby="readiness-title" hidden>
+<div class="grab"></div>
+<div class="sheet-head"><h2 class="sheet-title" id="readiness-title">How ready you are</h2><button class="icon-btn sm" id="readiness-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div class="sheet-body" id="readiness-body"></div>
+</div>
+<div class="sheet" id="sheet-chapters" role="dialog" aria-modal="true" aria-labelledby="chapters-title" hidden>
+<div class="grab"></div>
+<div class="sheet-head"><h2 class="sheet-title" id="chapters-title">Chapters</h2><button class="icon-btn sm" id="chapters-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div class="sheet-body" id="chapters-body"></div>
+</div>
+<div class="sr" id="live" role="status" aria-live="polite"></div>
