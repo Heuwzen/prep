@@ -18,6 +18,9 @@ function reflow(el){void el.offsetHeight}
 /* ---------- storage (always in memory, localStorage optional) ---------- */
 var store=null,storeOK=true;
 try{store=window.localStorage;store.setItem('prep.v1.t','1');store.removeItem('prep.v1.t')}catch(e){store=null;storeOK=false}
+/* Home Screen app or plain browser tab; ask the browser to keep this site's storage (Safari 17+, Chrome). */
+var standalone=!!(window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches));
+try{if(storeOK&&navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){})}catch(e){}
 function rd(k){if(!store)return null;try{var v=store.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
 function wr(k,v){if(!store)return;try{store.setItem(k,JSON.stringify(v))}catch(e){storeOK=false}}
 

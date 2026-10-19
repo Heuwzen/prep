@@ -128,6 +128,8 @@ function featureIdx(p){var f=factsOf(p);if(!f.length)return 0;var d=dayKey(Date.
 function renderHome(){
   var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100);
   var h='';
+  if(!storeOK)h+='<div class="card notice warn" role="status"><p class="notice-title">Your progress can\'t be saved here</p><p class="notice-text">This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.</p></div>';
+  else if(!standalone&&navigator.maxTouchPoints>0&&!G.hints.homescreen)h+='<div class="card notice" role="note"><p class="notice-title">Keep your progress: use the Home Screen app</p><p class="notice-text">In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.</p><button class="btn plain compact" id="hs-ok" type="button">Got it</button></div>';
   h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic('pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
   h+='<div class="card hero"><div class="hero-top">'+
     '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">ready</span></span></button>'+
@@ -196,6 +198,7 @@ $('home-body').addEventListener('click',function(e){
   if(n){startStep(n.getAttribute('data-kind'),+n.getAttribute('data-idx'));return}
   if(e.target.closest('#home-continue')){var hi=home._hero;startStep(hi.kind,hi.idx);return}
   if(e.target.closest('#home-meter')){openReadiness();return}
+  if(e.target.closest('#hs-ok')){G.hints.homescreen=true;saveG();refresh();return}
   if(e.target.closest('#pack-switch')){openPacks();return}
   if(e.target.closest('#inspire-feature')){goTab('learn',{face:'facts'});return}
 });

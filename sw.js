@@ -1,5 +1,5 @@
 // Prep offline cache. The version changes on every publish, so a new week's pack replaces the old copy.
-const CACHE = 'prep-c150eb3cac';
+const CACHE = 'prep-8d25e8bad4';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));

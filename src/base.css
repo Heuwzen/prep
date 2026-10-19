@@ -468,3 +468,11 @@ svg circle.trk,svg circle.arc{fill:none}
 .done.ready .btn-stack,.done.shown .btn-stack{pointer-events:auto}
 .is-practising #script-seg{display:none}
 .pointer :focus-visible{outline:none}
+
+/* storage notice on Home */
+.notice{display:grid;gap:var(--sp-inline);margin-bottom:calc(var(--sp-stack) + var(--lip-sm))}
+.notice.warn{border-color:var(--orange);box-shadow:0 var(--lip-sm) 0 var(--orange-lip)}
+.notice p{margin:0}
+.notice-title{font:800 17px/1.25 var(--font-ui);color:var(--ink)}
+.notice-text{font:600 15px/1.45 var(--font-ui);color:var(--muted)}
+.notice .btn{width:auto;justify-self:start;margin-top:4px}
