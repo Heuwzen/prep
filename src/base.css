@@ -122,8 +122,9 @@ svg circle.trk,svg circle.arc{fill:none}
 .unit-text{padding-top:2px;font:var(--t-step)}
 .node-row{display:grid;grid-template-columns:176px 1fr;align-items:center;width:100%;min-height:96px;padding:0;border:0;background:none;text-align:left}
 .node-lane{position:relative;height:96px}
-.node-wrap{position:absolute;top:10px;left:calc(54px + var(--x,0px));width:68px;height:74px}
-.node{display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:var(--border);color:var(--muted);box-shadow:0 var(--lip-node) 0 var(--grey-lip);transition:transform var(--dur-press) var(--ease-press),box-shadow var(--dur-press) var(--ease-press),background-color .2s ease}
+/* The face (64) plus its lip (6) is centred on the ring (r 43, inner edge 40): 5px clear at rest, about 3px at the breathe peak. */
+.node-wrap{position:absolute;top:9px;left:calc(56px + var(--x,0px));width:64px;height:70px}
+.node{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--border);color:var(--muted);box-shadow:0 var(--lip-node) 0 var(--grey-lip);transition:transform var(--dur-press) var(--ease-press),box-shadow var(--dur-press) var(--ease-press),background-color .2s ease}
 .node .ic{width:30px;height:30px;stroke-width:3}
 .node-num{font:var(--t-node-num)}
 .node-row:active .node{transform:translateY(var(--lip-node));box-shadow:0 0 0 var(--grey-lip)}
