@@ -37,8 +37,16 @@ function placeHl(instant){
   hl.style.transform='translateX('+(tab.offsetLeft-6)+'px)';
   if(instant){reflow(hl);hl.style.transition=''}
 }
+/* A pack without a script (an exam) shows its numbers under this tab; with neither, the tab goes. */
+function syncTabs(){
+  var t=$('tab-script');if(!t||!cur)return;
+  var noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=noS?'Numbers':'Script';
+  t.hidden=noS&&!hasN;qs('.tabbar-in').classList.toggle('five',t.hidden);
+  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',noS?'#i-hash':'#i-mic');
+  qs('#screen-script .hdr-title').textContent=lab;$('screen-script').setAttribute('aria-label',lab);
+}
 function show(name,o){
-  o=o||{};
+  o=o||{};syncTabs();
   if(curScreen)scrolls[scrollKey()]=window.scrollY;
   if(o.face)face[name]=o.face;
   var changed=curScreen!==name;
@@ -63,7 +71,7 @@ function afterShow(name,changed){
   if(name==='read')readAfterShow();
   syncHeader();
 }
-function refresh(){if(curScreen){var y=window.scrollY;R[curScreen]();window.scrollTo(0,y);if(curScreen==='home')animHome();if(curScreen==='read')readAfterShow(true);updateBadges()}}
+function refresh(){syncTabs();if(curScreen){var y=window.scrollY;R[curScreen]();window.scrollTo(0,y);if(curScreen==='home')animHome();if(curScreen==='read')readAfterShow(true);updateBadges()}}
 
 var hdrRO=null;
 function watchHeader(){
@@ -275,7 +283,7 @@ function openPacks(){
   var h='';
   if(up.length)h+='<div class="sub-h">Upcoming</div>'+up.map(packRow).join('');
   if(past.length)h+='<div class="sub-h">Past</div>'+past.map(packRow).join('');
-  h+='<p class="foot">A new presentation shows up here when it is added.</p>';
+  h+='<p class="foot">A new pack shows up here when it is added.</p>';
   $('packs-body').innerHTML=h;
   openSheet('sheet-packs','packs-close');
 }

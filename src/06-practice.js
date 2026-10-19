@@ -1,25 +1,32 @@
 /* ---------- quiz ---------- */
 var QS=null,qDone=false;
+function roundIdx(p,lec){var qz=quizOf(p);return qz.map(function(_,i){return i}).filter(function(i){return !lec||qz[i].lec===lec})}
 function roundOK(p){
   var r=PS(p).quiz.round,qz=quizOf(p);
-  return !!(r&&Array.isArray(r.queue)&&r.queue.length&&r.total===qz.length&&r.queue.every(function(i){return !!qz[i]}));
+  return !!(r&&Array.isArray(r.queue)&&r.queue.length&&r.total===roundIdx(p,r.lec).length&&r.queue.every(function(i){return !!qz[i]&&(!r.lec||qz[i].lec===r.lec)}));
 }
 function quizStartHTML(){
   var p=cur,ps=PS(p),qz=quizOf(p),n=qz.length,q=ps.quiz;
-  if(!n)return emptyHTML('quiz','No quiz for this presentation.','');
+  if(!n)return emptyHTML('quiz','No quiz in this pack.','');
   var pills='';
   if(q.history.length){
-    pills=(q.best>0?pillHTML('Best: '+q.best+' of '+n,'soft'):'')+pillHTML('Last: '+q.last+' of '+n);
+    pills=(q.best>0?pillHTML('Best: '+q.best+' of '+n,'soft'):'');
+    lecsOf(p).forEach(function(l){var b=+(q.lecBest||{})[l.lec]||0;if(b>0)pills+=pillHTML('Lecture '+l.lec+': '+b+' of '+l.n,'soft')});
+    pills+=pillHTML('Last: '+q.last+' of '+(q.lastTotal||n));
   }else pills=pillHTML('No score yet');
   if(q.round&&!roundOK(p)){q.round=null;saveP(p)}
   var h='<div class="card start"><div class="start-icon">'+ic('quiz')+'</div><h2>'+plural(n,'question')+'</h2><div class="pills">'+pills+'</div><p>Pick the answer you think is right. Wrong ones come back later in the round.</p><div class="btn-stack">';
-  if(q.round)h+='<button class="btn" id="quiz-start" type="button">Continue quiz</button><button class="btn plain" id="quiz-restart" type="button">Start over</button>';
-  else h+='<button class="btn" id="quiz-start" type="button">Start quiz</button>';
+  var ls=lecsOf(p);
+  if(q.round)h+='<button class="btn" id="quiz-start" type="button">'+(q.round.lec?'Continue Lecture '+q.round.lec:'Continue quiz')+'</button><button class="btn plain" id="quiz-restart" type="button">Start over</button>';
+  else{
+    h+='<button class="btn" id="quiz-start" type="button">'+(ls.length>1?'All '+n+' questions':'Start quiz')+'</button>';
+    if(ls.length>1)ls.forEach(function(l){h+='<button class="btn plain" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'">Lecture '+l.lec+' only ('+l.n+')</button>'});
+  }
   h+='</div></div>';
   if(q.history.length){
     h+='<div class="sec"><h2>Your rounds</h2><p>'+(q.history.length===1?'Your first round.':'Your recent rounds.')+'</p></div><div class="card rounds" style="margin-top:16px">';
     q.history.slice(0,5).forEach(function(r){
-      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+r.score+' of '+r.total+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
+      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+(r.lec?'L'+r.lec+': ':'')+r.score+' of '+r.total+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
     });
     h+='</div>';
   }
@@ -28,17 +35,18 @@ function quizStartHTML(){
 function renderQuiz(){$('quiz-body').innerHTML=quizStartHTML();syncSoundBtns()}
 R.quiz=renderQuiz;
 $('quiz-body').addEventListener('click',function(e){
-  if(e.target.closest('#quiz-restart')){PS(cur).quiz.round=null;saveP(cur);openQuizRound(true);return}
+  if(e.target.closest('#quiz-restart')){PS(cur).quiz.round=null;saveP(cur);if(lecsOf(cur).length>1)renderQuiz();else openQuizRound(true);return}
+  var lb=e.target.closest('[data-lec]');if(lb){openQuizRound(true,+lb.getAttribute('data-lec'));return}
   if(e.target.closest('#quiz-start'))openQuizRound(false);
 });
-function openQuizRound(fresh){
+function openQuizRound(fresh,lec){
   var p=cur,ps=PS(p),qz=quizOf(p);if(!qz.length)return;
   stopSpeech();
   var q=ps.quiz;
   if(!roundOK(p))q.round=null;
   if(fresh||!q.round){
-    var idx=qz.map(function(_,i){return i});
-    q.round={queue:q.history.length?shuffle(idx):idx,total:qz.length,solved:0,first:0,missed:{},at:Date.now()};
+    var idx=roundIdx(p,lec||0);
+    q.round={queue:q.history.length?shuffle(idx):idx,total:idx.length,lec:lec||0,solved:0,first:0,missed:{},at:Date.now()};
     saveP(p);
   }
   QS={opts:null,answered:false,t0:Date.now(),from:curScreen,shownAt:0};qDone=false;
@@ -116,10 +124,11 @@ function closeQuiz(){
 }
 function quizFinish(){
   qDone=true;
-  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,old=ps.quiz.best;
+  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,lec=r.lec||0,lb=ps.quiz.lecBest,old=lec?(+lb[lec]||0):ps.quiz.best;
   var nb=score>old;
-  ps.quiz.best=Math.max(old,score);ps.quiz.last=score;
-  ps.quiz.history.unshift({at:new Date().toISOString(),score:score,total:total});
+  if(lec)lb[lec]=Math.max(old,score);else ps.quiz.best=Math.max(old,score);
+  ps.quiz.last=score;ps.quiz.lastTotal=total;if(QS)QS.lec=lec;
+  ps.quiz.history.unshift({at:new Date().toISOString(),score:score,total:total,lec:lec});
   ps.quiz.history=ps.quiz.history.slice(0,10);
   ps.quiz.round=null;saveP(p);
   $('quiz-top').hidden=true;
@@ -133,7 +142,7 @@ function quizFinish(){
 $('quiz-close').addEventListener('click',closeQuiz);
 $('quiz-round').addEventListener('click',function(e){
   var o=e.target.closest('.opt');if(o){quizAnswer(+o.getAttribute('data-k'));return}
-  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true);if(QS)QS.from=qf;return}
+  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from,ql=QS&&QS.lec;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true,ql);if(QS)QS.from=qf;return}
   if(e.target.closest('#quiz-done-home')){var home_=QS&&QS.from==='home';closeQuiz();if(home_)goTab('home')}
 });
 $('quiz-feedback').addEventListener('click',function(e){if(e.target.closest('#quiz-continue'))quizContinue()});
@@ -148,17 +157,17 @@ var QA=null;
 function qaStatusIcon(s){return s==='got'?'<span class="qdisc got">'+ic('check')+'</span>':s==='again'?'<span class="qdisc">'+ic('reset')+'</span>':'<span class="qdisc"></span>'}
 function qaStartHTML(){
   var p=cur,ps=PS(p),qs_=qaOf(p),n=qs_.length;
-  if(!n)return emptyHTML('qa','No questions for this presentation.','');
+  if(!n)return emptyHTML('qa','No questions in this pack.','');
   var got=qaGot(p),left=n-got;
   var h='<div class="card start"><div class="start-icon">'+ic('qa')+'</div><h2>'+plural(n,'question')+'</h2>'+
     '<div class="prog-line"><b>Got it</b><span>'+got+' of '+n+'</span></div><div class="pbar" style="--p:'+(got/n)+'"><i></i></div>'+
-    '<p>Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.</p><div class="btn-stack">';
+    '<p>'+(isExam(p)?'Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.':'Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.')+'</p><div class="btn-stack">';
   if(got===0)h+='<button class="btn" id="qa-start" type="button">Start questions</button>';
   else if(left>0)h+='<button class="btn" id="qa-start" type="button">Practise the '+left+' left</button><button class="btn plain" id="qa-all" type="button">All '+n+' questions</button>';
   else h+='<button class="btn" id="qa-start" type="button">Practise all '+n+' again</button>';
   h+='</div></div><div class="sec"><h2>All questions</h2><p>Tap one to practise it.</p></div><div style="height:15px"></div>';
   qs_.forEach(function(q,i){
-    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?'Lecturer':'Classmate')+'</span></span></button>';
+    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?'Lecturer':q.who==='exam'?'Exam':'Classmate')+'</span></span></button>';
   });
   return h;
 }
@@ -190,8 +199,8 @@ function openQaRound(mode){
 function qaBar(){$('qa-bar').style.setProperty('--p',QA.done/QA.total)}
 function showQaQ(anim){
   var q=qaOf(cur)[QA.queue[0]];QA.revealed=false;
-  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?'Lecturer asks':'Classmate asks')+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">Think first. Say your answer out loud.</p>'+
-    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>You could say</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="Listen to the answer" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
+  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?'Lecturer asks':q.who==='exam'?'Exam question':'Classmate asks')+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">'+(q.who==='exam'?'Think first. Say or jot down your answer.':'Think first. Say your answer out loud.')+'</p>'+
+    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>'+(q.who==='exam'?'A strong answer':'You could say')+'</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="Listen to the answer" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
   var body=$('qa-round');body.innerHTML=h;body.scrollTop=0;
   $('qa-actions').innerHTML='<div class="actions" style="grid-template-columns:1fr"><button class="btn" id="qa-reveal" type="button">Show answer</button></div>';
   qaBar();

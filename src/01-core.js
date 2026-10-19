@@ -35,7 +35,7 @@ function PS(p){
   if(!PSm[p.id]){
     var d=obj(rd('prep.v1.pack.'+p.id));
     d.lessons=obj(d.lessons);d.chapters=obj(d.chapters);d.runs=Array.isArray(d.runs)?d.runs:[];d.why=obj(d.why);
-    d.quiz=obj(d.quiz);d.quiz.best=+d.quiz.best||0;d.quiz.history=Array.isArray(d.quiz.history)?d.quiz.history:[];
+    d.quiz=obj(d.quiz);d.quiz.best=+d.quiz.best||0;d.quiz.lecBest=obj(d.quiz.lecBest);d.quiz.history=Array.isArray(d.quiz.history)?d.quiz.history:[];
     d.qa=obj(d.qa);d.qa.status=obj(d.qa.status);d.shown=+d.shown||0;
     PSm[p.id]=d;
   }
@@ -70,6 +70,9 @@ function normPack(p){
 function L_(p){return p.lessons||[]}
 function chaptersOf(p){var r=p.read;if(!r)return[];if(Array.isArray(r))return r;return r.chapters||[]}
 function quizOf(p){return p.quiz||[]}
+/* Quiz items may carry a lecture number (exam packs); a round can then cover one lecture. */
+function lecsOf(p){var c={};quizOf(p).forEach(function(q){if(q.lec)c[q.lec]=(c[q.lec]||0)+1});return Object.keys(c).map(Number).sort(function(a,b){return a-b}).map(function(k){return {lec:k,n:c[k]}})}
+function isExam(p){return !!p&&p.kind==='exam'}
 function qaOf(p){return p.questions||[]}
 function numsOf(p){return p.numbers||[]}
 function wordsOf(p){return p.glossary||[]}

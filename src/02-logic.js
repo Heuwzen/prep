@@ -22,10 +22,12 @@ function readyParts(p){
   if(sentsOf(p).length)a.push({k:'runs',label:'Practice runs',w:2,n:Math.min(2,ps.runs.length),d:2});
   if(sentsOf(p).length)a.push({k:'why',label:'Sentences you checked',w:2,n:Math.min(Object.keys(ps.why||{}).length,sentsOf(p).length),d:sentsOf(p).length});
   if(numsOf(p).length)a.push({k:'numbers',label:'Numbers gone over',w:1,n:ps.numbersDone?1:0,d:1});
-  if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:Math.min(ps.quiz.best,quizOf(p).length),d:quizOf(p).length});
+  if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
   if(qaOf(p).length)a.push({k:'qa',label:'Questions you got',w:2,n:qaGot(p),d:qaOf(p).length});
   return a;
 }
+/* Best full round, or the best lecture rounds added up, whichever is higher. */
+function quizScore(p){var q=PS(p).quiz,s=0;Object.keys(q.lecBest||{}).forEach(function(k){s+=+q.lecBest[k]||0});return Math.min(Math.max(q.best,s),quizOf(p).length)}
 function readiness(p){
   var a=readyParts(p),s=0,w=0;
   a.forEach(function(x){s+=x.w*x.n/x.d;w+=x.w});
@@ -137,7 +139,7 @@ function buildPath(p){
           detail:run?'Done in '+mmss(run.secs):'3-minute timer',done:!!run,frac:run?1:0,aria:'Practice run '+(k+1)});
       }
     }else if(s.do==='quiz'&&quizOf(p).length){
-      var qn=quizOf(p).length,b=ps.quiz.best;
+      var qn=quizOf(p).length,b=quizScore(p);
       nodes.push({id:'node-quiz-0',kind:'quiz',idx:0,icon:'quiz',title:'Quiz',
         detail:b>0?'Best: '+b+' of '+qn:qn+' questions',done:b>=Math.ceil(qn*0.8),frac:b/qn,aria:'Quiz'});
     }else if(s.do==='questions'&&qaOf(p).length){

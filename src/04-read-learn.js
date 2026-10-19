@@ -39,7 +39,7 @@ function renderRead(){
   cb.hidden=!ch.length;
   if(!ch.length){
     $('rprog').hidden=true;
-    body.innerHTML='<div class="read">'+emptyHTML('read','Reading is coming','The reading for this presentation has not arrived yet. It will show up here.',{id:'read-go-lessons',t:'Go to lessons'})+'</div>';
+    body.innerHTML='<div class="read">'+emptyHTML('read','Reading is coming','The reading for this pack has not arrived yet. It will show up here.',{id:'read-go-lessons',t:'Go to lessons'})+'</div>';
     return;
   }
   $('rprog').hidden=false;
@@ -129,14 +129,14 @@ function learnFaceHTML(){
   var p=cur,ps=PS(p),f=face.learn,h='';
   if(f==='words'){
     var w=wordsOf(p);
-    if(!w.length)h+=emptyHTML('learn','No words for this presentation.','');
+    if(!w.length)h+=emptyHTML('learn','No words in this pack.','');
     else{
       h+='<p class="desc">Words you might hear or use.</p>';
       w.forEach(function(x){h+='<div class="card word"><b>'+T(x.term)+'</b><p>'+T(x.meaning)+'</p></div>'});
     }
   }else if(f==='facts'){
     var facts=factsOf(p);
-    if(!facts.length)h+=emptyHTML('learn','No facts for this presentation.','');
+    if(!facts.length)h+=emptyHTML('learn','No facts in this pack.','');
     else{
       h+='<p class="desc">Facts you can share in class.</p>';
       facts.forEach(function(x,i){

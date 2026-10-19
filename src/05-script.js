@@ -9,8 +9,8 @@ function scriptFaceHTML(){
   var p=cur,f=face.script,h='';
   if(f==='numbers'){
     var ns=numsOf(p),ps=PS(p);
-    if(!ns.length)return emptyHTML('hash','No numbers for this presentation.','');
-    h+='<p class="desc">The numbers in your script, how to say them, and what they cover.</p>';
+    if(!ns.length)return emptyHTML('hash','No numbers in this pack.','');
+    h+='<p class="desc">'+(scriptParts(p).length?'The numbers in your script, how to say them, and what they cover.':'The numbers from the slides, and exactly what each one covers.')+'</p>';
     ns.forEach(function(n,i){
       h+='<div class="card num" id="num-'+i+'"><div class="num-val">'+T(n.value)+'</div><div class="num-say"><span>“'+T(n.say)+'”</span>'+
         (SYN?'<button class="icon-btn sm" id="num-say-'+i+'" type="button" data-lk="num-'+i+'" aria-label="Say '+esc(n.say)+'" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div>'+
@@ -21,7 +21,7 @@ function scriptFaceHTML(){
     return h;
   }
   var parts=scriptParts(p);
-  if(!parts.length)return emptyHTML('mic','No script for this presentation.','');
+  if(!parts.length)return emptyHTML('mic','No script in this pack.','');
   h+='<div class="band"><div class="card practice"><div class="pr-row"><div class="pr-time"><div class="pr-digits" id="timer-digits">3:00</div></div><div class="pr-btns" id="timer-btns"></div><div class="pr-cap"><span id="timer-cap"></span><button class="textbtn" id="timer-reset" type="button" hidden>Reset</button></div></div><div class="tbar" id="timer-bar"><i style="width:0%"></i></div></div></div>';
   h+='<div class="hint" id="script-hint"'+(G.hints.sentence?' hidden':'')+'>'+ic('tap')+'<span>Tap any sentence to see why it is true.</span></div>';
   var g=0;
@@ -44,8 +44,9 @@ function scriptFaceHTML(){
 }
 function renderScript(){
   SENTS=sentsOf(cur);
+  var noS=!scriptParts(cur).length;if(noS)face.script='numbers';
   var f=face.script;
-  $('script-body').innerHTML='<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:'Your script'},{id:'seg-numbers',t:'Numbers'}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';
+  $('script-body').innerHTML=noS?'<div id="script-face">'+scriptFaceHTML()+'</div>':'<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:'Your script'},{id:'seg-numbers',t:'Numbers'}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';
   afterScriptFace();
 }
 function afterScriptFace(){
