@@ -26,12 +26,19 @@ function scriptFaceHTML(){
   h+='<div class="hint" id="script-hint"'+(G.hints.sentence?' hidden':'')+'>'+ic('tap')+'<span>Tap any sentence to see why it is true.</span></div>';
   var g=0;
   parts.forEach(function(pt){
-    h+='<h2 class="sc-h">'+esc(cap(pt.key))+'</h2><p class="sc-p">';
+    h+='<h2 class="sc-h">'+esc(cap(pt.key))+'</h2>';
+    var open=false;
     pt.list.forEach(function(s,i){
-      if(i)h+=' ';
+      /* A sentence that carries a slide starts a new block under that slide's label, in deck order. */
+      var sl=s.slide&&s.slide.n?s.slide:null;
+      if(sl||!open){
+        if(open)h+='</p>';
+        if(sl)h+='<p class="sc-slide"><span class="pill">Slide '+esc(String(sl.n))+'</span><span>'+esc(sl.title||'')+'</span></p>';
+        h+='<p class="sc-p">';open=true;
+      }else h+=' ';
       h+='<span class="sent" role="button" tabindex="0" id="sent-'+esc(pt.key)+'-'+i+'" data-g="'+g+'">'+T(s.sentence)+'</span>';g++;
     });
-    h+='</p>';
+    if(open)h+='</p>';
   });
   return h;
 }

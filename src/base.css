@@ -293,6 +293,8 @@ svg circle.trk,svg circle.arc{fill:none}
 .hint .ic{width:18px;height:18px}
 .sc-h{margin:26px 0 var(--sp-heading);font:var(--t-title2)}
 .sc-p{margin:0;font:var(--t-script);color:var(--read-ink)}
+.sc-slide{display:flex;align-items:center;gap:8px;margin:22px 0 8px;font:var(--t-detail);color:var(--muted)}
+.sc-h+.sc-slide{margin-top:0}
 .sent{cursor:pointer;border-radius:var(--r-hl);-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-color .2s ease,box-shadow .2s ease}
 .sent:active,.sent.is-open{background:var(--sunken);box-shadow:0 0 0 3px var(--sunken)}
 .sent.speaking{background:var(--green-soft);box-shadow:0 0 0 3px var(--green-soft);color:var(--ink)}

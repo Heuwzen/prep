@@ -346,7 +346,11 @@
     "fact": "Sales of these AI glasses, Ray-Ban and Oakley together, jumped from about 2 million across 2023 and 2024 combined to more than 7 million in 2025. Meta also said in April 2026 that the number of people using its AI glasses every day had tripled in a year.",
     "source": "EssilorLuxottica 2025 results and CNBC, 11 Feb 2026. Meta earnings call, 29 Apr 2026.",
     "question": "Which market do you mean?",
-    "answer": "The consumer market, so normal people buying the glasses for themselves. Out of Kotler's five customer markets, that's the main one for these glasses."
+    "answer": "The consumer market, so normal people buying the glasses for themselves. Out of Kotler's five customer markets, that's the main one for these glasses.",
+    "slide": {
+     "n": 2,
+     "title": "A Fast-Growing Market"
+    }
    },
    {
     "sentence": "In 2025 more than 7 million AI glasses from Ray-Ban and Oakley were sold.",
@@ -388,7 +392,11 @@
     "fact": "Meta wrote that \"Audio has been our most popular feature since day one.\" Audio means sound from small speakers in the frame, near your ears, like music and podcasts, with no earbuds.",
     "source": "Meta announcement, 23 Sep 2026",
     "question": "Isn't that just Meta praising its own product?",
-    "answer": "It is Meta's own claim. But they acted on it and launched a Ray-Ban version with no camera, with audio as their reason."
+    "answer": "It is Meta's own claim. But they acted on it and launched a Ray-Ban version with no camera, with audio as their reason.",
+    "slide": {
+     "n": 3,
+     "title": "What Owners Say"
+    }
    },
    {
     "sentence": "A tech reviewer wrote that a lot of owners love their glasses but worry about how others see them.",
@@ -409,7 +417,11 @@
     "fact": "The group's search found no physical store in Lithuania that sells these glasses, though some shop websites were hard to search. The main seller says on its website that it has no physical shop in Lithuania, and that activated glasses cannot be returned.",
     "source": "Group search, and estheroptica.lt, 16 Oct 2026",
     "question": "So can people try them on before buying?",
-    "answer": "Not in a shop here, as far as we found. You order online and wait for delivery. And the seller says a pair can't be returned once it's activated."
+    "answer": "Not in a shop here, as far as we found. You order online and wait for delivery. And the seller says a pair can't be returned once it's activated.",
+    "slide": {
+     "n": 4,
+     "title": "Buying in Lithuania"
+    }
    },
    {
     "sentence": "The official seller we found sends every pair from Italy, and free delivery usually takes 9 to 15 days.",
@@ -439,7 +451,11 @@
     "fact": "Counterpoint Research tracks how many glasses each brand ships. Meta shipped 82% of all smart glasses worldwide in the second half of 2025. Counting all smart glasses, Meta went from over 60% in 2024 to 73% in the first half of 2025 and 82% in the second half, so its lead grew all through 2025. The 94% is a different count, so it stays out of this line.",
     "source": "Counterpoint Research, 26 Feb 2025, 12 Aug 2025 and 27 Feb 2026",
     "question": "Biggest by what, sales or money?",
-    "answer": "By the number of glasses shipped, so how many pairs go out to be sold. Counting all smart glasses, Meta had 82% in the second half of 2025."
+    "answer": "By the number of glasses shipped, so how many pairs go out to be sold. Counting all smart glasses, Meta had 82% in the second half of 2025.",
+    "slide": {
+     "n": 5,
+     "title": "Meta is the biggest brand in the world"
+    }
    },
    {
     "sentence": "As a matter of fact they shipped 94% of all AI glasses without a screen in the first half of 2026.",
@@ -460,7 +476,11 @@
     "fact": "This compares the Wayfarer with other AI glasses on price. Cheap no-name camera glasses sit below it, and AI glasses with a screen sit above it. Backup if asked about a rival at the same price: in Germany, Rokid sells AI glasses for 449 euros, and the German tech site heise calls them a Ray-Ban Meta rival on technology and price. Ray-Ban Meta Gen 2 started at 419 euros there.",
     "source": "varle.lt and estheroptica.lt, 16 Oct 2026. evenrealities.com. heise online, 29 Apr 2026.",
     "question": "In the middle compared to what?",
-    "answer": "Compared to other AI glasses. No-name ones with a camera cost under 80 euros, the newest Wayfarer about 430 to 500, and AI glasses with a screen cost more, for example about 700."
+    "answer": "Compared to other AI glasses. No-name ones with a camera cost under 80 euros, the newest Wayfarer about 430 to 500, and AI glasses with a screen cost more, for example about 700.",
+    "slide": {
+     "n": 6,
+     "title": "Ray-Ban Meta is in the middle on price"
+    }
    },
    {
     "sentence": "You can find no-name AI glasses with a camera for under 80 euros on a Lithuanian website.",
@@ -488,7 +508,11 @@
     "fact": "Meta sells other AI glasses besides the Wayfarer, like the sporty Oakley Meta models and a Ray-Ban version with no camera. A buyer who picks one of those may not buy a Wayfarer. In Lithuania the same seller lists Oakley Meta at 464.55 and 521.55 euros.",
     "source": "Meta announcement, 23 Sep 2026. Counterpoint Research, 27 Feb 2026. estheroptica.lt, 16 Oct 2026.",
     "question": "Why is Oakley a competitor if it's the same company?",
-    "answer": "Because our product is the Wayfarer, not the whole company. Oakley Meta sits in the same market, and here the same seller sells it too, at similar prices. So a buyer who picks an Oakley pair may skip the Wayfarer."
+    "answer": "Because our product is the Wayfarer, not the whole company. Oakley Meta sits in the same market, and here the same seller sells it too, at similar prices. So a buyer who picks an Oakley pair may skip the Wayfarer.",
+    "slide": {
+     "n": 7,
+     "title": "Where competitors have a chance"
+    }
    },
    {
     "sentence": "The sporty Oakley models made up over 30% of the glasses Meta shipped in the last three months of 2025.",

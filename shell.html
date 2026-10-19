@@ -392,6 +392,8 @@ svg circle.trk,svg circle.arc{fill:none}
 .hint .ic{width:18px;height:18px}
 .sc-h{margin:26px 0 var(--sp-heading);font:var(--t-title2)}
 .sc-p{margin:0;font:var(--t-script);color:var(--read-ink)}
+.sc-slide{display:flex;align-items:center;gap:8px;margin:22px 0 8px;font:var(--t-detail);color:var(--muted)}
+.sc-h+.sc-slide{margin-top:0}
 .sent{cursor:pointer;border-radius:var(--r-hl);-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-color .2s ease,box-shadow .2s ease}
 .sent:active,.sent.is-open{background:var(--sunken);box-shadow:0 0 0 3px var(--sunken)}
 .sent.speaking{background:var(--green-soft);box-shadow:0 0 0 3px var(--green-soft);color:var(--ink)}
@@ -1831,12 +1833,19 @@ function scriptFaceHTML(){
   h+='<div class="hint" id="script-hint"'+(G.hints.sentence?' hidden':'')+'>'+ic('tap')+'<span>Tap any sentence to see why it is true.</span></div>';
   var g=0;
   parts.forEach(function(pt){
-    h+='<h2 class="sc-h">'+esc(cap(pt.key))+'</h2><p class="sc-p">';
+    h+='<h2 class="sc-h">'+esc(cap(pt.key))+'</h2>';
+    var open=false;
     pt.list.forEach(function(s,i){
-      if(i)h+=' ';
+      /* A sentence that carries a slide starts a new block under that slide's label, in deck order. */
+      var sl=s.slide&&s.slide.n?s.slide:null;
+      if(sl||!open){
+        if(open)h+='</p>';
+        if(sl)h+='<p class="sc-slide"><span class="pill">Slide '+esc(String(sl.n))+'</span><span>'+esc(sl.title||'')+'</span></p>';
+        h+='<p class="sc-p">';open=true;
+      }else h+=' ';
       h+='<span class="sent" role="button" tabindex="0" id="sent-'+esc(pt.key)+'-'+i+'" data-g="'+g+'">'+T(s.sentence)+'</span>';g++;
     });
-    h+='</p>';
+    if(open)h+='</p>';
   });
   return h;
 }
