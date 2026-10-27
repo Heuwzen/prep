@@ -579,9 +579,39 @@ svg circle.trk,svg circle.arc{fill:none}
 .notice-title{font:800 17px/1.25 var(--font-ui);color:var(--ink)}
 .notice-text{font:600 15px/1.45 var(--font-ui);color:var(--muted)}
 .notice .btn{width:auto;justify-self:start;margin-top:4px}
+
+/* daily page: unlock sheet, news, words with examples, go-deeper links */
+.tabbar-in.four{grid-template-columns:repeat(4,1fr)}
+.unlock{display:grid;gap:12px;padding-bottom:8px}
+.unlock-icon{display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin:4px auto 2px;border-radius:50%;background:var(--green-soft);color:var(--accent-text)}
+.unlock-icon .ic{width:30px;height:30px}
+.unlock-text{margin:0 0 6px;text-align:center;font:var(--t-body);color:var(--muted)}
+.field-l{font:var(--t-label);color:var(--muted)}
+.field{width:100%;min-height:52px;padding:12px 14px;border:2px solid var(--border);border-radius:var(--r-btn);background:var(--sunken);color:var(--ink);font:var(--t-body);outline:none;-webkit-appearance:none;appearance:none}
+.field:focus{border-color:var(--green-line);background:var(--surface)}
+.field-err{margin:0;font:700 15px/1.4 var(--font-ui);color:var(--red-text)}
+.unlock .btn{margin-top:6px}
+.unlock .foot{margin-top:2px;text-align:center}
+.news{margin-bottom:var(--sp-list)}
+.news-top{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.news-src{font:var(--t-detail);color:var(--muted)}
+.news-title{margin:10px 0 0;font:var(--t-headline)}
+.news-sum{margin:6px 0 0;font:var(--t-callout)}
+.news-link{display:inline-flex;margin-top:14px;text-decoration:none}
+.news-link .ic{width:16px;height:16px}
+.word-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.word-ex{margin:6px 0 0;font:var(--t-sub);color:var(--muted)}
+.deeper{margin-top:var(--sp-section)}
+.deeper .ch-title{margin-bottom:12px}
+.deeper-row{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:var(--sp-stack);text-decoration:none;color:inherit}
+.deeper-t{font:var(--t-row)}
+.deeper-n{grid-column:1;font:var(--t-sub);color:var(--muted)}
+.deeper-row .ic{grid-row:1/span 2;grid-column:2;width:18px;height:18px;color:var(--muted)}
+.lockrow{display:flex;align-items:center;gap:6px;margin:20px auto 0;padding:8px 12px;border:0;background:none;color:var(--muted);font:var(--t-detail)}
+.lockrow .ic{width:15px;height:15px}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,0..100&family=Nunito:wght@400..900&display=swap">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="i-read" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol><symbol id="i-learn" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol><symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol><symbol id="i-quiz" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol><symbol id="i-qa" viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.8C13 5.4 15.2 7.2 17 9.3C18.6 11.2 19.4 13 19.4 15A7.4 7.4 0 0 1 4.6 15C4.6 12.6 5.6 10.6 7.4 9C7.6 10.6 8.3 11.6 9.4 12.1C9.2 8.2 10.4 4.6 12 1.8ZM12 13.4C10.9 14.7 9.8 15.8 9.8 17.6A2.2 2.2 0 0 0 14.2 17.6C14.2 15.8 13.1 14.7 12 13.4Z"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-vol" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></symbol><symbol id="i-volx" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></symbol><symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol><symbol id="i-square" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol><symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-pres" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></symbol><symbol id="i-tap" viewBox="0 0 24 24"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol><symbol id="i-bell-off" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742"/><path d="m2 2 20 20"/><path d="M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="i-read" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol><symbol id="i-learn" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol><symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol><symbol id="i-quiz" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol><symbol id="i-qa" viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.8C13 5.4 15.2 7.2 17 9.3C18.6 11.2 19.4 13 19.4 15A7.4 7.4 0 0 1 4.6 15C4.6 12.6 5.6 10.6 7.4 9C7.6 10.6 8.3 11.6 9.4 12.1C9.2 8.2 10.4 4.6 12 1.8ZM12 13.4C10.9 14.7 9.8 15.8 9.8 17.6A2.2 2.2 0 0 0 14.2 17.6C14.2 15.8 13.1 14.7 12 13.4Z"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-vol" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></symbol><symbol id="i-volx" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></symbol><symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol><symbol id="i-square" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol><symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-pres" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></symbol><symbol id="i-tap" viewBox="0 0 24 24"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol><symbol id="i-bell-off" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742"/><path d="m2 2 20 20"/><path d="M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05"/></symbol><symbol id="i-news" viewBox="0 0 24 24"><path d="M15 18h-5"/><path d="M18 14h-8"/><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="10" y="6" rx="1"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol></svg>
 <div class="app" id="app">
 <section class="screen" id="screen-home" aria-label="Home">
 <header class="hdr"><h1 class="hdr-title">Home</h1><button class="streak" id="streak-home" type="button" aria-haspopup="dialog" aria-label="Streak"><svg class="ring-svg" viewBox="0 0 44 44" aria-hidden="true"><circle class="trk" cx="22" cy="22" r="18"/><circle class="arc is-zero" cx="22" cy="22" r="18" stroke-dasharray="113.10" stroke-dashoffset="113.10"/></svg><svg class="ic fill flame" aria-hidden="true"><use href="#i-flame"/></svg></button></header>
@@ -667,6 +697,11 @@ svg circle.trk,svg circle.arc{fill:none}
 <div class="sheet-head"><h2 class="sheet-title" id="chapters-title">Chapters</h2><button class="icon-btn sm" id="chapters-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
 <div class="sheet-body" id="chapters-body"></div>
 </div>
+<div class="sheet" id="sheet-unlock" role="dialog" aria-modal="true" aria-labelledby="unlock-title" hidden>
+<div class="grab"></div>
+<div class="sheet-head"><h2 class="sheet-title" id="unlock-title">Your daily page</h2><button class="icon-btn sm" id="unlock-close" type="button" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div class="sheet-body" id="unlock-body"></div>
+</div>
 <div class="sr" id="live" role="status" aria-live="polite"></div>
 <script type="application/json" id="content">{"packs": []}</script>
 <script>
@@ -747,6 +782,8 @@ function quizOf(p){return p.quiz||[]}
 /* Quiz items may carry a lecture number (exam packs); a round can then cover one lecture. */
 function lecsOf(p){var c={};quizOf(p).forEach(function(q){if(q.lec)c[q.lec]=(c[q.lec]||0)+1});return Object.keys(c).map(Number).sort(function(a,b){return a-b}).map(function(k){return {lec:k,n:c[k]}})}
 function isExam(p){return !!p&&p.kind==='exam'}
+function isDaily(p){return !!p&&p.kind==='daily'}
+function newsOf(p){return Array.isArray(p.news)?p.news.filter(function(n){return n&&n.title}):[]}
 function qaOf(p){return p.questions||[]}
 function numsOf(p){return p.numbers||[]}
 function wordsOf(p){return p.glossary||[]}
@@ -793,6 +830,13 @@ function chaptersRead(p){var ps=PS(p);return chaptersOf(p).filter(function(c,i){
 function qaGot(p){var ps=PS(p);return qaOf(p).filter(function(q,i){return ps.qa.status[i]==='got'}).length}
 function readyParts(p){
   var ps=PS(p),a=[];
+  if(isDaily(p)){
+    if(newsOf(p).length)a.push({k:'news',label:'News read',w:1,n:ps.newsDone?1:0,d:1});
+    if(chaptersOf(p).length)a.push({k:'chapters',label:'Lesson chapters read',w:3,n:chaptersRead(p),d:chaptersOf(p).length});
+    if(L_(p).length)a.push({k:'lessons',label:'Key ideas',w:1,n:lessonsDone(p),d:L_(p).length});
+    if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
+    return a;
+  }
   if(L_(p).length)a.push({k:'lessons',label:'Lessons',w:3,n:lessonsDone(p),d:L_(p).length});
   if(chaptersOf(p).length)a.push({k:'chapters',label:'Chapters',w:1,n:chaptersRead(p),d:chaptersOf(p).length});
   if(sentsOf(p).length)a.push({k:'runs',label:'Practice runs',w:2,n:Math.min(2,ps.runs.length),d:2});
@@ -885,9 +929,9 @@ function buildPath(p){
   var seenDo={};
   plan.forEach(function(s){if(s.do&&seenDo[s.do])s.do='';else if(s.do)seenDo[s.do]=true});
   /* every kind of content the pack has gets a place on the path, in a fixed order, even if the plan text misses it */
-  var ORDER=['lessons','read','script','quiz','questions','numbers'],
-    HAVE={lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
-    DEF={lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
+  var ORDER=['news','lessons','read','script','quiz','questions','numbers'],
+    HAVE={news:newsOf(p).length,lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
+    DEF={news:'Catch up on the AI news.',lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
   ORDER.forEach(function(k,oi){
     if(!HAVE[k]||plan.some(function(s){return s.do===k}))return;
     var at=plan.length;
@@ -904,9 +948,12 @@ function buildPath(p){
           detail:'Lesson '+(i+1)+' · '+(st.done?'Done':seen>0?seen+' of '+n+' cards':n+' cards'),
           done:!!st.done,frac:st.done?1:seen/n,aria:'Lesson '+(i+1)+', '+l.title});
       });
+    }else if(s.do==='news'&&newsOf(p).length){
+      var sn=newsOf(p).length,sd=!!ps.newsDone,tn=p.day===today()?"Today's AI news":'The AI news';
+      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?'Read':plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
     }else if(s.do==='read'&&chaptersOf(p).length){
       var c=chaptersOf(p).length,r=chaptersRead(p);
-      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:'Read the chapters',
+      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":'Read the chapters',
         detail:r>=c?'All read':r>0?r+' of '+c+' read':c+' chapters',done:r>=c,frac:r/c,aria:'Read the chapters'});
     }else if(s.do==='script'&&sentsOf(p).length){
       for(var k=0;k<2;k++){
@@ -943,6 +990,7 @@ function heroInfo(p,path){
   }
   var label='';
   if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?'Continue lesson ':'Start lesson ')+(n.idx+1)}
+  else if(n.kind==='news')label='Read the news';
   else if(n.kind==='read'){label=ps.place?'Continue reading':'Read chapter '+(firstUnread(p)+1)}
   else if(n.kind==='script')label='Practise your script';
   else if(n.kind==='quiz')label=ps.quiz.best>0?'Beat your best':'Do the quiz';
@@ -1184,10 +1232,11 @@ function placeHl(instant){
 }
 /* A pack without a script (an exam) shows its numbers under this tab; with neither, the tab goes. */
 function syncTabs(){
-  var t=$('tab-script');if(!t||!cur)return;
-  var noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=noS?'Numbers':'Script';
-  t.hidden=noS&&!hasN;qs('.tabbar-in').classList.toggle('five',t.hidden);
-  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',noS?'#i-hash':'#i-mic');
+  var t=$('tab-script'),qa=$('tab-qa');if(!t||!cur)return;
+  var dly=isDaily(cur),noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=dly?'News':noS?'Numbers':'Script';
+  t.hidden=!dly&&noS&&!hasN;qa.hidden=!qaOf(cur).length;
+  var n=6-(t.hidden?1:0)-(qa.hidden?1:0),bar=qs('.tabbar-in');bar.classList.toggle('five',n===5);bar.classList.toggle('four',n===4);
+  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',dly?'#i-news':noS?'#i-hash':'#i-mic');
   qs('#screen-script .hdr-title').textContent=lab;$('screen-script').setAttribute('aria-label',lab);
 }
 function show(name,o){
@@ -1238,6 +1287,7 @@ function route(){
   else if(h==='numbers')show('script',{face:'numbers'});
   else if(h==='learn')show('learn',{face:'lessons'});
   else if(h==='script')show('script',{face:'script'});
+  else if(h==='news')show('script',{face:'news'});
   else if(SCREENS.indexOf(h)>=0)show(h);
   else if((m=/^lesson-(\d+)$/.exec(h))){show('learn',{face:'lessons'});openLesson(+m[1]-1)}
   else if(h==='quiz-run'){show('quiz');openQuizRound(false)}
@@ -1279,16 +1329,17 @@ function nodeRowHTML(n,x){
 }
 function featureIdx(p){var f=factsOf(p);if(!f.length)return 0;var d=dayKey(Date.now()).split('-');var n=Math.floor(Date.UTC(+d[0],+d[1]-1,+d[2])/86400000);return n%f.length}
 function renderHome(){
-  var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100);
+  var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100),dly=isDaily(p);
   var h='';
   if(!storeOK)h+='<div class="card notice warn" role="status"><p class="notice-title">Your progress can\'t be saved here</p><p class="notice-text">This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.</p></div>';
   else if(!standalone&&navigator.maxTouchPoints>0&&!G.hints.homescreen)h+='<div class="card notice" role="note"><p class="notice-title">Keep your progress: use the Home Screen app</p><p class="notice-text">In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.</p><button class="btn plain compact" id="hs-ok" type="button">Got it</button></div>';
-  h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic('pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
+  h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic(dly?'sun':'pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
   h+='<div class="card hero"><div class="hero-top">'+
-    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">ready</span></span></button>'+
+    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">'+(dly?'done':'ready')+'</span></span></button>'+
     '<div class="count"><div class="count-label" id="count-label"></div><div class="count-value" id="count-value"></div>'+
+    (dly?'<div class="count-line">'+ic('clock')+'<span>About '+dailyMinutes(p)+' min</span></div><div class="count-line">'+ic('news')+'<span>'+plural(newsOf(p).length,'story','stories')+' · '+plural(wordsOf(p).length,'new word')+'</span></div>':
     '<div class="count-line">'+ic('clock')+'<span>'+esc(fmtWhen(p))+'</span></div>'+
-    (p.place?'<div class="count-line">'+ic('pin')+'<span>'+T(cap(p.place))+'</span></div>':'')+'</div></div>'+
+    (p.place?'<div class="count-line">'+ic('pin')+'<span>'+T(cap(p.place))+'</span></div>':''))+'</div></div>'+
     '<p class="hero-next">'+(hero.line?esc(hero.line):'Up next: <b>'+T(hero.bold)+'</b>')+'</p>'+
     '<button class="btn" id="home-continue" type="button">'+esc(hero.label)+'</button>'+
     (storeOK?'':'<p class="save-note">This browser cannot save your progress.</p>')+'</div>';
@@ -1298,7 +1349,7 @@ function renderHome(){
     u.nodes.forEach(function(n){h+=nodeRowHTML(n,ZZ[n.pos%8])});
   });
   var all=path.allDone;
-  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(shortTitle(p))+'</span><span class="node-detail">'+(all?'Every step done':esc(fmtWhen(p)))+'</span></span></div>';
+  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(dly?'Your day':shortTitle(p))+'</span><span class="node-detail">'+(all?'Every step done':dly?'About '+dailyMinutes(p)+' min in all':esc(fmtWhen(p)))+'</span></span></div>';
   var fl=factsOf(p);
   if(fl.length){
     var f=fl[featureIdx(p)];
@@ -1308,6 +1359,7 @@ function renderHome(){
   var jd=prevDone;prevDone=nd;
   $('home-body').innerHTML=h;
   home._ready=readiness(p);home._hero=hero;
+  $('readiness-title').textContent=dly?'Your day so far':'How ready you are';
   updateCountdown();
 }
 var home={};
@@ -1325,6 +1377,7 @@ function animHome(){
 function updateCountdown(){
   var p=cur;if(!p)return;
   var l=$('count-label'),v=$('count-value');if(!l)return;
+  if(isDaily(p)){l.textContent=p.day===today()?"Today's page":'Page from';v.textContent=dayLabel(p.day);return}
   var now=Date.now(),st=startOf(p),d=st-now,H=3600000;
   if(d<=-2*H){l.textContent='Presented on';v.textContent=fmtDate(p)}
   else if(d<=0){l.textContent='It is time';v.textContent='Good luck!'}
@@ -1345,6 +1398,7 @@ function startStep(kind,idx){
   else if(kind==='quiz')openQuizRound(false);
   else if(kind==='questions')openQaRound('left');
   else if(kind==='numbers')goTab('script',{face:'numbers'});
+  else if(kind==='news')goTab('script',{face:'news'});
 }
 $('home-body').addEventListener('click',function(e){
   var n=e.target.closest('.node-row[data-kind]');
@@ -1412,6 +1466,7 @@ document.addEventListener('click',function(e){
 
 /* ---------- presentations sheet ---------- */
 function whenLine(p){
+  if(isDaily(p))return dayLabel(p.day)+(p.day===today()?' · today':'');
   if(!isUpcoming(p))return 'Presented on '+fmtDate(p);
   var off=offMin(p)*60000,dn=Math.floor((Date.now()+off)/86400000),dp=Math.floor((startOf(p)+off)/86400000),diff=dp-dn;
   var tag=diff<=0?'today':diff===1?'tomorrow':'in '+diff+' days';
@@ -1423,28 +1478,36 @@ function packRow(p){
     '<span class="prow-text"><span class="c">'+T(p.course)+'</span><span class="t">'+T(p.title)+'</span><span class="w">'+esc(whenLine(p))+'</span></span>'+(sel?'<span class="okdisc">'+ic('check')+'</span>':'')+'</button>';
 }
 function openPacks(){
-  var up=packs.filter(isUpcoming).sort(function(a,b){return startOf(a)-startOf(b)});
-  var past=packs.filter(function(p){return !isUpcoming(p)}).sort(function(a,b){return startOf(b)-startOf(a)});
+  var pres=packs.filter(function(p){return !isDaily(p)}),td=todayDaily();
+  var up=pres.filter(isUpcoming).sort(function(a,b){return startOf(a)-startOf(b)});
+  var past=pres.filter(function(p){return !isUpcoming(p)}).sort(function(a,b){return startOf(b)-startOf(a)});
+  var earlier=dailyDays().filter(function(p){return p!==td}).slice(0,14);
   var h='';
+  if(td)h+='<div class="sub-h">Today</div>'+packRow(td);
   if(up.length)h+='<div class="sub-h">Upcoming</div>'+up.map(packRow).join('');
+  if(earlier.length)h+='<div class="sub-h">Earlier days</div>'+earlier.map(packRow).join('');
   if(past.length)h+='<div class="sub-h">Past</div>'+past.map(packRow).join('');
   h+='<p class="foot">A new pack shows up here when it is added.</p>';
+  if(!dLoaded&&dailyOK())h+='<button class="lockrow row-press" id="daily-unlock-row" type="button">'+ic('lock')+'<span>Daily page</span></button>';
   $('packs-body').innerHTML=h;
   openSheet('sheet-packs','packs-close');
 }
 $('packs-close').addEventListener('click',function(){closeSheet('sheet-packs')});
 $('packs-body').addEventListener('click',function(e){
+  if(e.target.closest('#daily-unlock-row')){closeSheet('sheet-packs');later(dailyAsk,320);return}
   var r=e.target.closest('.prow');if(!r)return;
   var id=r.getAttribute('data-id'),p=packs.filter(function(x){return x.id===id})[0];
   closeSheet('sheet-packs');
   if(p&&p!==cur)selectPack(p);
 });
-function selectPack(p){
+function selectPack(p,auto){
   closeAllLayers();stopSpeech();
   resetTimer(true);
   setSelected(p);prevDone=null;scrolls={};readPlaced=false;
-  face.learn='lessons';face.script='script';
+  if(!auto)wr(SELDAY,{day:today(),id:p.id});
+  face.learn='lessons';face.script=isDaily(p)?'news':'script';
   var s=curScreen||'home';curScreen=null;
+  if((s==='qa'&&!qaOf(p).length)||(s==='script'&&!isDaily(p)&&!sentsOf(p).length&&!numsOf(p).length))s='home';
   show(s);
 }
 
@@ -1455,7 +1518,7 @@ function openReadiness(){
     var full=x.n>=x.d;
     h+='<div class="part"><div class="part-row"><span>'+esc(x.label)+'</span><span class="v">'+x.n+' of '+x.d+'</span>'+(full?'<span class="part-check">'+ic('check')+'</span>':'')+'</div><div class="gbar" style="--p:'+clamp(x.n/x.d,0,1)+'"><i></i></div></div>';
   });
-  h+='<p class="foot">Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.</p>';
+  h+='<p class="foot">'+(isDaily(p)?'Your day fills up as you go. The lesson counts most, then your best quiz round.':'Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.')+'</p>';
   $('readiness-body').innerHTML=h;
   openSheet('sheet-readiness','readiness-close');
 }
@@ -1512,6 +1575,12 @@ function renderRead(){
     (c.paragraphs||[]).forEach(function(t,j){h+='<p id="ch-'+i+'-p-'+j+'">'+T(t)+'</p>'});
     h+=markBtn(i,!!ps.chapters[i])+'</section>';
   });
+  var ln=(p.links||[]).filter(function(l){return l&&l.title&&/^https?:\/\//.test(l.url||'')});
+  if(ln.length){
+    h+='<section class="deeper"><h3 class="ch-title">Go deeper</h3>';
+    ln.forEach(function(l){h+='<a class="card deeper-row row-press" href="'+esc(l.url)+'" target="_blank" rel="noopener"><span class="deeper-t">'+T(l.title)+'</span>'+(l.note?'<span class="deeper-n">'+T(l.note)+'</span>':'')+ic('ext')+'</a>'});
+    h+='</section>';
+  }
   h+='<p class="read-end">You reached the end.</p></div>';
   body.innerHTML=h;
   updateRprog();
@@ -1594,8 +1663,8 @@ function learnFaceHTML(){
     var w=wordsOf(p);
     if(!w.length)h+=emptyHTML('learn','No words in this pack.','');
     else{
-      h+='<p class="desc">Words you might hear or use.</p>';
-      w.forEach(function(x){h+='<div class="card word"><b>'+T(x.term)+'</b><p>'+T(x.meaning)+'</p></div>'});
+      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":'Words you might hear or use.')+'</p>';
+      w.forEach(function(x){h+='<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'});
     }
   }else if(f==='facts'){
     var facts=factsOf(p);
@@ -1865,6 +1934,7 @@ function scriptFaceHTML(){
 }
 function renderScript(){
   SENTS=sentsOf(cur);
+  if(isDaily(cur)){face.script='news';$('script-body').innerHTML='<div id="script-face">'+newsHTML(cur)+'</div>';return}
   var noS=!scriptParts(cur).length;if(noS)face.script='numbers';
   var f=face.script;
   $('script-body').innerHTML=noS?'<div id="script-face">'+scriptFaceHTML()+'</div>':'<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:'Your script'},{id:'seg-numbers',t:'Numbers'}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';
@@ -2331,6 +2401,138 @@ document.addEventListener('keydown',function(e){
 });
 ['quiz-sound','qa-sound','quiz-run-sound','qa-run-sound'].forEach(function(id){$(id).addEventListener('click',toggleSound)});
 
+/* ---------- daily page: private, sealed, unlocked once per device ---------- */
+/* daily.json holds one sealed day per date (AES-GCM; the key comes from Arda's passphrase through PBKDF2, see
+   tools/daily.mjs). After the first unlock this browser keeps the derived key, never the passphrase. Nobody who has
+   not unlocked sees any of it: the only ways in are the small "Daily page" row under Your packs and the #today link. */
+var DKEY='prep.v1.dkey',SELDAY='prep.v1.selDay',DSRC=null,dLoaded=false;
+var SUB=window.crypto&&window.crypto.subtle;
+function b2u(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+function u2b(a){var s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
+function dailyOK(){return !!(SUB&&window.TextEncoder&&window.DecompressionStream)}
+function dayLabel(k){var a=String(k).split('-'),d=new Date(+a[0],+a[1]-1,+a[2]);return DAYS[d.getDay()]+' '+d.getDate()+' '+MONTHS[d.getMonth()]}
+function isoDay(k,h){
+  var a=k.split('-'),d=new Date(+a[0],+a[1]-1,+a[2],h),o=-d.getTimezoneOffset(),s=o<0?'-':'+';o=Math.abs(o);
+  return k+'T'+pad(h)+':00:00'+s+pad(Math.floor(o/60))+':'+pad(o%60);
+}
+function dailyMinutes(p){return Math.max(10,Math.round((readMinutes(p)+5+Math.ceil(quizOf(p).length/2)+newsOf(p).length)/5)*5)}
+function dailyDays(){return packs.filter(isDaily).sort(function(a,b){return a.day<b.day?1:-1})}
+function todayDaily(){var t=today(),l=dailyDays();for(var i=0;i<l.length;i++)if(l[i].day<=t)return l[i];return null}
+function dayToPack(k,o){
+  o=obj(o);
+  return normPack({id:'daily-'+k,kind:'daily',day:k,course:'Daily',title:o.title||o.topic||'Today',topic:o.topic||o.title||'',theme:o.theme||'',
+    date:isoDay(k,6),place:'',lessons:o.lessons,glossary:o.glossary,quiz:o.quiz,read:o.read,inspire:o.inspire,links:o.links,news:o.news,
+    plan:[{text:'Catch up on the AI news.',do:'news'},{text:"Read today's lesson.",do:'read'},{text:'Go over the key ideas, then the new words.',do:'lessons'},{text:'Do the quiz. A few questions come back from earlier days.',do:'quiz'}]});
+}
+
+/* ---------- sealing ---------- */
+function fetchDaily(){
+  return fetch('daily.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error('none');return r.json()}).then(function(j){DSRC=j;return j});
+}
+function deriveDaily(pass,kdf){
+  return SUB.importKey('raw',new TextEncoder().encode(String(pass).trim().normalize('NFC')),'PBKDF2',false,['deriveKey']).then(function(base){
+    return SUB.deriveKey({name:'PBKDF2',salt:b2u(kdf.salt),iterations:kdf.iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},true,['decrypt']);
+  });
+}
+function unseal(key,b64){
+  var all=b2u(b64);
+  return SUB.decrypt({name:'AES-GCM',iv:all.slice(0,12)},key,all.slice(12)).then(function(buf){
+    return new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+  }).then(JSON.parse);
+}
+/* A wrong key fails on the check blob ({bad:true}); every day up to today is then opened and added as a pack. */
+function loadDaily(key){
+  return unseal(key,DSRC.check).then(null,function(){throw {bad:true}}).then(function(c){
+    if(!c||c.ok!=='prep-daily')throw {bad:true};
+    var t=today(),days=Object.keys(obj(DSRC.days)).filter(function(d){return d<=t}).sort();
+    return Promise.all(days.map(function(d){return unseal(key,DSRC.days[d]).then(function(o){return dayToPack(d,o)},function(){return null})}));
+  }).then(function(list){
+    packs=packs.filter(function(p){return !isDaily(p)}).concat(list.filter(Boolean));
+    dLoaded=true;
+  });
+}
+function pickedToday(){var s=obj(rd(SELDAY));return s.day===today()&&packs.some(function(p){return p.id===s.id})}
+/* Today's page opens by itself on a new day; a pack picked by hand today stays picked. */
+function dailyShow(fromLink){
+  var t=todayDaily();
+  if(t&&t!==cur&&(fromLink||!pickedToday()))selectPack(t,true);
+  else refresh();
+}
+function dailyBoot(){
+  var want=/^#today/.test(location.hash),raw=rd(DKEY);
+  if(dLoaded||(!raw&&!want))return;
+  if(!dailyOK()){if(want)openUnlock('This browser cannot open the daily page. Open Prep in Safari on iOS 16.4 or later.');return}
+  fetchDaily().then(function(){
+    if(!raw){openUnlock();return}
+    return SUB.importKey('raw',b2u(raw),{name:'AES-GCM'},false,['decrypt']).then(loadDaily).then(function(){dailyShow(want)},function(x){
+      if(x&&x.bad){try{if(store)store.removeItem(DKEY)}catch(e){}if(want)openUnlock()}
+    });
+  },function(){if(want&&!raw)openUnlock('No daily page has been published yet.')});
+}
+window.addEventListener('hashchange',function(){if(/^#today/.test(location.hash))dailyBoot()});
+
+/* ---------- unlock sheet ---------- */
+function dailyAsk(){(DSRC?Promise.resolve(DSRC):fetchDaily()).then(function(){openUnlock()},function(){openUnlock('No daily page has been published yet.')})}
+function openUnlock(msg){
+  var h='<form class="unlock" id="unlock-form" novalidate><div class="unlock-icon">'+ic('lock')+'</div>';
+  if(msg)h+='<p class="unlock-text">'+esc(msg)+'</p>';
+  else h+='<p class="unlock-text">Type your passphrase once. This phone remembers it, and the page opens by itself after that.</p>'+
+    '<input class="sr" type="text" name="username" autocomplete="username" value="Prep daily page" tabindex="-1" aria-hidden="true">'+
+    '<label class="field-l" for="unlock-pass">Passphrase</label>'+
+    '<input class="field" id="unlock-pass" name="password" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go">'+
+    '<p class="field-err" id="unlock-err" role="alert" hidden></p>'+
+    '<button class="btn" id="unlock-go" type="submit">Unlock</button>'+
+    '<p class="foot">Only this phone keeps it. Clearing its website data or deleting the app asks for it again.</p>';
+  $('unlock-body').innerHTML=h+'</form>';
+  openSheet('sheet-unlock',msg?'unlock-close':'unlock-pass');
+}
+$('unlock-close').addEventListener('click',function(){closeSheet('sheet-unlock')});
+$('sheet-unlock').addEventListener('submit',function(e){
+  e.preventDefault();
+  var inp=$('unlock-pass'),btn=$('unlock-go'),err=$('unlock-err'),v=inp.value;
+  if(!v.trim()){inp.focus();return}
+  btn.disabled=true;btn.textContent='Unlocking';err.hidden=true;
+  var key=null;
+  (DSRC?Promise.resolve(DSRC):fetchDaily()).then(function(j){return deriveDaily(v,j.kdf)}).then(function(k){key=k;return loadDaily(k)}).then(function(){
+    return SUB.exportKey('raw',key);
+  }).then(function(raw){
+    wr(DKEY,u2b(new Uint8Array(raw)));
+    inp.value='';
+    closeSheet('sheet-unlock');
+    dailyShow(true);
+    announce('Daily page unlocked');
+  }).catch(function(x){
+    btn.disabled=false;btn.textContent='Unlock';
+    err.textContent=x&&x.bad?'That passphrase does not open it. Check it and try again.':'The daily page could not load. Check your connection and try again.';
+    err.hidden=false;inp.focus();inp.select();
+  });
+});
+
+/* ---------- news (the third tab on a daily page) ---------- */
+function newsHTML(p){
+  var ns=newsOf(p),ps=PS(p),h='';
+  if(!ns.length)return emptyHTML('news','No news on this page','The morning run found nothing it could check, or it did not run that day.');
+  h+='<p class="desc">'+(p.day===today()?'The biggest AI stories since yesterday, the most important first.':'The AI stories of '+esc(dayLabel(p.day))+', the most important first.')+'</p>';
+  ns.forEach(function(n,i){
+    var url=/^https?:\/\//.test(n.url||'')?n.url:'';
+    h+='<article class="card news" id="news-'+i+'"><div class="news-top">'+(n.group?'<span class="pill'+(i===0?' go':'')+'">'+esc(n.group)+'</span>':'')+
+      '<span class="news-src">'+T(n.source||'')+(n.date?' · '+esc(n.date):'')+'</span></div>'+
+      '<h3 class="news-title">'+T(n.title)+'</h3>'+(n.summary?'<p class="news-sum">'+T(n.summary)+'</p>':'')+
+      (n.why?'<div class="scope"><b>Why it matters</b><p>'+T(n.why)+'</p></div>':'')+
+      (url?'<a class="btn plain compact news-link" href="'+esc(url)+'" target="_blank" rel="noopener">Read the source'+ic('ext')+'</a>':'')+'</article>';
+  });
+  var on=!!ps.newsDone;
+  h+='<div class="numbers-mark"><button class="btn '+(on?'done-soft':'plain')+'" id="news-mark" type="button" aria-pressed="'+on+'">'+ic('check')+(on?'Marked as read':'Mark as read')+'</button></div>';
+  return h;
+}
+$('script-body').addEventListener('click',function(e){
+  if(!e.target.closest('#news-mark')||!isDaily(cur))return;
+  var ps=PS(cur);ps.newsDone=!ps.newsDone;saveP(cur);
+  $('script-face').innerHTML=newsHTML(cur);
+  updateBadges();
+  if(ps.newsDone)announce('News marked as read');
+});
+
 /* ---------- init ---------- */
 document.addEventListener('touchstart',function(){},{passive:true});
 function showError(){
@@ -2347,6 +2549,7 @@ function init(){
   syncSoundBtns();
   updateBadges();
   route();
+  dailyBoot();
   setInterval(studyTick,5000);
   setInterval(updateCountdown,20000);
   if(window.matchMedia){

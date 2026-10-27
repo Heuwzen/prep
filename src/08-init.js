@@ -14,6 +14,7 @@ function init(){
   syncSoundBtns();
   updateBadges();
   route();
+  dailyBoot();
   setInterval(studyTick,5000);
   setInterval(updateCountdown,20000);
   if(window.matchMedia){

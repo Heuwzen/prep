@@ -44,6 +44,7 @@ function scriptFaceHTML(){
 }
 function renderScript(){
   SENTS=sentsOf(cur);
+  if(isDaily(cur)){face.script='news';$('script-body').innerHTML='<div id="script-face">'+newsHTML(cur)+'</div>';return}
   var noS=!scriptParts(cur).length;if(noS)face.script='numbers';
   var f=face.script;
   $('script-body').innerHTML=noS?'<div id="script-face">'+scriptFaceHTML()+'</div>':'<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:'Your script'},{id:'seg-numbers',t:'Numbers'}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';

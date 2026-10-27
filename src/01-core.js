@@ -73,6 +73,8 @@ function quizOf(p){return p.quiz||[]}
 /* Quiz items may carry a lecture number (exam packs); a round can then cover one lecture. */
 function lecsOf(p){var c={};quizOf(p).forEach(function(q){if(q.lec)c[q.lec]=(c[q.lec]||0)+1});return Object.keys(c).map(Number).sort(function(a,b){return a-b}).map(function(k){return {lec:k,n:c[k]}})}
 function isExam(p){return !!p&&p.kind==='exam'}
+function isDaily(p){return !!p&&p.kind==='daily'}
+function newsOf(p){return Array.isArray(p.news)?p.news.filter(function(n){return n&&n.title}):[]}
 function qaOf(p){return p.questions||[]}
 function numsOf(p){return p.numbers||[]}
 function wordsOf(p){return p.glossary||[]}

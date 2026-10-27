@@ -49,6 +49,12 @@ function renderRead(){
     (c.paragraphs||[]).forEach(function(t,j){h+='<p id="ch-'+i+'-p-'+j+'">'+T(t)+'</p>'});
     h+=markBtn(i,!!ps.chapters[i])+'</section>';
   });
+  var ln=(p.links||[]).filter(function(l){return l&&l.title&&/^https?:\/\//.test(l.url||'')});
+  if(ln.length){
+    h+='<section class="deeper"><h3 class="ch-title">Go deeper</h3>';
+    ln.forEach(function(l){h+='<a class="card deeper-row row-press" href="'+esc(l.url)+'" target="_blank" rel="noopener"><span class="deeper-t">'+T(l.title)+'</span>'+(l.note?'<span class="deeper-n">'+T(l.note)+'</span>':'')+ic('ext')+'</a>'});
+    h+='</section>';
+  }
   h+='<p class="read-end">You reached the end.</p></div>';
   body.innerHTML=h;
   updateRprog();
@@ -131,8 +137,8 @@ function learnFaceHTML(){
     var w=wordsOf(p);
     if(!w.length)h+=emptyHTML('learn','No words in this pack.','');
     else{
-      h+='<p class="desc">Words you might hear or use.</p>';
-      w.forEach(function(x){h+='<div class="card word"><b>'+T(x.term)+'</b><p>'+T(x.meaning)+'</p></div>'});
+      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":'Words you might hear or use.')+'</p>';
+      w.forEach(function(x){h+='<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'});
     }
   }else if(f==='facts'){
     var facts=factsOf(p);

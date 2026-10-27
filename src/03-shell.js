@@ -39,10 +39,11 @@ function placeHl(instant){
 }
 /* A pack without a script (an exam) shows its numbers under this tab; with neither, the tab goes. */
 function syncTabs(){
-  var t=$('tab-script');if(!t||!cur)return;
-  var noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=noS?'Numbers':'Script';
-  t.hidden=noS&&!hasN;qs('.tabbar-in').classList.toggle('five',t.hidden);
-  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',noS?'#i-hash':'#i-mic');
+  var t=$('tab-script'),qa=$('tab-qa');if(!t||!cur)return;
+  var dly=isDaily(cur),noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=dly?'News':noS?'Numbers':'Script';
+  t.hidden=!dly&&noS&&!hasN;qa.hidden=!qaOf(cur).length;
+  var n=6-(t.hidden?1:0)-(qa.hidden?1:0),bar=qs('.tabbar-in');bar.classList.toggle('five',n===5);bar.classList.toggle('four',n===4);
+  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',dly?'#i-news':noS?'#i-hash':'#i-mic');
   qs('#screen-script .hdr-title').textContent=lab;$('screen-script').setAttribute('aria-label',lab);
 }
 function show(name,o){
@@ -93,6 +94,7 @@ function route(){
   else if(h==='numbers')show('script',{face:'numbers'});
   else if(h==='learn')show('learn',{face:'lessons'});
   else if(h==='script')show('script',{face:'script'});
+  else if(h==='news')show('script',{face:'news'});
   else if(SCREENS.indexOf(h)>=0)show(h);
   else if((m=/^lesson-(\d+)$/.exec(h))){show('learn',{face:'lessons'});openLesson(+m[1]-1)}
   else if(h==='quiz-run'){show('quiz');openQuizRound(false)}
@@ -134,16 +136,17 @@ function nodeRowHTML(n,x){
 }
 function featureIdx(p){var f=factsOf(p);if(!f.length)return 0;var d=dayKey(Date.now()).split('-');var n=Math.floor(Date.UTC(+d[0],+d[1]-1,+d[2])/86400000);return n%f.length}
 function renderHome(){
-  var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100);
+  var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100),dly=isDaily(p);
   var h='';
   if(!storeOK)h+='<div class="card notice warn" role="status"><p class="notice-title">Your progress can\'t be saved here</p><p class="notice-text">This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.</p></div>';
   else if(!standalone&&navigator.maxTouchPoints>0&&!G.hints.homescreen)h+='<div class="card notice" role="note"><p class="notice-title">Keep your progress: use the Home Screen app</p><p class="notice-text">In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.</p><button class="btn plain compact" id="hs-ok" type="button">Got it</button></div>';
-  h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic('pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
+  h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic(dly?'sun':'pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
   h+='<div class="card hero"><div class="hero-top">'+
-    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">ready</span></span></button>'+
+    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">'+(dly?'done':'ready')+'</span></span></button>'+
     '<div class="count"><div class="count-label" id="count-label"></div><div class="count-value" id="count-value"></div>'+
+    (dly?'<div class="count-line">'+ic('clock')+'<span>About '+dailyMinutes(p)+' min</span></div><div class="count-line">'+ic('news')+'<span>'+plural(newsOf(p).length,'story','stories')+' · '+plural(wordsOf(p).length,'new word')+'</span></div>':
     '<div class="count-line">'+ic('clock')+'<span>'+esc(fmtWhen(p))+'</span></div>'+
-    (p.place?'<div class="count-line">'+ic('pin')+'<span>'+T(cap(p.place))+'</span></div>':'')+'</div></div>'+
+    (p.place?'<div class="count-line">'+ic('pin')+'<span>'+T(cap(p.place))+'</span></div>':''))+'</div></div>'+
     '<p class="hero-next">'+(hero.line?esc(hero.line):'Up next: <b>'+T(hero.bold)+'</b>')+'</p>'+
     '<button class="btn" id="home-continue" type="button">'+esc(hero.label)+'</button>'+
     (storeOK?'':'<p class="save-note">This browser cannot save your progress.</p>')+'</div>';
@@ -153,7 +156,7 @@ function renderHome(){
     u.nodes.forEach(function(n){h+=nodeRowHTML(n,ZZ[n.pos%8])});
   });
   var all=path.allDone;
-  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(shortTitle(p))+'</span><span class="node-detail">'+(all?'Every step done':esc(fmtWhen(p)))+'</span></span></div>';
+  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(dly?'Your day':shortTitle(p))+'</span><span class="node-detail">'+(all?'Every step done':dly?'About '+dailyMinutes(p)+' min in all':esc(fmtWhen(p)))+'</span></span></div>';
   var fl=factsOf(p);
   if(fl.length){
     var f=fl[featureIdx(p)];
@@ -163,6 +166,7 @@ function renderHome(){
   var jd=prevDone;prevDone=nd;
   $('home-body').innerHTML=h;
   home._ready=readiness(p);home._hero=hero;
+  $('readiness-title').textContent=dly?'Your day so far':'How ready you are';
   updateCountdown();
 }
 var home={};
@@ -180,6 +184,7 @@ function animHome(){
 function updateCountdown(){
   var p=cur;if(!p)return;
   var l=$('count-label'),v=$('count-value');if(!l)return;
+  if(isDaily(p)){l.textContent=p.day===today()?"Today's page":'Page from';v.textContent=dayLabel(p.day);return}
   var now=Date.now(),st=startOf(p),d=st-now,H=3600000;
   if(d<=-2*H){l.textContent='Presented on';v.textContent=fmtDate(p)}
   else if(d<=0){l.textContent='It is time';v.textContent='Good luck!'}
@@ -200,6 +205,7 @@ function startStep(kind,idx){
   else if(kind==='quiz')openQuizRound(false);
   else if(kind==='questions')openQaRound('left');
   else if(kind==='numbers')goTab('script',{face:'numbers'});
+  else if(kind==='news')goTab('script',{face:'news'});
 }
 $('home-body').addEventListener('click',function(e){
   var n=e.target.closest('.node-row[data-kind]');
@@ -267,6 +273,7 @@ document.addEventListener('click',function(e){
 
 /* ---------- presentations sheet ---------- */
 function whenLine(p){
+  if(isDaily(p))return dayLabel(p.day)+(p.day===today()?' · today':'');
   if(!isUpcoming(p))return 'Presented on '+fmtDate(p);
   var off=offMin(p)*60000,dn=Math.floor((Date.now()+off)/86400000),dp=Math.floor((startOf(p)+off)/86400000),diff=dp-dn;
   var tag=diff<=0?'today':diff===1?'tomorrow':'in '+diff+' days';
@@ -278,28 +285,36 @@ function packRow(p){
     '<span class="prow-text"><span class="c">'+T(p.course)+'</span><span class="t">'+T(p.title)+'</span><span class="w">'+esc(whenLine(p))+'</span></span>'+(sel?'<span class="okdisc">'+ic('check')+'</span>':'')+'</button>';
 }
 function openPacks(){
-  var up=packs.filter(isUpcoming).sort(function(a,b){return startOf(a)-startOf(b)});
-  var past=packs.filter(function(p){return !isUpcoming(p)}).sort(function(a,b){return startOf(b)-startOf(a)});
+  var pres=packs.filter(function(p){return !isDaily(p)}),td=todayDaily();
+  var up=pres.filter(isUpcoming).sort(function(a,b){return startOf(a)-startOf(b)});
+  var past=pres.filter(function(p){return !isUpcoming(p)}).sort(function(a,b){return startOf(b)-startOf(a)});
+  var earlier=dailyDays().filter(function(p){return p!==td}).slice(0,14);
   var h='';
+  if(td)h+='<div class="sub-h">Today</div>'+packRow(td);
   if(up.length)h+='<div class="sub-h">Upcoming</div>'+up.map(packRow).join('');
+  if(earlier.length)h+='<div class="sub-h">Earlier days</div>'+earlier.map(packRow).join('');
   if(past.length)h+='<div class="sub-h">Past</div>'+past.map(packRow).join('');
   h+='<p class="foot">A new pack shows up here when it is added.</p>';
+  if(!dLoaded&&dailyOK())h+='<button class="lockrow row-press" id="daily-unlock-row" type="button">'+ic('lock')+'<span>Daily page</span></button>';
   $('packs-body').innerHTML=h;
   openSheet('sheet-packs','packs-close');
 }
 $('packs-close').addEventListener('click',function(){closeSheet('sheet-packs')});
 $('packs-body').addEventListener('click',function(e){
+  if(e.target.closest('#daily-unlock-row')){closeSheet('sheet-packs');later(dailyAsk,320);return}
   var r=e.target.closest('.prow');if(!r)return;
   var id=r.getAttribute('data-id'),p=packs.filter(function(x){return x.id===id})[0];
   closeSheet('sheet-packs');
   if(p&&p!==cur)selectPack(p);
 });
-function selectPack(p){
+function selectPack(p,auto){
   closeAllLayers();stopSpeech();
   resetTimer(true);
   setSelected(p);prevDone=null;scrolls={};readPlaced=false;
-  face.learn='lessons';face.script='script';
+  if(!auto)wr(SELDAY,{day:today(),id:p.id});
+  face.learn='lessons';face.script=isDaily(p)?'news':'script';
   var s=curScreen||'home';curScreen=null;
+  if((s==='qa'&&!qaOf(p).length)||(s==='script'&&!isDaily(p)&&!sentsOf(p).length&&!numsOf(p).length))s='home';
   show(s);
 }
 
@@ -310,7 +325,7 @@ function openReadiness(){
     var full=x.n>=x.d;
     h+='<div class="part"><div class="part-row"><span>'+esc(x.label)+'</span><span class="v">'+x.n+' of '+x.d+'</span>'+(full?'<span class="part-check">'+ic('check')+'</span>':'')+'</div><div class="gbar" style="--p:'+clamp(x.n/x.d,0,1)+'"><i></i></div></div>';
   });
-  h+='<p class="foot">Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.</p>';
+  h+='<p class="foot">'+(isDaily(p)?'Your day fills up as you go. The lesson counts most, then your best quiz round.':'Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.')+'</p>';
   $('readiness-body').innerHTML=h;
   openSheet('sheet-readiness','readiness-close');
 }

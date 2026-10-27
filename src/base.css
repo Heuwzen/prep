@@ -480,3 +480,33 @@ svg circle.trk,svg circle.arc{fill:none}
 .notice-title{font:800 17px/1.25 var(--font-ui);color:var(--ink)}
 .notice-text{font:600 15px/1.45 var(--font-ui);color:var(--muted)}
 .notice .btn{width:auto;justify-self:start;margin-top:4px}
+
+/* daily page: unlock sheet, news, words with examples, go-deeper links */
+.tabbar-in.four{grid-template-columns:repeat(4,1fr)}
+.unlock{display:grid;gap:12px;padding-bottom:8px}
+.unlock-icon{display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin:4px auto 2px;border-radius:50%;background:var(--green-soft);color:var(--accent-text)}
+.unlock-icon .ic{width:30px;height:30px}
+.unlock-text{margin:0 0 6px;text-align:center;font:var(--t-body);color:var(--muted)}
+.field-l{font:var(--t-label);color:var(--muted)}
+.field{width:100%;min-height:52px;padding:12px 14px;border:2px solid var(--border);border-radius:var(--r-btn);background:var(--sunken);color:var(--ink);font:var(--t-body);outline:none;-webkit-appearance:none;appearance:none}
+.field:focus{border-color:var(--green-line);background:var(--surface)}
+.field-err{margin:0;font:700 15px/1.4 var(--font-ui);color:var(--red-text)}
+.unlock .btn{margin-top:6px}
+.unlock .foot{margin-top:2px;text-align:center}
+.news{margin-bottom:var(--sp-list)}
+.news-top{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.news-src{font:var(--t-detail);color:var(--muted)}
+.news-title{margin:10px 0 0;font:var(--t-headline)}
+.news-sum{margin:6px 0 0;font:var(--t-callout)}
+.news-link{display:inline-flex;margin-top:14px;text-decoration:none}
+.news-link .ic{width:16px;height:16px}
+.word-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.word-ex{margin:6px 0 0;font:var(--t-sub);color:var(--muted)}
+.deeper{margin-top:var(--sp-section)}
+.deeper .ch-title{margin-bottom:12px}
+.deeper-row{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:var(--sp-stack);text-decoration:none;color:inherit}
+.deeper-t{font:var(--t-row)}
+.deeper-n{grid-column:1;font:var(--t-sub);color:var(--muted)}
+.deeper-row .ic{grid-row:1/span 2;grid-column:2;width:18px;height:18px;color:var(--muted)}
+.lockrow{display:flex;align-items:center;gap:6px;margin:20px auto 0;padding:8px 12px;border:0;background:none;color:var(--muted);font:var(--t-detail)}
+.lockrow .ic{width:15px;height:15px}

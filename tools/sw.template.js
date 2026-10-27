@@ -15,6 +15,9 @@ self.addEventListener('fetch', e => {
   if (req.mode === 'navigate') {
     // Page: network first so new packs arrive, cache when offline (the bus).
     e.respondWith(fetch(req).then(r => keep('./index.html', r)).catch(() => caches.match('./index.html')));
+  } else if (url.origin === location.origin && url.pathname.endsWith('/daily.json')) {
+    // Daily pages: network first so today's page arrives, the last copy when offline.
+    e.respondWith(fetch(req).then(r => keep(req, r)).catch(() => caches.match(req)));
   } else if (url.origin === location.origin || /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => keep(req, r))));
   }

@@ -17,6 +17,13 @@ function chaptersRead(p){var ps=PS(p);return chaptersOf(p).filter(function(c,i){
 function qaGot(p){var ps=PS(p);return qaOf(p).filter(function(q,i){return ps.qa.status[i]==='got'}).length}
 function readyParts(p){
   var ps=PS(p),a=[];
+  if(isDaily(p)){
+    if(newsOf(p).length)a.push({k:'news',label:'News read',w:1,n:ps.newsDone?1:0,d:1});
+    if(chaptersOf(p).length)a.push({k:'chapters',label:'Lesson chapters read',w:3,n:chaptersRead(p),d:chaptersOf(p).length});
+    if(L_(p).length)a.push({k:'lessons',label:'Key ideas',w:1,n:lessonsDone(p),d:L_(p).length});
+    if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
+    return a;
+  }
   if(L_(p).length)a.push({k:'lessons',label:'Lessons',w:3,n:lessonsDone(p),d:L_(p).length});
   if(chaptersOf(p).length)a.push({k:'chapters',label:'Chapters',w:1,n:chaptersRead(p),d:chaptersOf(p).length});
   if(sentsOf(p).length)a.push({k:'runs',label:'Practice runs',w:2,n:Math.min(2,ps.runs.length),d:2});
@@ -109,9 +116,9 @@ function buildPath(p){
   var seenDo={};
   plan.forEach(function(s){if(s.do&&seenDo[s.do])s.do='';else if(s.do)seenDo[s.do]=true});
   /* every kind of content the pack has gets a place on the path, in a fixed order, even if the plan text misses it */
-  var ORDER=['lessons','read','script','quiz','questions','numbers'],
-    HAVE={lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
-    DEF={lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
+  var ORDER=['news','lessons','read','script','quiz','questions','numbers'],
+    HAVE={news:newsOf(p).length,lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
+    DEF={news:'Catch up on the AI news.',lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
   ORDER.forEach(function(k,oi){
     if(!HAVE[k]||plan.some(function(s){return s.do===k}))return;
     var at=plan.length;
@@ -128,9 +135,12 @@ function buildPath(p){
           detail:'Lesson '+(i+1)+' · '+(st.done?'Done':seen>0?seen+' of '+n+' cards':n+' cards'),
           done:!!st.done,frac:st.done?1:seen/n,aria:'Lesson '+(i+1)+', '+l.title});
       });
+    }else if(s.do==='news'&&newsOf(p).length){
+      var sn=newsOf(p).length,sd=!!ps.newsDone,tn=p.day===today()?"Today's AI news":'The AI news';
+      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?'Read':plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
     }else if(s.do==='read'&&chaptersOf(p).length){
       var c=chaptersOf(p).length,r=chaptersRead(p);
-      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:'Read the chapters',
+      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":'Read the chapters',
         detail:r>=c?'All read':r>0?r+' of '+c+' read':c+' chapters',done:r>=c,frac:r/c,aria:'Read the chapters'});
     }else if(s.do==='script'&&sentsOf(p).length){
       for(var k=0;k<2;k++){
@@ -167,6 +177,7 @@ function heroInfo(p,path){
   }
   var label='';
   if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?'Continue lesson ':'Start lesson ')+(n.idx+1)}
+  else if(n.kind==='news')label='Read the news';
   else if(n.kind==='read'){label=ps.place?'Continue reading':'Read chapter '+(firstUnread(p)+1)}
   else if(n.kind==='script')label='Practise your script';
   else if(n.kind==='quiz')label=ps.quiz.best>0?'Beat your best':'Do the quiz';
