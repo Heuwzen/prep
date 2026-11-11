@@ -5,8 +5,8 @@
  "lang": "tr",
  "course": "Gümrük Müşavir Yardımcılığı Sınavı",
  "title": "Gümrük mevzuatı, 29 konu",
- "date": null,
- "place": "Yazılı test sınavı",
+ "date": "2026-11-15T14:30:00+03:00",
+ "place": "Ankara, Hacettepe Beytepe",
  "part": "Konu 1-29",
  "units": [
   {
@@ -11740,7 +11740,7 @@
  ],
  "plan": [
   {
-   "text": "Her gün bir iki konunun kartlarını çalış.",
+   "text": "Her gün birkaç konunun kartlarını çalış.",
    "do": "lessons"
   },
   {

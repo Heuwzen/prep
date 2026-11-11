@@ -3,7 +3,7 @@
 // gumruk/ page each get their own worker, and both live in one origin's cache storage, so each keeps to its own
 // prefix.
 const PREFIX = 'gumruk';
-const CACHE = PREFIX + '-4743866757';
+const CACHE = PREFIX + '-24dc815405';
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "../icon-192.png", "../icon-512.png", "../apple-touch-icon.png"];
 // Paths of other sites inside this worker's scope. Their pages belong to their own worker.
 const OTHERS = [].map(p => new URL(p, self.registration.scope).pathname);
