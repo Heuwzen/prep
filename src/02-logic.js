@@ -24,13 +24,13 @@ function readyParts(p){
     if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
     return a;
   }
-  if(L_(p).length)a.push({k:'lessons',label:'Lessons',w:3,n:lessonsDone(p),d:L_(p).length});
-  if(chaptersOf(p).length)a.push({k:'chapters',label:'Chapters',w:1,n:chaptersRead(p),d:chaptersOf(p).length});
-  if(sentsOf(p).length)a.push({k:'runs',label:'Practice runs',w:2,n:Math.min(2,ps.runs.length),d:2});
-  if(sentsOf(p).length)a.push({k:'why',label:'Sentences you checked',w:2,n:Math.min(Object.keys(ps.why||{}).length,sentsOf(p).length),d:sentsOf(p).length});
-  if(numsOf(p).length)a.push({k:'numbers',label:'Numbers gone over',w:1,n:ps.numbersDone?1:0,d:1});
-  if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
-  if(qaOf(p).length)a.push({k:'qa',label:'Questions you got',w:2,n:qaGot(p),d:qaOf(p).length});
+  if(L_(p).length)a.push({k:'lessons',label:t('Lessons'),w:3,n:lessonsDone(p),d:L_(p).length});
+  if(chaptersOf(p).length)a.push({k:'chapters',label:t('Chapters'),w:1,n:chaptersRead(p),d:chaptersOf(p).length});
+  if(sentsOf(p).length)a.push({k:'runs',label:t('Practice runs'),w:2,n:Math.min(2,ps.runs.length),d:2});
+  if(sentsOf(p).length)a.push({k:'why',label:t('Sentences you checked'),w:2,n:Math.min(Object.keys(ps.why||{}).length,sentsOf(p).length),d:sentsOf(p).length});
+  if(numsOf(p).length)a.push({k:'numbers',label:t('Numbers gone over'),w:1,n:ps.numbersDone?1:0,d:1});
+  if(quizOf(p).length)a.push({k:'quiz',label:t('Quiz, best round'),w:2,n:quizScore(p),d:quizOf(p).length});
+  if(qaOf(p).length)a.push({k:'qa',label:t('Questions you got'),w:2,n:qaGot(p),d:qaOf(p).length});
   return a;
 }
 /* Best full round, or the best lecture rounds added up, whichever is higher. */
@@ -61,7 +61,7 @@ function ringOff(C,p){return p<=0?C:C*(1-Math.max(p,0.02))}
 function setArc(el,C,p){el.setAttribute('stroke-dasharray',C);el.setAttribute('stroke-dashoffset',ringOff(C,p));el.classList.toggle('is-zero',p<=0)}
 function badgeLabel(){
   var mins=Math.floor(todaySecs()/60),n=streakNow();
-  return n+' day streak. Today '+Math.min(mins,G.goal)+' of '+G.goal+' minutes.'+(isMet(today())?' Goal done.':'');
+  return t('{0} day streak. Today {1} of {2} minutes.',n,Math.min(mins,G.goal),G.goal)+(isMet(today())?' '+t('Goal done.'):'');
 }
 function updateBadges(){
   var p=goalPct(),lab=badgeLabel();
@@ -86,7 +86,7 @@ function goalMoment(){
 function playGoal(){
   if(layers.length){goalWait=true;return}
   goalWait=false;
-  announce('Daily goal reached.');
+  announce(t('Daily goal reached.'));
   if(rm())return;
   var b=activeBadge();if(!b)return;
   b.classList.remove('flare');reflow(b);b.classList.add('flare');
@@ -105,10 +105,11 @@ var liveFlip=false;
 function announce(t){var l=$('live');liveFlip=!liveFlip;l.textContent=t+(liveFlip?'':' ')}
 
 /* ---------- path ---------- */
-function inferDo(t){
-  t=String(t).toLowerCase();
-  var m=[['lesson','lessons'],['chapter','read'],['script','script'],['quiz','quiz'],['question','questions'],['number','numbers']];
-  for(var i=0;i<m.length;i++)if(t.indexOf(m[i][0])>=0)return m[i][1];
+function inferDo(x){
+  var m;
+  if(UI_LANG==='tr'){x=String(x).toLocaleLowerCase('tr');m=[['kart','lessons'],['ders','lessons'],['bölüm','read'],['test','quiz'],['sayı','numbers'],['rakam','numbers'],['soru','questions']]}
+  else{x=String(x).toLowerCase();m=[['lesson','lessons'],['chapter','read'],['script','script'],['quiz','quiz'],['question','questions'],['number','numbers']]}
+  for(var i=0;i<m.length;i++)if(x.indexOf(m[i][0])>=0)return m[i][1];
   return '';
 }
 function buildPath(p){
@@ -118,7 +119,7 @@ function buildPath(p){
   /* every kind of content the pack has gets a place on the path, in a fixed order, even if the plan text misses it */
   var ORDER=['news','lessons','read','script','quiz','questions','numbers'],
     HAVE={news:newsOf(p).length,lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
-    DEF={news:'Catch up on the AI news.',lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
+    DEF={news:'Catch up on the AI news.',lessons:t('Learn the lessons, one card at a time.'),read:t('Read the chapters at your own pace.'),script:t('Read your script aloud with the timer.'),quiz:t('Do the quiz.'),questions:t('Practise the questions out loud.'),numbers:t('Go over the numbers.')};
   ORDER.forEach(function(k,oi){
     if(!HAVE[k]||plan.some(function(s){return s.do===k}))return;
     var at=plan.length;
@@ -131,36 +132,38 @@ function buildPath(p){
     if(s.do==='lessons'){
       L_(p).forEach(function(l,i){
         var st=ps.lessons[l.id]||{},n=l.cards.length,seen=Math.min(st.seen||0,n);
-        nodes.push({id:'node-lesson-'+i,kind:'lessons',idx:i,num:i+1,title:l.title,
-          detail:'Lesson '+(i+1)+' · '+(st.done?'Done':seen>0?seen+' of '+n+' cards':n+' cards'),
-          done:!!st.done,frac:st.done?1:seen/n,aria:'Lesson '+(i+1)+', '+l.title});
+        var det=st.done?t('Done'):seen>0?t('{0} of {1} cards',seen,n):t('{0} cards',n);
+        nodes.push({id:'node-lesson-'+i,kind:'lessons',idx:i,num:lessonNum(p,i),title:l.title,det:det,
+          detail:t('Lesson {0} · {1}',lessonNo(p,i),det),
+          done:!!st.done,frac:st.done?1:seen/n,aria:t('Lesson {0}, {1}',lessonNo(p,i),l.title)});
       });
     }else if(s.do==='news'&&newsOf(p).length){
       var sn=newsOf(p).length,sd=!!ps.newsDone,tn=p.day===today()?"Today's AI news":'The AI news';
-      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?'Read':plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
+      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?t('Read|done'):plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
     }else if(s.do==='read'&&chaptersOf(p).length){
       var c=chaptersOf(p).length,r=chaptersRead(p);
-      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":'Read the chapters',
-        detail:r>=c?'All read':r>0?r+' of '+c+' read':c+' chapters',done:r>=c,frac:r/c,aria:'Read the chapters'});
+      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":t('Read the chapters'),
+        detail:r>=c?t('All read'):r>0?t('{0} of {1} read',r,c):t('{0} chapters',c),done:r>=c,frac:r/c,aria:t('Read the chapters')});
     }else if(s.do==='script'&&sentsOf(p).length){
       for(var k=0;k<2;k++){
         var run=ps.runs[k];
-        nodes.push({id:'node-script-'+k,kind:'script',idx:k,icon:'mic',title:'Practice run '+(k+1),
-          detail:run?'Done in '+mmss(run.secs):'3-minute timer',done:!!run,frac:run?1:0,aria:'Practice run '+(k+1)});
+        nodes.push({id:'node-script-'+k,kind:'script',idx:k,icon:'mic',title:t('Practice run {0}',k+1),
+          detail:run?t('Done in {0}',mmss(run.secs)):t('3-minute timer'),done:!!run,frac:run?1:0,aria:t('Practice run {0}',k+1)});
       }
     }else if(s.do==='quiz'&&quizOf(p).length){
       var qn=quizOf(p).length,b=quizScore(p);
-      nodes.push({id:'node-quiz-0',kind:'quiz',idx:0,icon:'quiz',title:'Quiz',
-        detail:b>0?'Best: '+b+' of '+qn:qn+' questions',done:b>=Math.ceil(qn*0.8),frac:b/qn,aria:'Quiz'});
+      nodes.push({id:'node-quiz-0',kind:'quiz',idx:0,icon:'quiz',title:t('Quiz'),
+        detail:b>0?t('Best: {0} of {1}',b,qn):t('{0} questions',qn),done:b>=Math.ceil(qn*0.8),frac:b/qn,aria:t('Quiz')});
     }else if(s.do==='questions'&&qaOf(p).length){
       var an=qaOf(p).length,g=qaGot(p);
-      nodes.push({id:'node-questions-0',kind:'questions',idx:0,icon:'qa',title:'Questions',
-        detail:g>=an?'All got it':g>0?g+' of '+an+' got it':an+' questions',done:g>=an,frac:g/an,aria:'Questions'});
+      nodes.push({id:'node-questions-0',kind:'questions',idx:0,icon:'qa',title:t('Questions'),
+        detail:g>=an?t('All got it'):g>0?t('{0} of {1} got it',g,an):t('{0} questions',an),done:g>=an,frac:g/an,aria:t('Questions')});
     }else if(s.do==='numbers'&&numsOf(p).length){
       var nn=numsOf(p).length,nd=!!ps.numbersDone;
-      nodes.push({id:'node-numbers-0',kind:'numbers',idx:0,icon:'hash',title:'The numbers',
-        detail:nd?'Done':nn+' numbers',done:nd,frac:nd?1:0,aria:'The numbers'});
+      nodes.push({id:'node-numbers-0',kind:'numbers',idx:0,icon:'hash',title:t('The numbers'),
+        detail:nd?t('Done'):t('{0} numbers',nn),done:nd,frac:nd?1:0,aria:t('The numbers')});
     }
+    if(LEAN&&s.do&&!nodes.length)return;
     units.push({n:si+1,text:s.text,nodes:nodes,done:nodes.length>0&&nodes.every(function(x){return x.done})});
     nodes.forEach(function(x){flat.push(x)});
   });
@@ -173,16 +176,16 @@ function heroInfo(p,path){
   var ps=PS(p),n=path.cur;
   if(!n){
     var ak=sentsOf(p).length?'script':quizOf(p).length?'quiz':qaOf(p).length?'questions':'lessons';
-    return {line:'Every step is done. Keep it fresh.',label:ak==='script'?'Practise your script':ak==='quiz'?'Do the quiz':ak==='questions'?'Practise the questions':'Go over the lessons',kind:ak,idx:0,bold:null};
+    return {line:t('Every step is done. Keep it fresh.'),label:ak==='script'?t('Practise your script'):ak==='quiz'?t('Do the quiz'):ak==='questions'?t('Practise the questions'):t('Go over the lessons'),kind:ak,idx:0,bold:null};
   }
   var label='';
-  if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?'Continue lesson ':'Start lesson ')+(n.idx+1)}
+  if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?t('Continue lesson {0}',lessonNo(p,n.idx)):t('Start lesson {0}',lessonNo(p,n.idx)))}
   else if(n.kind==='news')label='Read the news';
-  else if(n.kind==='read'){label=ps.place?'Continue reading':'Read chapter '+(firstUnread(p)+1)}
-  else if(n.kind==='script')label='Practise your script';
-  else if(n.kind==='quiz')label=ps.quiz.best>0?'Beat your best':'Do the quiz';
-  else if(n.kind==='questions')label='Practise the questions';
-  else label='Go through the numbers';
+  else if(n.kind==='read'){label=ps.place?t('Continue reading'):t('Read chapter {0}',firstUnread(p)+1)}
+  else if(n.kind==='script')label=t('Practise your script');
+  else if(n.kind==='quiz')label=ps.quiz.best>0?t('Beat your best'):t('Do the quiz');
+  else if(n.kind==='questions')label=t('Practise the questions');
+  else label=t('Go through the numbers');
   return {line:null,bold:n.title,label:label,kind:n.kind,idx:n.idx};
 }
 function firstUnread(p){var ps=PS(p),c=chaptersOf(p);for(var i=0;i<c.length;i++)if(!ps.chapters[i])return i;return 0}
@@ -223,7 +226,7 @@ function syncSoundBtns(){
   ['quiz-sound','qa-sound','quiz-run-sound','qa-run-sound'].forEach(function(id){
     var b=$(id);if(!b)return;
     b.setAttribute('aria-pressed',G.sound?'true':'false');
-    b.setAttribute('aria-label','Sound effects');
+    b.setAttribute('aria-label',t('Sound effects'));
     b.innerHTML=ic(G.sound?'bell':'bell-off');
   });
 }
@@ -241,17 +244,18 @@ function pickVoice(){
   if(!SYN)return;
   var vs=[];try{vs=speechSynthesis.getVoices()||[]}catch(e){}
   if(!vs.length)return;
-  var en=vs.filter(function(v){return /^en/i.test(v.lang)});
+  var tr=UI_LANG==='tr';
+  var en=vs.filter(function(v){return (tr?/^tr/i:/^en/i).test(v.lang)});
   var f=null;
   function find(fn){return en.filter(fn)[0]}
   f=find(function(v){return /enhanced|premium/i.test(v.name)});
-  if(!f){var names=['Samantha','Daniel','Karen','Moira','Serena','Google UK English Female','Google US English'];
+  if(!f){var names=tr?['Yelda','Google Türkçe','Cem']:['Samantha','Daniel','Karen','Moira','Serena','Google UK English Female','Google US English'];
     for(var i=0;i<names.length&&!f;i++)f=find(function(v){return v.name.indexOf(names[i])>=0})}
-  if(!f)f=find(function(v){return v.lang==='en-GB'||v.lang==='en-US'});
+  if(!f)f=find(function(v){return tr?v.lang==='tr-TR':(v.lang==='en-GB'||v.lang==='en-US')});
   voice=f||en[0]||null;
 }
 if(SYN){pickVoice();try{speechSynthesis.addEventListener('voiceschanged',pickVoice)}catch(e){}}
-function speechText(s){return String(s).replace(/''/g,'"')}
+function speechText(s){return String(s).replace(/\*\*/g,'').replace(/''/g,'"')}
 function stopSpeech(){
   speakToken++;
   if(SYN){try{speechSynthesis.cancel()}catch(e){}}
@@ -266,7 +270,7 @@ function speakList(list,key,onItem,onEnd){
   speakKey=key;
   list.forEach(function(txt,i){
     var u=new SpeechSynthesisUtterance(speechText(txt));
-    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang='en-GB';
+    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang=UI_LANG==='tr'?'tr-TR':'en-GB';
     u.rate=0.95;u.pitch=1;
     u.onstart=function(){
       if(tok!==speakToken)return;
@@ -286,7 +290,7 @@ function updateListenUI(){
     var on=speaking&&speakKey===b.getAttribute('data-lk');
     b.classList.toggle('is-on',on);
     var u=qs('use',b);if(u)u.setAttribute('href',on?'#i-square':'#i-vol');
-    var lab=qs('.lk-t',b);if(lab)lab.textContent=on?'Stop':'Listen';
+    var lab=qs('.lk-t',b);if(lab)lab.textContent=on?t('Stop'):t('Listen');
     b.setAttribute('aria-pressed',on?'true':'false');
   });
 }

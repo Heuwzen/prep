@@ -609,6 +609,19 @@ svg circle.trk,svg circle.arc{fill:none}
 .deeper-row .ic{grid-row:1/span 2;grid-column:2;width:18px;height:18px;color:var(--muted)}
 .lockrow{display:flex;align-items:center;gap:6px;margin:20px auto 0;padding:8px 12px;border:0;background:none;color:var(--muted);font:var(--t-detail)}
 .lockrow .ic{width:15px;height:15px}
+
+/* second site (Gümrük): trap block, numbers self-test, topics list, glossary search, fewer tabs */
+.tabbar-in.three{grid-template-columns:repeat(3,1fr)}
+.tabbar-in.two{grid-template-columns:repeat(2,1fr)}
+.trap{margin:0 0 14px;padding:12px 14px;border:2px solid var(--orange);border-radius:var(--r-box);background:var(--sunken);background:color-mix(in srgb,var(--orange) 12%,var(--surface))}
+.trap b{display:block;margin-bottom:4px;font:var(--t-label);color:var(--orange-text)}
+.trap p{margin:0;font:600 16px/1.45 var(--font-ui)}
+.num-tools{display:flex;justify-content:flex-end;margin:0 0 14px}
+.num.is-hidden{cursor:pointer}
+.num-chip{display:inline-grid;place-items:center;min-width:64px;min-height:44px;padding:0 20px;border:2px solid var(--border);border-radius:var(--r-pill);background:var(--sunken);color:var(--muted);font:var(--t-value)}
+.mini.tx{font-size:15px;letter-spacing:-.3px}
+.lrow .pill{flex:none}
+.wsearch{margin:0 0 14px}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..700,0..100&family=Nunito:wght@400..900&display=swap">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="i-read" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol><symbol id="i-learn" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol><symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol><symbol id="i-quiz" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol><symbol id="i-qa" viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.8C13 5.4 15.2 7.2 17 9.3C18.6 11.2 19.4 13 19.4 15A7.4 7.4 0 0 1 4.6 15C4.6 12.6 5.6 10.6 7.4 9C7.6 10.6 8.3 11.6 9.4 12.1C9.2 8.2 10.4 4.6 12 1.8ZM12 13.4C10.9 14.7 9.8 15.8 9.8 17.6A2.2 2.2 0 0 0 14.2 17.6C14.2 15.8 13.1 14.7 12 13.4Z"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-vol" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></symbol><symbol id="i-volx" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></symbol><symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol><symbol id="i-square" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol><symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-pres" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></symbol><symbol id="i-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></symbol><symbol id="i-tap" viewBox="0 0 24 24"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol><symbol id="i-bell-off" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742"/><path d="m2 2 20 20"/><path d="M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05"/></symbol><symbol id="i-news" viewBox="0 0 24 24"><path d="M15 18h-5"/><path d="M18 14h-8"/><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="10" y="6" rx="1"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol></svg>
@@ -707,17 +720,300 @@ svg circle.trk,svg circle.arc{fill:none}
 <script>
 (function(){
 'use strict';
+/* ---------- language: every user-visible string goes through t() ---------- */
+/* The English page sets nothing and runs with the keys below as they stand. A second page sets
+   window.PREP_SITE={id,lang} before the app scripts; with lang 'tr' every key is looked up in TR. */
+var SITE=window.PREP_SITE||null;
+var UI_LANG=(SITE&&SITE.lang)||'en';
+var KP=SITE&&SITE.id?SITE.id+'.v1.':'prep.v1.';   /* storage key prefix: each site keeps its own progress */
+var LEAN=!!SITE;                                   /* second site: hides empty sections, numbers self-test */
+var DAILY_ON=!SITE;                                /* the private daily page belongs to the English site only */
+/*TR-START*/
+var TR={
+'Home':'Ana sayfa',
+'Read':'Oku',
+'Learn':'Öğren',
+'Script':'Metin',
+'Quiz':'Test',
+'Q&A':'Soru',
+'Questions':'Sorular',
+'Chapters':'Bölümler',
+'Back':'Geri',
+'Next':'İleri',
+'Next sentence':'Sonraki cümle',
+'Your packs':'Paketlerin',
+'Your daily page':'Günlük sayfan',
+'Answer':'Cevap',
+'Close':'Kapat',
+'Close lesson':'Dersi kapat',
+'Close questions':'Soruları kapat',
+'Close quiz':'Testi kapat',
+'Lesson':'Ders',
+'Questions round':'Soru turu',
+'Quiz round':'Test turu',
+'Sections':'Sekmeler',
+'Streak':'Seri',
+'Sound effects':'Ses efektleri',
+'News':'Haberler',
+'Numbers':'Sayılar',
+'Lessons':'Dersler',
+'Words':'Terimler',
+'Facts':'Bilgiler',
+'#story':'haber',
+'#new word':'yeni kelime',
+'#day':'gün',
+'#chapter':'bölüm',
+'#card':'kart',
+'#question':'soru',
+'Lecture':'Ders',
+'Today, {0}':'Bugün, {0}',
+'Practice runs':'Okuma denemeleri',
+'Sentences you checked':'Kontrol ettiğin cümleler',
+'Numbers gone over':'Tekrar ettiğin sayılar',
+'Quiz, best round':'Test, en iyi tur',
+'Questions you got':'Bildiğin sorular',
+'{0} day streak. Today {1} of {2} minutes.':'{0} günlük seri. Bugün {1}/{2} dakika.',
+'Goal done.':'Hedef tamam.',
+'Daily goal reached.':'Günlük hedefe ulaştın.',
+'Learn the lessons, one card at a time.':'Dersleri çalış, kart kart.',
+'Read the chapters at your own pace.':'Bölümleri kendi hızında oku.',
+'Read your script aloud with the timer.':'Metnini süre tutarak sesli oku.',
+'Do the quiz.':'Testi çöz.',
+'Practise the questions out loud.':'Soruları sesli cevapla.',
+'Go over the numbers.':'Sayıları tekrar et.',
+'Done':'Bitti',
+'{0} of {1} cards':'{0}/{1} kart',
+'{0} cards':'{0} kart',
+'Lesson {0} · {1}':'Konu {0} · {1}',
+'Lesson {0}, {1}':'Konu {0}, {1}',
+'Read|done':'Okundu',
+'Read the chapters':'Bölümleri oku',
+'All read':'Hepsi okundu',
+'{0} of {1} read':'{0}/{1} okundu',
+'{0} chapters':'{0} bölüm',
+'Practice run {0}':'Okuma denemesi {0}',
+'Done in {0}':'{0} sürede bitti',
+'3-minute timer':'3 dakikalık süre',
+'Best: {0} of {1}':'En iyi: {0}/{1}',
+'{0} questions':'{0} soru',
+'All got it':'Hepsini bildin',
+'{0} of {1} got it':'{0}/{1} bildin',
+'The numbers':'Sayılar',
+'{0} numbers':'{0} sayı',
+'Every step is done. Keep it fresh.':'Tüm adımlar tamam. Tekrar ederek taze tut.',
+'Practise your script':'Metnini çalış',
+'Do the quiz':'Testi çöz',
+'Practise the questions':'Soruları çalış',
+'Go over the lessons':'Dersleri tekrar et',
+'Continue lesson {0}':'Konu {0} ile devam et',
+'Start lesson {0}':'Konu {0} ile başla',
+'Continue reading':'Okumaya devam et',
+'Read chapter {0}':'{0}. bölümü oku',
+'Beat your best':'Rekorunu geç',
+'Go through the numbers':'Sayılara göz at',
+'Stop':'Durdur',
+'Listen':'Dinle',
+', up next':', sırada',
+', done':', bitti',
+'Up next':'Sırada',
+'Your progress can\'t be saved here':'İlerlemen burada kaydedilemiyor',
+'This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.':'Bu tarayıcı depolamayı engelliyor, genelde Özel sekme ya da Tüm Çerezleri Engelle yüzünden. İlerlemeni korumak için Gümrük\'ü Ana Ekran simgesinden aç.',
+'Keep your progress: use the Home Screen app':'İlerlemeni korumak için Ana Ekran uygulamasını kullan',
+'In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.':'Safari\'de Paylaş düğmesine dokun, sonra Ana Ekrana Ekle\'yi seç ve Gümrük\'ü simgesinden aç. Özel sekme kapanınca ilerlemeni unutur. Ana Ekran uygulaması ilerlemeni Safari\'den ayrı olarak saklar.',
+'Got it|ack':'Anladım',
+'Readiness {0} percent. Show details.':'Hazırlık yüzde {0}. Ayrıntıları göster.',
+'done':'bitti',
+'ready':'hazır',
+'Up next: {0}':'Sırada: {0}',
+'This browser cannot save your progress.':'Bu tarayıcı ilerlemeni kaydedemiyor.',
+'Your plan':'Planın',
+'Tap any step to open it.':'Açmak için bir adıma dokun.',
+'Every step done':'Tüm adımlar tamam',
+'Date not set yet':'Sınav tarihi henüz belli değil',
+'Did you know':'Biliyor muydun',
+'How ready you are':'Ne kadar hazırsın',
+'Presented on':'Yapıldığı gün',
+'It is time':'Zaman geldi',
+'Good luck!':'Bol şans!',
+'{0} in':'Kalan süre',
+'1 day {0} h':'1 gün {0} sa',
+'{0} h {1} min':'{0} sa {1} dk',
+'{0} min':'{0} dk',
+'Daily goal':'Günlük hedef',
+'No streak yet':'Henüz serin yok',
+'Study {0} minutes to start one.':'Seri başlatmak için {0} dakika çalış.',
+'Start a new streak':'Yeni bir seri başlat',
+'Best: {0}':'En iyi: {0}',
+'{0} day streak':'{0} günlük seri',
+'MTWTFSS':'PSÇPCCP',
+'Today':'Bugün',
+'{0} of {1} min':'{0}/{1} dk',
+'Study {0} minutes a day to keep your streak.':'Serini korumak için günde {0} dakika çalış.',
+'Presented on {0}':'Yapıldığı gün: {0}',
+'today':'bugün',
+'tomorrow':'yarın',
+'in {0} days':'{0} gün sonra',
+'Upcoming':'Yaklaşanlar',
+'Earlier days':'Önceki günler',
+'Past':'Geçmiş',
+'A new pack shows up here when it is added.':'Yeni bir paket eklenince burada görünür.',
+'{0} of {1}':'{0}/{1}',
+'Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.':'Hazırlık gerçek çalışmayla artar. En çok dersler sayılır. Son turun değil, en iyi test turun sayılır.',
+'New best':'Yeni rekor',
+'Marked as read':'Okundu olarak işaretlendi',
+'Mark as read':'Okundu işaretle',
+'Reading is coming':'Okuma metni yolda',
+'The reading for this pack has not arrived yet. It will show up here.':'Bu paketin okuma metni henüz gelmedi. Gelince burada görünecek.',
+'Go to lessons':'Derslere git',
+'about {0} min':'yaklaşık {0} dk',
+'Chapter {0} of {1}':'Bölüm {0}/{1}',
+'Go deeper':'Daha derine in',
+'You reached the end.':'Sona geldin.',
+'No words in this pack.':'Bu pakette terim yok.',
+'Words you might hear or use.':'Bilmen gereken terimler ve kısaltmalar.',
+'Search terms':'Terim ara',
+'No facts in this pack.':'Bu pakette bilgi yok.',
+'Facts you can share in class.':'Sınıfta paylaşabileceğin bilgiler.',
+'You can say':'Şöyle diyebilirsin',
+'Why it matters':'Neden önemli',
+'Source: ':'Kaynak: ',
+'No term matches.':'Eşleşen terim yok.',
+'{0} · {1} of {2}':'{0} · {1}/{2}',
+'Watch out':'Dikkat',
+'For example':'Örnek',
+'Finish':'Bitir',
+'Listen to this lesson':'Bu dersi dinle',
+'Card {0} of {1}.':'Kart {0}/{1}.',
+'Next lesson':'Sonraki ders',
+'Back to Home':'Ana sayfaya dön',
+'Lesson done!':'Ders bitti!',
+'That was quick. Go through it once more to count it.':'Çok hızlı geçtin. Sayılması için bir kez daha oku.',
+'Lesson {0} of {1}: {2}':'Konu {0}: {2}',
+'card':'kart',
+'cards':'kart',
+'minute':'dakika',
+'minutes':'dakika',
+'Lesson done.':'Ders bitti.',
+'Show this number':'Bu sayıyı göster',
+'Say {0}':'Dinle: {0}',
+'Exact scope':'Kapsamı',
+'No numbers in this pack.':'Bu pakette sayı yok.',
+'The numbers in your script, how to say them, and what they cover.':'Metnindeki sayılar, nasıl okunduğu ve neleri kapsadığı.',
+'The numbers from the slides, and exactly what each one covers.':'Slaytlardaki süreler, tutarlar ve tam olarak neyi kapsadıkları.',
+'Show numbers':'Sayıları göster',
+'Hide numbers':'Sayıları gizle',
+'No script in this pack.':'Bu pakette metin yok.',
+'Reset':'Sıfırla',
+'Tap any sentence to see why it is true.':'Neden doğru olduğunu görmek için bir cümleye dokun.',
+'Slide {0}':'Slayt {0}',
+'Your script':'Metnin',
+'sentence {0} of {1}':'cümle {0}/{1}',
+'Why it is true':'Neden doğru',
+'Source':'Kaynak',
+'They might ask':'Şunu sorabilirler',
+'2 runs done. One more?':'2 deneme tamam. Bir tane daha?',
+'Practice run {0} of 2':'Okuma denemesi {0}/2',
+'Start':'Başla',
+'Over 3 minutes':'3 dakikayı geçtin',
+'Read it out loud':'Sesli oku',
+'Pause':'Duraklat',
+'Paused at {0}':'Duraklatıldı: {0}',
+'Resume':'Devam',
+'Three minutes.':'Üç dakika doldu.',
+'Run {0} saved: {1}':'Deneme {0} kaydedildi: {1}',
+'Run {0} saved, {1} minutes {2} seconds.':'Deneme {0} kaydedildi, {1} dakika {2} saniye.',
+'Too short to count. A run needs at least 1:30.':'Sayılmayacak kadar kısa. Bir deneme en az 1:30 sürmeli.',
+'No quiz in this pack.':'Bu pakette test yok.',
+'{0}: {1} of {2}':'{0}: {1}/{2}',
+'Last: {0} of {1}':'Son: {0}/{1}',
+'No score yet':'Henüz puan yok',
+'Pick the answer you think is right. Wrong ones come back later in the round.':'Doğru olduğunu düşündüğün cevabı seç. Yanlışlar turun ilerleyen kısmında geri gelir.',
+'Continue mixed':'Karışık teste devam et',
+'Continue {0}':'{0} ile devam et',
+'Continue quiz':'Teste devam et',
+'Start over':'Baştan başla',
+'Mixed {0}':'Karışık {0} soru',
+'All {0} questions':'Tüm {0} soru',
+'Start quiz':'Testi başlat',
+'{0} only ({1})':'Sadece {0} ({1})',
+'Topics':'Konular',
+'Tap a topic to quiz yourself on it.':'Bir konuya dokun, sadece onun sorularını çöz.',
+'Best {0} of {1}':'En iyi {0}/{1}',
+'All questions ({0})':'Tüm sorular ({0})',
+'Your rounds':'Turların',
+'Your first round.':'İlk turun.',
+'Your recent rounds.':'Son turların.',
+'Mixed':'Karışık',
+'L{0}: ':'D{0}: ',
+'Question {0} of {1}.':'Soru {0}/{1}.',
+'Correct':'Doğru',
+'Not quite':'Olmadı',
+'Answer:':'Doğru cevap:',
+'This one comes back later in the round.':'Bu soru turun ilerleyen kısmında geri gelecek.',
+'Continue':'Devam',
+'Correct.':'Doğru.',
+'Not quite. The answer is {0}.':'Olmadı. Doğru cevap: {0}.',
+'Every answer right the first time.':'Hepsi ilk seferde doğru.',
+'{0} of {1} right the first time.':'{0}/{1} ilk seferde doğru.',
+'Quiz done!':'Test bitti!',
+'first try':'ilk seferde',
+'came back':'geri geldi',
+'score':'puan',
+'New round':'Yeni tur',
+'No questions in this pack.':'Bu pakette soru yok.',
+'Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.':'Sesli ya da kâğıda cevapla, sonra cevabı göster ve karşılaştır. Güçlü bir sınav cevabı tanımı, maddeleri ve slaytlardan bir örneği içerir.',
+'Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.':'Cevabını düşün ve sesli söyle. Sonra cevabı göster ve karşılaştır. Soru bildiklerinin dışına çıkıyorsa bulamadığını söyle, sonra bildiğin en yakın bilgiyi ver.',
+'Start questions':'Soruları başlat',
+'Practise the {0} left':'Kalan {0} soruyu çalış',
+'Practise all {0} again':'Tüm {0} soruyu tekrar çalış',
+'All questions':'Tüm sorular',
+'Tap one to practise it.':'Çalışmak için birine dokun.',
+'Lecturer':'Hoca',
+'Exam':'Sınav',
+'Classmate':'Arkadaş',
+'Lecturer asks':'Hoca soruyor',
+'Exam question':'Sınav sorusu',
+'Classmate asks':'Arkadaşın soruyor',
+'Think first. Say or jot down your answer.':'Önce düşün. Cevabını söyle ya da not al.',
+'Think first. Say your answer out loud.':'Önce düşün. Cevabını sesli söyle.',
+'A strong answer':'Örnek cevap',
+'You could say':'Şöyle diyebilirsin',
+'Listen to the answer':'Cevabı dinle',
+'Show answer':'Cevabı göster',
+'Again':'Tekrar',
+'Got it':'Bildim',
+'Marked as got it.':'Bildim olarak işaretlendi.',
+'Marked for another go.':'Tekrar için işaretlendi.',
+'{0} of {1} marked got it.':'{0}/{1} soruyu bildin.',
+'Questions done!':'Sorular bitti!',
+'got it':'bildin',
+'again':'tekrar',
+'Questions done.':'Sorular bitti.',
+'Nothing to study yet':'Henüz çalışacak bir şey yok',
+'The study content could not be read.':'Çalışma içeriği okunamadı.',
+};
+/*TR-END*/
+var DICT=UI_LANG==='tr'?TR:{};
+/* t('Text {0}',a): the English text is the key; {0}, {1} take the extra arguments. Unknown keys stay English. */
+function t(s){
+  /* a key may end in |context to tell two meanings of one English word apart; English drops the context */
+  var i=s.indexOf('|'),o=DICT.hasOwnProperty(s)?DICT[s]:(i<0?s:s.slice(0,i)),a=arguments;
+  if(a.length>1)o=o.replace(/\{(\d+)\}/g,function(m,i){return a[+i+1]});
+  return o;
+}
+
 /* ---------- core: helpers, storage, content ---------- */
 var $=function(id){return document.getElementById(id)};
 var qs=function(s,r){return (r||document).querySelector(s)};
 var qsa=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function T(s){return esc(s).replace(/\b(Ray-Ban|\d+-[A-Za-z]+)\b/g,'<span class="nw">$1</span>')}
-function cap(s){s=String(s||'');return s.charAt(0).toUpperCase()+s.slice(1)}
+/* **x** renders as bold (after escaping); text without ** is unchanged. */
+function T(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\b(Ray-Ban|\d+-[A-Za-z]+)\b/g,'<span class="nw">$1</span>')}
+function cap(s){s=String(s||'');return (UI_LANG==='tr'?s.charAt(0).toLocaleUpperCase('tr'):s.charAt(0).toUpperCase())+s.slice(1)}
 function ic(n,c){return '<svg class="ic'+(c?' '+c:'')+'" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function pad(n){return (n<10?'0':'')+n}
-function plural(n,w,ws){return n+' '+(n===1?w:(ws||w+'s'))}
+function plural(n,w,ws){return UI_LANG==='tr'?n+' '+t('#'+w):n+' '+(n===1?w:(ws||w+'s'))}
 function mmss(sec){sec=Math.max(0,Math.round(sec));return Math.floor(sec/60)+':'+pad(sec%60)}
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function rm(){return !!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)}
@@ -726,7 +1022,7 @@ function reflow(el){void el.offsetHeight}
 
 /* ---------- storage (always in memory, localStorage optional) ---------- */
 var store=null,storeOK=true;
-try{store=window.localStorage;store.setItem('prep.v1.t','1');store.removeItem('prep.v1.t')}catch(e){store=null;storeOK=false}
+try{store=window.localStorage;store.setItem(KP+'t','1');store.removeItem(KP+'t')}catch(e){store=null;storeOK=false}
 /* Home Screen app or plain browser tab; ask the browser to keep this site's storage (Safari 17+, Chrome). */
 var standalone=!!(window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches));
 try{if(storeOK&&navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(function(){})}catch(e){}
@@ -734,15 +1030,15 @@ function rd(k){if(!store)return null;try{var v=store.getItem(k);return v?JSON.pa
 function wr(k,v){if(!store)return;try{store.setItem(k,JSON.stringify(v))}catch(e){storeOK=false}}
 
 function obj(v){return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}
-var G=obj(rd('prep.v1.global'));
+var G=obj(rd(KP+'global'));
 G.days=obj(G.days);G.best=+G.best||0;G.goal=[5,10,15,20].indexOf(G.goal)>=0?G.goal:10;
 if(G.sound===undefined)G.sound=true;
 G.hints=obj(G.hints);
-function saveG(){wr('prep.v1.global',G)}
+function saveG(){wr(KP+'global',G)}
 var PSm={};
 function PS(p){
   if(!PSm[p.id]){
-    var d=obj(rd('prep.v1.pack.'+p.id));
+    var d=obj(rd(KP+'pack.'+p.id));
     d.lessons=obj(d.lessons);d.chapters=obj(d.chapters);d.runs=Array.isArray(d.runs)?d.runs:[];d.why=obj(d.why);
     d.quiz=obj(d.quiz);d.quiz.best=+d.quiz.best||0;d.quiz.lecBest=obj(d.quiz.lecBest);d.quiz.history=Array.isArray(d.quiz.history)?d.quiz.history:[];
     d.qa=obj(d.qa);d.qa.status=obj(d.qa.status);d.shown=+d.shown||0;
@@ -750,7 +1046,7 @@ function PS(p){
   }
   return PSm[p.id];
 }
-function saveP(p){wr('prep.v1.pack.'+p.id,PSm[p.id])}
+function saveP(p){wr(KP+'pack.'+p.id,PSm[p.id])}
 
 /* ---------- content ---------- */
 var packs=[],bad=false;
@@ -774,6 +1070,7 @@ function normPack(p){
   p.inspire=Array.isArray(p.inspire)?p.inspire.filter(function(f){return f&&f.fact}):[];
   p.glossary=(p.glossary||[]).filter(function(w){return w&&w.term});
   p.numbers=(p.numbers||[]).filter(function(n){return n&&n.value});
+  p.units=(Array.isArray(p.units)?p.units:[]).filter(function(u){return u&&u.lec!=null});
   return p;
 }
 function L_(p){return p.lessons||[]}
@@ -781,6 +1078,19 @@ function chaptersOf(p){var r=p.read;if(!r)return[];if(Array.isArray(r))return r;
 function quizOf(p){return p.quiz||[]}
 /* Quiz items may carry a lecture number (exam packs); a round can then cover one lecture. */
 function lecsOf(p){var c={};quizOf(p).forEach(function(q){if(q.lec)c[q.lec]=(c[q.lec]||0)+1});return Object.keys(c).map(Number).sort(function(a,b){return a-b}).map(function(k){return {lec:k,n:c[k]}})}
+/* Optional pack units (a lecture or topic): {lec,label,title}; unitWord names them ("Konu"). */
+function unitWordOf(p){return p.unitWord||t('Lecture')}
+function unitOf(p,lec){var u=p.units||[];for(var i=0;i<u.length;i++)if(+u[i].lec===+lec)return u[i];return null}
+function unitLabel(p,lec){var u=unitOf(p,lec);return u&&u.label!=null&&u.label!==''?String(u.label):String(lec)}
+function unitTitle(p,lec){var u=unitOf(p,lec);return u&&u.title?String(u.title):''}
+function unitName(p,lec){return unitWordOf(p)+' '+unitLabel(p,lec)}
+/* Units in the pack's own order first, then any other lecture numbers ascending. */
+function unitOrder(p,extra){
+  var o=[],seen={};
+  (p.units||[]).forEach(function(u){var k=+u.lec;if(!seen[k]){seen[k]=1;o.push(k)}});
+  extra.slice().sort(function(a,b){return a-b}).forEach(function(k){if(!seen[k]){seen[k]=1;o.push(k)}});
+  return o;
+}
 function isExam(p){return !!p&&p.kind==='exam'}
 function isDaily(p){return !!p&&p.kind==='daily'}
 function newsOf(p){return Array.isArray(p.news)?p.news.filter(function(n){return n&&n.title}):[]}
@@ -789,6 +1099,8 @@ function numsOf(p){return p.numbers||[]}
 function wordsOf(p){return p.glossary||[]}
 function scriptParts(p){var s=p.script||{},o=[];Object.keys(s).forEach(function(k){if(s[k]&&s[k].length)o.push({key:k,list:s[k]})});return o}
 function sentsOf(p){var o=[];scriptParts(p).forEach(function(pt){pt.list.forEach(function(s,i){o.push({part:pt.key,i:i,n:pt.list.length,s:s})})});return o}
+function lessonNo(p,i){var u=p.units&&p.units[i];return u&&u.label?u.label:i+1}
+function lessonNum(p,i){var u=p.units&&p.units[i];return u&&u.lec?u.lec:i+1}
 function factsOf(p){var l=p.inspire;return Array.isArray(l)?l:[]}
 
 /* ---------- time ---------- */
@@ -797,17 +1109,20 @@ function fmtKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getD
 function dayKey(ts){return fmtKey(new Date(ts-4*3600000))}
 function shiftKey(k,n){var a=k.split('-');return fmtKey(new Date(+a[0],+a[1]-1,+a[2]+n))}
 function keyDow(k){var a=k.split('-');return (new Date(+a[0],+a[1]-1,+a[2]).getDay()+6)%7}
+function hasDate(p){return !!p.date&&!isNaN(new Date(p.date).getTime())}
 function offMin(p){var m=/([+-])(\d\d):(\d\d)$/.exec(p.date||'');return m?(m[1]==='-'?-1:1)*(+m[2]*60+ +m[3]):0}
-function startOf(p){return new Date(p.date).getTime()}
+function startOf(p){return hasDate(p)?new Date(p.date).getTime():8.64e15}
 function wall(p,ts){return new Date(ts+offMin(p)*60000)}
-function fmtWhen(p){var d=wall(p,startOf(p));return DAYS[d.getUTCDay()]+' '+d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+', '+pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())}
-function fmtDate(p){var d=wall(p,startOf(p));return DAYS[d.getUTCDay()]+' '+d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]}
-function isUpcoming(p){return Date.now()<startOf(p)+2*3600000}
+function trDate(d,utc){var o={day:'numeric',month:'long',weekday:'long'};if(utc)o.timeZone='UTC';return d.toLocaleDateString('tr-TR',o)}
+function fmtWhen(p){if(!hasDate(p))return '';var d=wall(p,startOf(p));if(UI_LANG==='tr')return trDate(d,true)+', '+pad(d.getUTCHours())+':'+pad(d.getUTCMinutes());return DAYS[d.getUTCDay()]+' '+d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+', '+pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())}
+function fmtDate(p){if(!hasDate(p))return '';var d=wall(p,startOf(p));if(UI_LANG==='tr')return trDate(d,true);return DAYS[d.getUTCDay()]+' '+d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]}
+function isUpcoming(p){return !hasDate(p)||Date.now()<startOf(p)+2*3600000}
 function shortTitle(p){var t=String(p.title||'');var i=t.indexOf(':');return i>0?t.slice(0,i):t}
 function sinceStart(ts){var d=new Date(ts);return d}
 function fmtRound(ts){
   var d=new Date(ts),n=new Date(),hm=pad(d.getHours())+':'+pad(d.getMinutes());
-  if(fmtKey(d)===fmtKey(n))return 'Today, '+hm;
+  if(fmtKey(d)===fmtKey(n))return t('Today, {0}',hm);
+  if(UI_LANG==='tr')return trDate(d)+', '+hm;
   return DAYS[d.getDay()]+' '+d.getDate()+' '+MONTHS[d.getMonth()]+', '+hm;
 }
 
@@ -837,13 +1152,13 @@ function readyParts(p){
     if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
     return a;
   }
-  if(L_(p).length)a.push({k:'lessons',label:'Lessons',w:3,n:lessonsDone(p),d:L_(p).length});
-  if(chaptersOf(p).length)a.push({k:'chapters',label:'Chapters',w:1,n:chaptersRead(p),d:chaptersOf(p).length});
-  if(sentsOf(p).length)a.push({k:'runs',label:'Practice runs',w:2,n:Math.min(2,ps.runs.length),d:2});
-  if(sentsOf(p).length)a.push({k:'why',label:'Sentences you checked',w:2,n:Math.min(Object.keys(ps.why||{}).length,sentsOf(p).length),d:sentsOf(p).length});
-  if(numsOf(p).length)a.push({k:'numbers',label:'Numbers gone over',w:1,n:ps.numbersDone?1:0,d:1});
-  if(quizOf(p).length)a.push({k:'quiz',label:'Quiz, best round',w:2,n:quizScore(p),d:quizOf(p).length});
-  if(qaOf(p).length)a.push({k:'qa',label:'Questions you got',w:2,n:qaGot(p),d:qaOf(p).length});
+  if(L_(p).length)a.push({k:'lessons',label:t('Lessons'),w:3,n:lessonsDone(p),d:L_(p).length});
+  if(chaptersOf(p).length)a.push({k:'chapters',label:t('Chapters'),w:1,n:chaptersRead(p),d:chaptersOf(p).length});
+  if(sentsOf(p).length)a.push({k:'runs',label:t('Practice runs'),w:2,n:Math.min(2,ps.runs.length),d:2});
+  if(sentsOf(p).length)a.push({k:'why',label:t('Sentences you checked'),w:2,n:Math.min(Object.keys(ps.why||{}).length,sentsOf(p).length),d:sentsOf(p).length});
+  if(numsOf(p).length)a.push({k:'numbers',label:t('Numbers gone over'),w:1,n:ps.numbersDone?1:0,d:1});
+  if(quizOf(p).length)a.push({k:'quiz',label:t('Quiz, best round'),w:2,n:quizScore(p),d:quizOf(p).length});
+  if(qaOf(p).length)a.push({k:'qa',label:t('Questions you got'),w:2,n:qaGot(p),d:qaOf(p).length});
   return a;
 }
 /* Best full round, or the best lecture rounds added up, whichever is higher. */
@@ -874,7 +1189,7 @@ function ringOff(C,p){return p<=0?C:C*(1-Math.max(p,0.02))}
 function setArc(el,C,p){el.setAttribute('stroke-dasharray',C);el.setAttribute('stroke-dashoffset',ringOff(C,p));el.classList.toggle('is-zero',p<=0)}
 function badgeLabel(){
   var mins=Math.floor(todaySecs()/60),n=streakNow();
-  return n+' day streak. Today '+Math.min(mins,G.goal)+' of '+G.goal+' minutes.'+(isMet(today())?' Goal done.':'');
+  return t('{0} day streak. Today {1} of {2} minutes.',n,Math.min(mins,G.goal),G.goal)+(isMet(today())?' '+t('Goal done.'):'');
 }
 function updateBadges(){
   var p=goalPct(),lab=badgeLabel();
@@ -899,7 +1214,7 @@ function goalMoment(){
 function playGoal(){
   if(layers.length){goalWait=true;return}
   goalWait=false;
-  announce('Daily goal reached.');
+  announce(t('Daily goal reached.'));
   if(rm())return;
   var b=activeBadge();if(!b)return;
   b.classList.remove('flare');reflow(b);b.classList.add('flare');
@@ -918,10 +1233,11 @@ var liveFlip=false;
 function announce(t){var l=$('live');liveFlip=!liveFlip;l.textContent=t+(liveFlip?'':' ')}
 
 /* ---------- path ---------- */
-function inferDo(t){
-  t=String(t).toLowerCase();
-  var m=[['lesson','lessons'],['chapter','read'],['script','script'],['quiz','quiz'],['question','questions'],['number','numbers']];
-  for(var i=0;i<m.length;i++)if(t.indexOf(m[i][0])>=0)return m[i][1];
+function inferDo(x){
+  var m;
+  if(UI_LANG==='tr'){x=String(x).toLocaleLowerCase('tr');m=[['kart','lessons'],['ders','lessons'],['bölüm','read'],['test','quiz'],['sayı','numbers'],['rakam','numbers'],['soru','questions']]}
+  else{x=String(x).toLowerCase();m=[['lesson','lessons'],['chapter','read'],['script','script'],['quiz','quiz'],['question','questions'],['number','numbers']]}
+  for(var i=0;i<m.length;i++)if(x.indexOf(m[i][0])>=0)return m[i][1];
   return '';
 }
 function buildPath(p){
@@ -931,7 +1247,7 @@ function buildPath(p){
   /* every kind of content the pack has gets a place on the path, in a fixed order, even if the plan text misses it */
   var ORDER=['news','lessons','read','script','quiz','questions','numbers'],
     HAVE={news:newsOf(p).length,lessons:L_(p).length,read:chaptersOf(p).length,script:sentsOf(p).length,quiz:quizOf(p).length,questions:qaOf(p).length,numbers:numsOf(p).length},
-    DEF={news:'Catch up on the AI news.',lessons:'Learn the lessons, one card at a time.',read:'Read the chapters at your own pace.',script:'Read your script aloud with the timer.',quiz:'Do the quiz.',questions:'Practise the questions out loud.',numbers:'Go over the numbers.'};
+    DEF={news:'Catch up on the AI news.',lessons:t('Learn the lessons, one card at a time.'),read:t('Read the chapters at your own pace.'),script:t('Read your script aloud with the timer.'),quiz:t('Do the quiz.'),questions:t('Practise the questions out loud.'),numbers:t('Go over the numbers.')};
   ORDER.forEach(function(k,oi){
     if(!HAVE[k]||plan.some(function(s){return s.do===k}))return;
     var at=plan.length;
@@ -944,36 +1260,38 @@ function buildPath(p){
     if(s.do==='lessons'){
       L_(p).forEach(function(l,i){
         var st=ps.lessons[l.id]||{},n=l.cards.length,seen=Math.min(st.seen||0,n);
-        nodes.push({id:'node-lesson-'+i,kind:'lessons',idx:i,num:i+1,title:l.title,
-          detail:'Lesson '+(i+1)+' · '+(st.done?'Done':seen>0?seen+' of '+n+' cards':n+' cards'),
-          done:!!st.done,frac:st.done?1:seen/n,aria:'Lesson '+(i+1)+', '+l.title});
+        var det=st.done?t('Done'):seen>0?t('{0} of {1} cards',seen,n):t('{0} cards',n);
+        nodes.push({id:'node-lesson-'+i,kind:'lessons',idx:i,num:lessonNum(p,i),title:l.title,det:det,
+          detail:t('Lesson {0} · {1}',lessonNo(p,i),det),
+          done:!!st.done,frac:st.done?1:seen/n,aria:t('Lesson {0}, {1}',lessonNo(p,i),l.title)});
       });
     }else if(s.do==='news'&&newsOf(p).length){
       var sn=newsOf(p).length,sd=!!ps.newsDone,tn=p.day===today()?"Today's AI news":'The AI news';
-      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?'Read':plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
+      nodes.push({id:'node-news-0',kind:'news',idx:0,icon:'news',title:tn,detail:sd?t('Read|done'):plural(sn,'story','stories'),done:sd,frac:sd?1:0,aria:tn});
     }else if(s.do==='read'&&chaptersOf(p).length){
       var c=chaptersOf(p).length,r=chaptersRead(p);
-      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":'Read the chapters',
-        detail:r>=c?'All read':r>0?r+' of '+c+' read':c+' chapters',done:r>=c,frac:r/c,aria:'Read the chapters'});
+      nodes.push({id:'node-read-0',kind:'read',idx:0,icon:'read',title:isDaily(p)?"Read today's lesson":t('Read the chapters'),
+        detail:r>=c?t('All read'):r>0?t('{0} of {1} read',r,c):t('{0} chapters',c),done:r>=c,frac:r/c,aria:t('Read the chapters')});
     }else if(s.do==='script'&&sentsOf(p).length){
       for(var k=0;k<2;k++){
         var run=ps.runs[k];
-        nodes.push({id:'node-script-'+k,kind:'script',idx:k,icon:'mic',title:'Practice run '+(k+1),
-          detail:run?'Done in '+mmss(run.secs):'3-minute timer',done:!!run,frac:run?1:0,aria:'Practice run '+(k+1)});
+        nodes.push({id:'node-script-'+k,kind:'script',idx:k,icon:'mic',title:t('Practice run {0}',k+1),
+          detail:run?t('Done in {0}',mmss(run.secs)):t('3-minute timer'),done:!!run,frac:run?1:0,aria:t('Practice run {0}',k+1)});
       }
     }else if(s.do==='quiz'&&quizOf(p).length){
       var qn=quizOf(p).length,b=quizScore(p);
-      nodes.push({id:'node-quiz-0',kind:'quiz',idx:0,icon:'quiz',title:'Quiz',
-        detail:b>0?'Best: '+b+' of '+qn:qn+' questions',done:b>=Math.ceil(qn*0.8),frac:b/qn,aria:'Quiz'});
+      nodes.push({id:'node-quiz-0',kind:'quiz',idx:0,icon:'quiz',title:t('Quiz'),
+        detail:b>0?t('Best: {0} of {1}',b,qn):t('{0} questions',qn),done:b>=Math.ceil(qn*0.8),frac:b/qn,aria:t('Quiz')});
     }else if(s.do==='questions'&&qaOf(p).length){
       var an=qaOf(p).length,g=qaGot(p);
-      nodes.push({id:'node-questions-0',kind:'questions',idx:0,icon:'qa',title:'Questions',
-        detail:g>=an?'All got it':g>0?g+' of '+an+' got it':an+' questions',done:g>=an,frac:g/an,aria:'Questions'});
+      nodes.push({id:'node-questions-0',kind:'questions',idx:0,icon:'qa',title:t('Questions'),
+        detail:g>=an?t('All got it'):g>0?t('{0} of {1} got it',g,an):t('{0} questions',an),done:g>=an,frac:g/an,aria:t('Questions')});
     }else if(s.do==='numbers'&&numsOf(p).length){
       var nn=numsOf(p).length,nd=!!ps.numbersDone;
-      nodes.push({id:'node-numbers-0',kind:'numbers',idx:0,icon:'hash',title:'The numbers',
-        detail:nd?'Done':nn+' numbers',done:nd,frac:nd?1:0,aria:'The numbers'});
+      nodes.push({id:'node-numbers-0',kind:'numbers',idx:0,icon:'hash',title:t('The numbers'),
+        detail:nd?t('Done'):t('{0} numbers',nn),done:nd,frac:nd?1:0,aria:t('The numbers')});
     }
+    if(LEAN&&s.do&&!nodes.length)return;
     units.push({n:si+1,text:s.text,nodes:nodes,done:nodes.length>0&&nodes.every(function(x){return x.done})});
     nodes.forEach(function(x){flat.push(x)});
   });
@@ -986,16 +1304,16 @@ function heroInfo(p,path){
   var ps=PS(p),n=path.cur;
   if(!n){
     var ak=sentsOf(p).length?'script':quizOf(p).length?'quiz':qaOf(p).length?'questions':'lessons';
-    return {line:'Every step is done. Keep it fresh.',label:ak==='script'?'Practise your script':ak==='quiz'?'Do the quiz':ak==='questions'?'Practise the questions':'Go over the lessons',kind:ak,idx:0,bold:null};
+    return {line:t('Every step is done. Keep it fresh.'),label:ak==='script'?t('Practise your script'):ak==='quiz'?t('Do the quiz'):ak==='questions'?t('Practise the questions'):t('Go over the lessons'),kind:ak,idx:0,bold:null};
   }
   var label='';
-  if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?'Continue lesson ':'Start lesson ')+(n.idx+1)}
+  if(n.kind==='lessons'){var st=ps.lessons[L_(p)[n.idx].id]||{};label=((st.seen||0)>0&&!st.done?t('Continue lesson {0}',lessonNo(p,n.idx)):t('Start lesson {0}',lessonNo(p,n.idx)))}
   else if(n.kind==='news')label='Read the news';
-  else if(n.kind==='read'){label=ps.place?'Continue reading':'Read chapter '+(firstUnread(p)+1)}
-  else if(n.kind==='script')label='Practise your script';
-  else if(n.kind==='quiz')label=ps.quiz.best>0?'Beat your best':'Do the quiz';
-  else if(n.kind==='questions')label='Practise the questions';
-  else label='Go through the numbers';
+  else if(n.kind==='read'){label=ps.place?t('Continue reading'):t('Read chapter {0}',firstUnread(p)+1)}
+  else if(n.kind==='script')label=t('Practise your script');
+  else if(n.kind==='quiz')label=ps.quiz.best>0?t('Beat your best'):t('Do the quiz');
+  else if(n.kind==='questions')label=t('Practise the questions');
+  else label=t('Go through the numbers');
   return {line:null,bold:n.title,label:label,kind:n.kind,idx:n.idx};
 }
 function firstUnread(p){var ps=PS(p),c=chaptersOf(p);for(var i=0;i<c.length;i++)if(!ps.chapters[i])return i;return 0}
@@ -1036,7 +1354,7 @@ function syncSoundBtns(){
   ['quiz-sound','qa-sound','quiz-run-sound','qa-run-sound'].forEach(function(id){
     var b=$(id);if(!b)return;
     b.setAttribute('aria-pressed',G.sound?'true':'false');
-    b.setAttribute('aria-label','Sound effects');
+    b.setAttribute('aria-label',t('Sound effects'));
     b.innerHTML=ic(G.sound?'bell':'bell-off');
   });
 }
@@ -1054,17 +1372,18 @@ function pickVoice(){
   if(!SYN)return;
   var vs=[];try{vs=speechSynthesis.getVoices()||[]}catch(e){}
   if(!vs.length)return;
-  var en=vs.filter(function(v){return /^en/i.test(v.lang)});
+  var tr=UI_LANG==='tr';
+  var en=vs.filter(function(v){return (tr?/^tr/i:/^en/i).test(v.lang)});
   var f=null;
   function find(fn){return en.filter(fn)[0]}
   f=find(function(v){return /enhanced|premium/i.test(v.name)});
-  if(!f){var names=['Samantha','Daniel','Karen','Moira','Serena','Google UK English Female','Google US English'];
+  if(!f){var names=tr?['Yelda','Google Türkçe','Cem']:['Samantha','Daniel','Karen','Moira','Serena','Google UK English Female','Google US English'];
     for(var i=0;i<names.length&&!f;i++)f=find(function(v){return v.name.indexOf(names[i])>=0})}
-  if(!f)f=find(function(v){return v.lang==='en-GB'||v.lang==='en-US'});
+  if(!f)f=find(function(v){return tr?v.lang==='tr-TR':(v.lang==='en-GB'||v.lang==='en-US')});
   voice=f||en[0]||null;
 }
 if(SYN){pickVoice();try{speechSynthesis.addEventListener('voiceschanged',pickVoice)}catch(e){}}
-function speechText(s){return String(s).replace(/''/g,'"')}
+function speechText(s){return String(s).replace(/\*\*/g,'').replace(/''/g,'"')}
 function stopSpeech(){
   speakToken++;
   if(SYN){try{speechSynthesis.cancel()}catch(e){}}
@@ -1079,7 +1398,7 @@ function speakList(list,key,onItem,onEnd){
   speakKey=key;
   list.forEach(function(txt,i){
     var u=new SpeechSynthesisUtterance(speechText(txt));
-    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang='en-GB';
+    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang=UI_LANG==='tr'?'tr-TR':'en-GB';
     u.rate=0.95;u.pitch=1;
     u.onstart=function(){
       if(tok!==speakToken)return;
@@ -1099,7 +1418,7 @@ function updateListenUI(){
     var on=speaking&&speakKey===b.getAttribute('data-lk');
     b.classList.toggle('is-on',on);
     var u=qs('use',b);if(u)u.setAttribute('href',on?'#i-square':'#i-vol');
-    var lab=qs('.lk-t',b);if(lab)lab.textContent=on?'Stop':'Listen';
+    var lab=qs('.lk-t',b);if(lab)lab.textContent=on?t('Stop'):t('Listen');
     b.setAttribute('aria-pressed',on?'true':'false');
   });
 }
@@ -1231,16 +1550,28 @@ function placeHl(instant){
   if(instant){reflow(hl);hl.style.transition=''}
 }
 /* A pack without a script (an exam) shows its numbers under this tab; with neither, the tab goes. */
+/* The second site hides what a pack does not have: no empty tab. */
+function emptyScreen(name,p){
+  if(!LEAN)return false;
+  if(name==='read')return !chaptersOf(p).length;
+  if(name==='learn')return !L_(p).length&&!wordsOf(p).length&&!factsOf(p).length;
+  if(name==='quiz')return !quizOf(p).length;
+  if(name==='qa')return !qaOf(p).length;
+  if(name==='script')return !isDaily(p)&&!sentsOf(p).length&&!numsOf(p).length;
+  return false;
+}
 function syncTabs(){
-  var t=$('tab-script'),qa=$('tab-qa');if(!t||!cur)return;
+  var tb=$('tab-script'),qa=$('tab-qa');if(!tb||!cur)return;
   var dly=isDaily(cur),noS=!sentsOf(cur).length,hasN=numsOf(cur).length>0,lab=dly?'News':noS?'Numbers':'Script';
-  t.hidden=!dly&&noS&&!hasN;qa.hidden=!qaOf(cur).length;
-  var n=6-(t.hidden?1:0)-(qa.hidden?1:0),bar=qs('.tabbar-in');bar.classList.toggle('five',n===5);bar.classList.toggle('four',n===4);
-  qs('span:last-child',t).textContent=lab;qs('use',t).setAttribute('href',dly?'#i-news':noS?'#i-hash':'#i-mic');
-  qs('#screen-script .hdr-title').textContent=lab;$('screen-script').setAttribute('aria-label',lab);
+  tb.hidden=!dly&&noS&&!hasN;qa.hidden=!qaOf(cur).length;
+  if(LEAN)['read','learn','quiz'].forEach(function(s){$('tab-'+s).hidden=emptyScreen(s,cur)});
+  var n=SCREENS.filter(function(s){return !$('tab-'+s).hidden}).length,bar=qs('.tabbar-in');bar.classList.toggle('five',n===5);bar.classList.toggle('four',n===4);bar.classList.toggle('three',n===3);bar.classList.toggle('two',n===2);
+  qs('span:last-child',tb).textContent=t(lab);qs('use',tb).setAttribute('href',dly?'#i-news':noS?'#i-hash':'#i-mic');
+  qs('#screen-script .hdr-title').textContent=t(lab);$('screen-script').setAttribute('aria-label',t(lab));
 }
 function show(name,o){
   o=o||{};syncTabs();
+  if(cur&&emptyScreen(name,cur)){name='home';o={}}
   if(curScreen)scrolls[scrollKey()]=window.scrollY;
   if(o.face)face[name]=o.face;
   var changed=curScreen!==name;
@@ -1322,51 +1653,51 @@ function nodeRowHTML(n,x){
   if(n.cur){
     ring='<svg class="node-ring ring-svg" viewBox="0 0 92 92" aria-hidden="true"><circle class="trk" cx="46" cy="46" r="43"/><circle class="arc'+(n.frac<=0?' is-zero':'')+'" cx="46" cy="46" r="43" stroke-dasharray="'+RING.node+'" stroke-dashoffset="'+ringOff(RING.node,n.frac)+'"/></svg>';
   }
-  var aria=n.aria+', '+n.detail.replace(/^Lesson \d+ · /,'')+(n.cur?', up next':n.done?', done':'')+'.';
+  var aria=n.aria+', '+(n.det||n.detail)+(n.cur?t(', up next'):n.done?t(', done'):'')+'.';
   return '<button class="'+cls+'" id="'+n.id+'" type="button" data-kind="'+n.kind+'" data-idx="'+n.idx+'" style="--x:'+x+'px" aria-label="'+esc(aria)+'">'+
     '<span class="node-lane">'+ring+'<span class="node-wrap"><span class="node">'+faceH+'</span></span></span>'+
-    '<span class="node-label">'+(n.cur?'<span class="pill go">Up next</span>':'')+'<span class="node-title">'+T(n.title)+'</span><span class="node-detail">'+T(n.detail)+'</span></span></button>';
+    '<span class="node-label">'+(n.cur?'<span class="pill go">'+t('Up next')+'</span>':'')+'<span class="node-title">'+T(n.title)+'</span><span class="node-detail">'+T(n.detail)+'</span></span></button>';
 }
 function featureIdx(p){var f=factsOf(p);if(!f.length)return 0;var d=dayKey(Date.now()).split('-');var n=Math.floor(Date.UTC(+d[0],+d[1]-1,+d[2])/86400000);return n%f.length}
 function renderHome(){
   var p=cur,ps=PS(p),path=buildPath(p),hero=heroInfo(p,path),from=clamp(ps.shown||0,0,100),dly=isDaily(p);
   var h='';
-  if(!storeOK)h+='<div class="card notice warn" role="status"><p class="notice-title">Your progress can\'t be saved here</p><p class="notice-text">This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.</p></div>';
-  else if(!standalone&&navigator.maxTouchPoints>0&&!G.hints.homescreen)h+='<div class="card notice" role="note"><p class="notice-title">Keep your progress: use the Home Screen app</p><p class="notice-text">In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.</p><button class="btn plain compact" id="hs-ok" type="button">Got it</button></div>';
+  if(!storeOK)h+='<div class="card notice warn" role="status"><p class="notice-title">'+t('Your progress can\'t be saved here')+'</p><p class="notice-text">'+t('This browser is blocking storage, usually because of a Private tab or Block All Cookies. Open Prep from its Home Screen icon to keep your progress.')+'</p></div>';
+  else if(!standalone&&navigator.maxTouchPoints>0&&!G.hints.homescreen)h+='<div class="card notice" role="note"><p class="notice-title">'+t('Keep your progress: use the Home Screen app')+'</p><p class="notice-text">'+t('In Safari, tap Share, then Add to Home Screen, and open Prep from the icon. A Private tab forgets your progress when it closes, and the Home Screen app keeps its own progress, separate from Safari.')+'</p><button class="btn plain compact" id="hs-ok" type="button">'+t('Got it|ack')+'</button></div>';
   h+='<button class="pack row-press" id="pack-switch" type="button" aria-haspopup="dialog"><span class="pack-icon">'+ic(dly?'sun':'pres')+'</span><span class="pack-text"><span class="pack-course">'+T(p.course)+'</span><span class="pack-title">'+T(p.title)+'</span></span>'+ic('down','chev')+'</button>';
   h+='<div class="card hero"><div class="hero-top">'+
-    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="Readiness '+readiness(p)+' percent. Show details."><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">'+(dly?'done':'ready')+'</span></span></button>'+
+    '<button class="meter" id="home-meter" type="button" aria-haspopup="dialog" aria-label="'+esc(t('Readiness {0} percent. Show details.',readiness(p)))+'"><svg class="ring-svg" viewBox="0 0 112 112" aria-hidden="true"><circle class="trk" cx="56" cy="56" r="50"/><circle class="arc'+(from<=0?' is-zero':'')+'" id="meter-arc" cx="56" cy="56" r="50" stroke-dasharray="'+RING.meter+'" stroke-dashoffset="'+ringOff(RING.meter,from/100)+'"/></svg><span class="meter-val"><span class="meter-num"><span id="meter-num">'+from+'</span><small>%</small></span><span class="meter-cap">'+(dly?t('done'):t('ready'))+'</span></span></button>'+
     '<div class="count"><div class="count-label" id="count-label"></div><div class="count-value" id="count-value"></div>'+
     (dly?'<div class="count-line">'+ic('clock')+'<span>About '+dailyMinutes(p)+' min</span></div><div class="count-line">'+ic('news')+'<span>'+plural(newsOf(p).length,'story','stories')+' · '+plural(wordsOf(p).length,'new word')+'</span></div>':
-    '<div class="count-line">'+ic('clock')+'<span>'+esc(fmtWhen(p))+'</span></div>'+
+    (hasDate(p)?'<div class="count-line">'+ic('clock')+'<span>'+esc(fmtWhen(p))+'</span></div>':'')+
     (p.place?'<div class="count-line">'+ic('pin')+'<span>'+T(cap(p.place))+'</span></div>':''))+'</div></div>'+
-    '<p class="hero-next">'+(hero.line?esc(hero.line):'Up next: <b>'+T(hero.bold)+'</b>')+'</p>'+
+    '<p class="hero-next">'+(hero.line?esc(hero.line):t('Up next: {0}','<b>'+T(hero.bold)+'</b>'))+'</p>'+
     '<button class="btn" id="home-continue" type="button">'+esc(hero.label)+'</button>'+
-    (storeOK?'':'<p class="save-note">This browser cannot save your progress.</p>')+'</div>';
-  h+='<div class="sec"><h2>Your plan</h2><p>Tap any step to open it.</p></div>';
+    (storeOK?'':'<p class="save-note">'+t('This browser cannot save your progress.')+'</p>')+'</div>';
+  h+='<div class="sec"><h2>'+t('Your plan')+'</h2><p>'+t('Tap any step to open it.')+'</p></div>';
   path.units.forEach(function(u){
     h+='<div class="unit'+(u.done?' is-done':'')+'"><span class="unit-num">'+(u.done?ic('check'):u.n)+'</span><span class="unit-text">'+T(u.text)+'</span></div>';
     u.nodes.forEach(function(n){h+=nodeRowHTML(n,ZZ[n.pos%8])});
   });
   var all=path.allDone;
-  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(dly?'Your day':shortTitle(p))+'</span><span class="node-detail">'+(all?'Every step done':dly?'About '+dailyMinutes(p)+' min in all':esc(fmtWhen(p)))+'</span></span></div>';
+  h+='<div class="node-row is-finish'+(all?' is-all-done':'')+'" id="node-finish-0" style="--x:'+ZZ[path.finishPos%8]+'px"><span class="node-lane"><span class="node-wrap"><span class="node">'+ic('flag')+'</span></span></span><span class="node-label"><span class="node-title">'+T(dly?'Your day':shortTitle(p))+'</span><span class="node-detail">'+(all?t('Every step done'):dly?'About '+dailyMinutes(p)+' min in all':esc(hasDate(p)?fmtWhen(p):t('Date not set yet')))+'</span></span></div>';
   var fl=factsOf(p);
   if(fl.length){
     var f=fl[featureIdx(p)];
-    h+='<button class="card fact row-press" id="inspire-feature" type="button"><div class="fact-k">Did you know</div><div class="fact-title">'+T(f.title)+'</div><p class="fact-b">'+T(f.fact)+'</p></button>';
+    h+='<button class="card fact row-press" id="inspire-feature" type="button"><div class="fact-k">'+t('Did you know')+'</div><div class="fact-title">'+T(f.title)+'</div><p class="fact-b">'+T(f.fact)+'</p></button>';
   }
   var nd={};path.nodes.forEach(function(n){if(n.done)nd[n.id]=true});
   var jd=prevDone;prevDone=nd;
   $('home-body').innerHTML=h;
   home._ready=readiness(p);home._hero=hero;
-  $('readiness-title').textContent=dly?'Your day so far':'How ready you are';
+  $('readiness-title').textContent=dly?'Your day so far':t('How ready you are');
   updateCountdown();
 }
 var home={};
 function animHome(){
   var p=cur,ps=PS(p),to=readiness(p),from=clamp(ps.shown||0,0,100);
   var arc=$('meter-arc'),num=$('meter-num');if(!arc)return;
-  $('home-meter').setAttribute('aria-label','Readiness '+to+' percent. Show details.');
+  $('home-meter').setAttribute('aria-label',t('Readiness {0} percent. Show details.',to));
   ps.shown=to;saveP(p);
   if(from===to){num.textContent=to;return}
   later(function(){
@@ -1378,15 +1709,16 @@ function updateCountdown(){
   var p=cur;if(!p)return;
   var l=$('count-label'),v=$('count-value');if(!l)return;
   if(isDaily(p)){l.textContent=p.day===today()?"Today's page":'Page from';v.textContent=dayLabel(p.day);return}
+  if(!hasDate(p)){l.textContent=t('Date not set yet');v.textContent='';return}
   var now=Date.now(),st=startOf(p),d=st-now,H=3600000;
-  if(d<=-2*H){l.textContent='Presented on';v.textContent=fmtDate(p)}
-  else if(d<=0){l.textContent='It is time';v.textContent='Good luck!'}
+  if(d<=-2*H){l.textContent=t('Presented on');v.textContent=fmtDate(p)}
+  else if(d<=0){l.textContent=t('It is time');v.textContent=t('Good luck!')}
   else{
-    l.textContent=shortTitle(p)+' in';
+    l.textContent=t('{0} in',shortTitle(p));
     if(d>48*H)v.textContent=plural(Math.floor(d/(24*H)),'day');
-    else if(d>=24*H)v.textContent='1 day '+Math.floor((d-24*H)/H)+' h';
-    else if(d>=H)v.textContent=Math.floor(d/H)+' h '+Math.floor((d%H)/60000)+' min';
-    else v.textContent=Math.max(1,Math.floor(d/60000))+' min';
+    else if(d>=24*H)v.textContent=t('1 day {0} h',Math.floor((d-24*H)/H));
+    else if(d>=H)v.textContent=t('{0} h {1} min',Math.floor(d/H),Math.floor((d%H)/60000));
+    else v.textContent=t('{0} min',Math.max(1,Math.floor(d/60000)));
   }
 }
 document.addEventListener('visibilitychange',function(){if(!document.hidden)updateCountdown()});
@@ -1433,27 +1765,27 @@ $('spop-scrim').addEventListener('click',closeStreak);
 function buildStreakCard(){
   var gi=SEGGOALS.indexOf(G.goal);
   $('streak-card').innerHTML='<div class="s-head" id="sc-head"></div><div class="week" id="sc-week"></div>'+
-    '<div class="goal"><div id="sc-goal"></div><div class="lbl">Daily goal</div>'+
-    segHTML('seg-goal',4,gi,SEGGOALS.map(function(g){return {id:'goal-'+g,t:g+' min'}}),true)+'</div>';
+    '<div class="goal"><div id="sc-goal"></div><div class="lbl">'+t('Daily goal')+'</div>'+
+    segHTML('seg-goal',4,gi,SEGGOALS.map(function(g){return {id:'goal-'+g,t:t('{0} min',g)}}),true)+'</div>';
   renderStreakCard();
 }
 function renderStreakCard(){
   if(!$('sc-head'))return;
   var n=streakNow(),best=bestStreak(),k=today(),secs=todaySecs(),met=isMet(k),g=G.goal;
   var title,sub;
-  if(n===0&&best===0){title='No streak yet';sub='Study '+g+' minutes to start one.'}
-  else if(n===0){title='Start a new streak';sub='Best: '+plural(best,'day')}
-  else{title=n+' day streak';sub='Best: '+plural(best,'day')}
+  if(n===0&&best===0){title=t('No streak yet');sub=t('Study {0} minutes to start one.',g)}
+  else if(n===0){title=t('Start a new streak');sub=t('Best: {0}',plural(best,'day'))}
+  else{title=t('{0} day streak',n);sub=t('Best: {0}',plural(best,'day'))}
   $('sc-head').innerHTML='<span class="flame-disc">'+ic('flame','fill')+'</span><div><div class="s-title" id="streak-title">'+esc(title)+'</div><div class="s-sub">'+esc(sub)+'</div></div>';
-  var dow=keyDow(k),L='MTWTFSS',w='';
+  var dow=keyDow(k),L=t('MTWTFSS'),w='';
   for(var i=0;i<7;i++){
     var dk=shiftKey(k,i-dow),m=isMet(dk);
     w+='<div class="day'+(m?' met':'')+(i===dow?' today':'')+'"><i>'+(m?ic('check'):'')+'</i><span>'+L.charAt(i)+'</span></div>';
   }
   $('sc-week').innerHTML=w;
   var mins=Math.min(Math.floor(secs/60),g);
-  $('sc-goal').innerHTML='<div class="part-row"><span>Today</span><span class="v">'+mins+' of '+g+' min</span>'+(met?'<span class="part-check">'+ic('check')+'</span>':'')+'</div>'+
-    '<div class="gbar orange" style="--p:'+(met?1:clamp(secs/(g*60),0,1))+'"><i></i></div><p class="foot">Study '+g+' minutes a day to keep your streak.</p>';
+  $('sc-goal').innerHTML='<div class="part-row"><span>'+t('Today')+'</span><span class="v">'+t('{0} of {1} min',mins,g)+'</span>'+(met?'<span class="part-check">'+ic('check')+'</span>':'')+'</div>'+
+    '<div class="gbar orange" style="--p:'+(met?1:clamp(secs/(g*60),0,1))+'"><i></i></div><p class="foot">'+t('Study {0} minutes a day to keep your streak.',g)+'</p>';
   var seg=$('seg-goal'),gi=SEGGOALS.indexOf(g);
   if(seg){seg.style.setProperty('--i',gi);qsa('button',seg).forEach(function(b,j){b.classList.toggle('is-on',j===gi);b.setAttribute('aria-pressed',j===gi)})}
 }
@@ -1467,9 +1799,10 @@ document.addEventListener('click',function(e){
 /* ---------- presentations sheet ---------- */
 function whenLine(p){
   if(isDaily(p))return dayLabel(p.day)+(p.day===today()?' · today':'');
-  if(!isUpcoming(p))return 'Presented on '+fmtDate(p);
+  if(!hasDate(p))return t('Date not set yet');
+  if(!isUpcoming(p))return t('Presented on {0}',fmtDate(p));
   var off=offMin(p)*60000,dn=Math.floor((Date.now()+off)/86400000),dp=Math.floor((startOf(p)+off)/86400000),diff=dp-dn;
-  var tag=diff<=0?'today':diff===1?'tomorrow':'in '+diff+' days';
+  var tag=diff<=0?t('today'):diff===1?t('tomorrow'):t('in {0} days',diff);
   return fmtWhen(p)+' · '+tag;
 }
 function packRow(p){
@@ -1483,12 +1816,12 @@ function openPacks(){
   var past=pres.filter(function(p){return !isUpcoming(p)}).sort(function(a,b){return startOf(b)-startOf(a)});
   var earlier=dailyDays().filter(function(p){return p!==td}).slice(0,14);
   var h='';
-  if(td)h+='<div class="sub-h">Today</div>'+packRow(td);
-  if(up.length)h+='<div class="sub-h">Upcoming</div>'+up.map(packRow).join('');
-  if(earlier.length)h+='<div class="sub-h">Earlier days</div>'+earlier.map(packRow).join('');
-  if(past.length)h+='<div class="sub-h">Past</div>'+past.map(packRow).join('');
-  h+='<p class="foot">A new pack shows up here when it is added.</p>';
-  if(!dLoaded&&dailyOK())h+='<button class="lockrow row-press" id="daily-unlock-row" type="button">'+ic('lock')+'<span>Daily page</span></button>';
+  if(td)h+='<div class="sub-h">'+t('Today')+'</div>'+packRow(td);
+  if(up.length)h+='<div class="sub-h">'+t('Upcoming')+'</div>'+up.map(packRow).join('');
+  if(earlier.length)h+='<div class="sub-h">'+t('Earlier days')+'</div>'+earlier.map(packRow).join('');
+  if(past.length)h+='<div class="sub-h">'+t('Past')+'</div>'+past.map(packRow).join('');
+  h+='<p class="foot">'+t('A new pack shows up here when it is added.')+'</p>';
+  if(DAILY_ON&&!dLoaded&&dailyOK())h+='<button class="lockrow row-press" id="daily-unlock-row" type="button">'+ic('lock')+'<span>Daily page</span></button>';
   $('packs-body').innerHTML=h;
   openSheet('sheet-packs','packs-close');
 }
@@ -1516,9 +1849,9 @@ function openReadiness(){
   var p=cur,h='';
   readyParts(p).forEach(function(x){
     var full=x.n>=x.d;
-    h+='<div class="part"><div class="part-row"><span>'+esc(x.label)+'</span><span class="v">'+x.n+' of '+x.d+'</span>'+(full?'<span class="part-check">'+ic('check')+'</span>':'')+'</div><div class="gbar" style="--p:'+clamp(x.n/x.d,0,1)+'"><i></i></div></div>';
+    h+='<div class="part"><div class="part-row"><span>'+esc(x.label)+'</span><span class="v">'+t('{0} of {1}',x.n,x.d)+'</span>'+(full?'<span class="part-check">'+ic('check')+'</span>':'')+'</div><div class="gbar" style="--p:'+clamp(x.n/x.d,0,1)+'"><i></i></div></div>';
   });
-  h+='<p class="foot">'+(isDaily(p)?'Your day fills up as you go. The lesson counts most, then your best quiz round.':'Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.')+'</p>';
+  h+='<p class="foot">'+(isDaily(p)?'Your day fills up as you go. The lesson counts most, then your best quiz round.':t('Readiness grows with real practice. Lessons count most. Your best quiz round counts, not your last.'))+'</p>';
   $('readiness-body').innerHTML=h;
   openSheet('sheet-readiness','readiness-close');
 }
@@ -1529,7 +1862,7 @@ function doneHTML(o){
   var h='<div class="done" id="'+o.id+'"><div class="dm"><svg class="ring-svg" viewBox="0 0 96 96" aria-hidden="true"><circle class="trk" cx="48" cy="48" r="45.5"/><circle class="arc" cx="48" cy="48" r="45.5"/></svg><div class="disc">'+ic('check')+'</div></div>'+
     '<div class="done-text"><h2>'+esc(o.title)+'</h2><p>'+esc(o.line)+'</p></div><div class="stats">';
   o.stats.forEach(function(s,i){h+='<div class="card stat'+(s.g?' g':'')+'"><b data-to="'+s.v+'" data-suf="'+(s.suf||'')+'">0'+(s.suf||'')+'</b><span>'+esc(s.l)+'</span></div>'});
-  h+='</div>'+(o.newBest?'<div class="new-best">'+pillHTML('New best','soft')+'</div>':'')+'<div class="btn-stack">';
+  h+='</div>'+(o.newBest?'<div class="new-best">'+pillHTML(t('New best'),'soft')+'</div>':'')+'<div class="btn-stack">';
   o.buttons.forEach(function(b){h+='<button class="btn'+(b.plain?' plain':'')+'" id="'+b.id+'" type="button">'+esc(b.t)+'</button>'});
   return h+'</div></div>';
 }
@@ -1558,30 +1891,30 @@ function readMinutes(p){
   return Math.max(1,Math.ceil(w/200));
 }
 function markBtn(i,on){
-  return '<button class="btn compact '+(on?'done-soft':'plain')+' readmark" id="read-mark-'+i+'" type="button" aria-pressed="'+on+'">'+ic('check')+(on?'Marked as read':'Mark as read')+'</button>';
+  return '<button class="btn compact '+(on?'done-soft':'plain')+' readmark" id="read-mark-'+i+'" type="button" aria-pressed="'+on+'">'+ic('check')+(on?t('Marked as read'):t('Mark as read'))+'</button>';
 }
 function renderRead(){
   var p=cur,ps=PS(p),ch=chaptersOf(p),body=$('read-body'),cb=$('read-chapters');
   cb.hidden=!ch.length;
   if(!ch.length){
     $('rprog').hidden=true;
-    body.innerHTML='<div class="read">'+emptyHTML('read','Reading is coming','The reading for this pack has not arrived yet. It will show up here.',{id:'read-go-lessons',t:'Go to lessons'})+'</div>';
+    body.innerHTML='<div class="read">'+emptyHTML('read',t('Reading is coming'),t('The reading for this pack has not arrived yet. It will show up here.'),{id:'read-go-lessons',t:t('Go to lessons')})+'</div>';
     return;
   }
   $('rprog').hidden=false;
-  var h='<div class="read"><h2 class="read-title">'+T(p.title)+'</h2><div class="read-meta">'+plural(ch.length,'chapter')+' · about '+readMinutes(p)+' min</div>';
+  var h='<div class="read"><h2 class="read-title">'+T(p.title)+'</h2><div class="read-meta">'+plural(ch.length,'chapter')+' · '+t('about {0} min',readMinutes(p))+'</div>';
   ch.forEach(function(c,i){
-    h+='<section class="ch" id="chapter-'+i+'"><div class="ch-label">Chapter '+(i+1)+' of '+ch.length+'</div><h3 class="ch-title">'+T(c.title)+'</h3>';
+    h+='<section class="ch" id="chapter-'+i+'"><div class="ch-label">'+t('Chapter {0} of {1}',i+1,ch.length)+'</div><h3 class="ch-title">'+T(c.title)+'</h3>';
     (c.paragraphs||[]).forEach(function(t,j){h+='<p id="ch-'+i+'-p-'+j+'">'+T(t)+'</p>'});
     h+=markBtn(i,!!ps.chapters[i])+'</section>';
   });
   var ln=(p.links||[]).filter(function(l){return l&&l.title&&/^https?:\/\//.test(l.url||'')});
   if(ln.length){
-    h+='<section class="deeper"><h3 class="ch-title">Go deeper</h3>';
+    h+='<section class="deeper"><h3 class="ch-title">'+t('Go deeper')+'</h3>';
     ln.forEach(function(l){h+='<a class="card deeper-row row-press" href="'+esc(l.url)+'" target="_blank" rel="noopener"><span class="deeper-t">'+T(l.title)+'</span>'+(l.note?'<span class="deeper-n">'+T(l.note)+'</span>':'')+ic('ext')+'</a>'});
     h+='</section>';
   }
-  h+='<p class="read-end">You reached the end.</p></div>';
+  h+='<p class="read-end">'+t('You reached the end.')+'</p></div>';
   body.innerHTML=h;
   updateRprog();
 }
@@ -1661,24 +1994,25 @@ function learnFaceHTML(){
   var p=cur,ps=PS(p),f=face.learn,h='';
   if(f==='words'){
     var w=wordsOf(p);
-    if(!w.length)h+=emptyHTML('learn','No words in this pack.','');
+    if(!w.length)h+=emptyHTML('learn',t('No words in this pack.'),'');
     else{
-      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":'Words you might hear or use.')+'</p>';
-      w.forEach(function(x){h+='<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'});
+      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":t('Words you might hear or use.'))+'</p>';
+      if(LEAN&&w.length>40)h+='<div class="wsearch"><input class="field" id="word-search" type="search" placeholder="'+esc(t('Search terms'))+'" aria-label="'+esc(t('Search terms'))+'" value="'+esc(wordQ)+'" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="search"></div><div id="word-list">'+wordListHTML(w,wordQ)+'</div>';
+      else w.forEach(function(x){h+=wordCardHTML(x)});
     }
   }else if(f==='facts'){
     var facts=factsOf(p);
-    if(!facts.length)h+=emptyHTML('learn','No facts in this pack.','');
+    if(!facts.length)h+=emptyHTML('learn',t('No facts in this pack.'),'');
     else{
-      h+='<p class="desc">Facts you can share in class.</p>';
+      h+='<p class="desc">'+t('Facts you can share in class.')+'</p>';
       facts.forEach(function(x,i){
         h+='<div class="card fact-card" id="inspire-'+i+'"><div class="fact-title">'+T(x.title)+'</div><p class="fact-b">'+T(x.fact)+'</p>'+
-          (x.share?'<div class="scope"><b>You can say</b><p>'+T(x.share)+'</p></div>':'');
+          (x.share?'<div class="scope"><b>'+t('You can say')+'</b><p>'+T(x.share)+'</p></div>':'');
         if(x.why||x.source){
-          h+='<button class="btn compact plain fact-more" id="fact-more-'+i+'" type="button" aria-expanded="false" aria-controls="fact-reveal-'+i+'">Why it matters</button>'+
+          h+='<button class="btn compact plain fact-more" id="fact-more-'+i+'" type="button" aria-expanded="false" aria-controls="fact-reveal-'+i+'">'+t('Why it matters')+'</button>'+
             '<div class="reveal" id="fact-reveal-'+i+'" inert><div>'+
-            (x.why?'<div class="blk"><div class="blk-l">Why it matters</div><p>'+T(x.why)+'</p></div>':'')+
-            (x.source?'<p class="src">Source: '+T(String(x.source).replace(/,?\s*https?:\/\/\S+/g,''))+'</p>':'')+
+            (x.why?'<div class="blk"><div class="blk-l">'+t('Why it matters')+'</div><p>'+T(x.why)+'</p></div>':'')+
+            (x.source?'<p class="src">'+t('Source: ')+T(String(x.source).replace(/,?\s*https?:\/\/\S+/g,''))+'</p>':'')+
             '</div></div>';
         }
         h+='</div>';
@@ -1687,15 +2021,34 @@ function learnFaceHTML(){
   }else{
     L_(p).forEach(function(l,i){
       var st=ps.lessons[l.id]||{},n=l.cards.length,seen=Math.min(st.seen||0,n);
-      var det=st.done?'Done':seen>0?seen+' of '+n+' cards':plural(n,'card');
+      var det=st.done?t('Done'):seen>0?t('{0} of {1} cards',seen,n):plural(n,'card');
       h+='<button class="lrow row-press" id="lesson-row-'+i+'" type="button" data-i="'+i+'"><span class="mini'+(st.done||seen>0?' on':'')+'">'+(st.done?ic('check'):(i+1))+'</span><span class="lrow-text"><span class="lrow-title">'+T(l.title)+'</span><span class="lrow-detail'+(st.done?' ok':'')+'">'+det+'</span></span>'+ic('right','chev')+'</button>';
     });
   }
   return h;
 }
+/* Faces of the Learn tab. The second site shows only the ones a pack has. */
+var learnFaces=LFACES;
+function learnAvail(){
+  if(!LEAN)return LFACES;
+  var p=cur,has={lessons:L_(p).length>0,words:wordsOf(p).length>0,facts:factsOf(p).length>0};
+  var a=LFACES.filter(function(k){return has[k]});
+  return a.length?a:LFACES;
+}
+var wordQ='';
+function normTr(s){return String(s==null?'':s).toLocaleLowerCase('tr')}
+function wordCardHTML(x){return '<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'}
+function wordListHTML(w,q){
+  var n=normTr(q).trim(),a=w.slice().sort(function(x,y){return String(x.term).localeCompare(String(y.term),'tr')});
+  if(n)a=a.filter(function(x){return (normTr(x.term)+' '+normTr(x.meaning)).indexOf(n)>=0});
+  if(!a.length)return '<p class="desc">'+esc(t('No term matches.'))+'</p>';
+  return a.map(wordCardHTML).join('');
+}
 function renderLearn(){
-  var f=face.learn;
-  $('learn-body').innerHTML='<div id="learn-seg">'+segHTML('seg-learn',3,Math.max(0,LFACES.indexOf(f)),[{id:'seg-lessons',t:'Lessons'},{id:'seg-words',t:'Words'},{id:'seg-facts',t:'Facts'}])+'</div><div id="learn-face">'+learnFaceHTML()+'</div>';
+  var av=learnAvail(),f=face.learn;
+  learnFaces=av;
+  if(av.indexOf(f)<0)f=face.learn=av[0];
+  $('learn-body').innerHTML=(av.length>1?'<div id="learn-seg">'+segHTML('seg-learn',av.length,Math.max(0,av.indexOf(f)),av.map(function(k){return {id:'seg-'+k,t:t(cap(k))}}))+'</div>':'')+'<div id="learn-face">'+learnFaceHTML()+'</div>';
 }
 R.learn=renderLearn;
 $('learn-body').addEventListener('click',function(e){
@@ -1713,7 +2066,7 @@ $('learn-body').addEventListener('click',function(e){
     if(nf===face.learn)return;
     scrolls[scrollKey()]=window.scrollY;
     face.learn=nf;
-    var seg=$('seg-learn');seg.style.setProperty('--i',LFACES.indexOf(nf));
+    var seg=$('seg-learn');seg.style.setProperty('--i',learnFaces.indexOf(nf));
     qsa('button',seg).forEach(function(b){var on=b===s;b.classList.toggle('is-on',on);b.setAttribute('aria-pressed',on)});
     $('learn-face').innerHTML=learnFaceHTML();
     try{history.replaceState(null,'','#'+(nf==='words'?'words':nf==='facts'?'facts':'learn'))}catch(er){}
@@ -1723,12 +2076,21 @@ $('learn-body').addEventListener('click',function(e){
   var r=e.target.closest('.lrow');
   if(r)openLesson(+r.getAttribute('data-i'));
 });
+$('learn-body').addEventListener('input',function(e){
+  if(e.target.id!=='word-search')return;
+  wordQ=e.target.value;
+  var l=$('word-list');if(l)l.innerHTML=wordListHTML(wordsOf(cur),wordQ);
+});
 /* ---------- lesson session ---------- */
 var LS=null,sw=null;
+/* A trap or example that opens with its own label ("Dikkat: ...") would repeat the block title. */
+function trapText(s){return String(s).replace(/^\s*(dikkat|watch out)\s*[:!.]\s*/i,'')}
+function exampleText(s){return LEAN?String(s).replace(/^\s*(örnek|example|for example)\s*:\s*/i,''):s}
 function lessonCardHTML(i){
   var l=L_(cur)[LS.i],c=l.cards[i];
-  return '<div class="kicker">'+T(l.title)+' · '+(i+1)+' of '+l.cards.length+'</div><h2>'+T(c.title)+'</h2><p>'+T(c.body)+'</p>'+
-    (c.example?'<div class="example"><b>For example</b><p>'+T(c.example)+'</p></div>':'');
+  return '<div class="kicker">'+t('{0} · {1} of {2}',T(l.title),i+1,l.cards.length)+'</div><h2>'+T(c.title)+'</h2><p>'+T(c.body)+'</p>'+
+    (c.trap?'<div class="trap"><b>'+t('Watch out')+'</b><p>'+T(trapText(c.trap))+'</p></div>':'')+
+    (c.example?'<div class="example"><b>'+t('For example')+'</b><p>'+T(exampleText(c.example))+'</p></div>':'');
 }
 function lessonDots(){
   var n=L_(cur)[LS.i].cards.length,h='';
@@ -1739,11 +2101,11 @@ function lessonSync(){
   var l=L_(cur)[LS.i],n=l.cards.length;
   qsa('.dot',$('lesson-dots')).forEach(function(d,k){d.className='dot'+(k<LS.card?' seen':k===LS.card?' cur':'')});
   $('lesson-back').disabled=LS.card===0;
-  $('lesson-next').textContent=LS.card===n-1?'Finish':'Next';
+  $('lesson-next').textContent=LS.card===n-1?t('Finish'):t('Next');
 }
 function lessonListenBtn(){
   var w=$('lesson-listen-wrap');
-  w.innerHTML=SYN?'<button class="icon-btn" id="lesson-listen" type="button" data-lk="lesson" aria-label="Listen to this lesson" aria-pressed="false">'+ic('vol')+'</button>':'<span class="slot44"></span>';
+  w.innerHTML=SYN?'<button class="icon-btn" id="lesson-listen" type="button" data-lk="lesson" aria-label="'+esc(t('Listen to this lesson'))+'" aria-pressed="false">'+ic('vol')+'</button>':'<span class="slot44"></span>';
 }
 function openLesson(i){
   var p=cur,ls=L_(p);
@@ -1760,7 +2122,7 @@ function openLesson(i){
   $('lesson').hidden=false;
   lessonSave();
   pushLayer($('lesson'),closeLesson,$('lesson-close'),true);
-  announce('Card '+(LS.card+1)+' of '+n+'.');
+  announce(t('Card {0} of {1}.',LS.card+1,n));
 }
 function lessonSave(){
   var p=cur,l=L_(p)[LS.i],ps=PS(p),st=ps.lessons[l.id]||(ps.lessons[l.id]={});
@@ -1790,7 +2152,7 @@ function lessonGo(n,dir,ghostRight){
   card.style.transform='';
   $('lesson-body').scrollTop=0;
   lessonSync();lessonSave();
-  announce('Card '+(n+1)+' of '+l.cards.length+'.');
+  announce(t('Card {0} of {1}.',n+1,l.cards.length));
 }
 function lessonNext(){
   var l=L_(cur)[LS.i],was=speaking&&speakKey==='lesson';
@@ -1806,7 +2168,7 @@ function lessonBack(sw_){
 }
 function lessonListen(){
   var l=L_(cur)[LS.i],list=[];
-  for(var k=LS.card;k<l.cards.length;k++){var c=l.cards[k];list.push(c.title+'. '+c.body+(c.example?' For example: '+c.example:''))}
+  for(var k=LS.card;k<l.cards.length;k++){var c=l.cards[k];list.push(c.title+'. '+c.body+(c.trap?' '+t('Watch out')+': '+trapText(c.trap):'')+(c.example?' '+t('For example')+': '+exampleText(c.example):''))}
   var base=LS.card;
   speakList(list,'lesson',function(i){if(base+i!==LS.card)lessonGo(base+i,1)});
 }
@@ -1823,16 +2185,16 @@ function lessonFinish(){
   for(var k=1;k<ls.length;k++){var j=(LS.i+k)%ls.length;if(!(ps.lessons[ls[j].id]||{}).done){nextI=j;break}}
   LS.done=true;
   var btns=[];
-  if(nextI>=0){btns.push({id:'lesson-done-next',t:'Next lesson'});btns.push({id:'lesson-done-home',t:'Back to Home',plain:true})}
-  else btns.push({id:'lesson-done-home',t:'Back to Home'});
+  if(nextI>=0){btns.push({id:'lesson-done-next',t:t('Next lesson')});btns.push({id:'lesson-done-home',t:t('Back to Home'),plain:true})}
+  else btns.push({id:'lesson-done-home',t:t('Back to Home')});
   $('lesson-top').hidden=true;$('lesson-body').hidden=true;$('lesson-actions').hidden=true;
   var db=$('lesson-donebox');
-  db.innerHTML=doneHTML({id:'lesson-done',title:'Lesson done!',line:quick?'That was quick. Go through it once more to count it.':'Lesson '+(LS.i+1)+' of '+ls.length+': '+l.title,
-    stats:[{v:l.cards.length,l:l.cards.length===1?'card':'cards'},{v:mins,l:mins===1?'minute':'minutes'},{v:rd_,l:'ready',suf:'%',g:true}],buttons:btns});
+  db.innerHTML=doneHTML({id:'lesson-done',title:t('Lesson done!'),line:quick?t('That was quick. Go through it once more to count it.'):t('Lesson {0} of {1}: {2}',lessonNo(cur,LS.i),ls.length,l.title),
+    stats:[{v:l.cards.length,l:l.cards.length===1?t('card'):t('cards')},{v:mins,l:mins===1?t('minute'):t('minutes')},{v:rd_,l:t('ready'),suf:'%',g:true}],buttons:btns});
   db.hidden=false;
   LS.nextI=nextI;
   playDone('lesson-done');
-  announce('Lesson done.');
+  announce(t('Lesson done.'));
   var f=$('lesson-done-next')||$('lesson-done-home');if(f)f.focus({preventScroll:true});
 }
 $('lesson-close').addEventListener('click',closeLesson);
@@ -1895,25 +2257,41 @@ var SENTS=[],sentOpen=-1,speakingSent=-1;
 function sayBtn(key,label,cls){
   return SYN?'<button class="icon-btn '+(cls||'')+'" type="button" data-lk="'+key+'" aria-label="'+esc(label)+'" aria-pressed="false">'+ic('vol')+'</button>':'';
 }
+var numShown={};
+function numCardHTML(n,i,hid){
+  var hidden=hid&&!numShown[cur.id+':'+i];
+  return '<div class="card num'+(hidden?' is-hidden':'')+'" id="num-'+i+'"><div class="num-val">'+(hidden?'<button class="num-chip" type="button" aria-label="'+esc(t('Show this number'))+'">?</button>':T(n.value))+'</div>'+
+    (n.say?'<div class="num-say"><span>“'+T(n.say)+'”</span>'+
+    (SYN?'<button class="icon-btn sm" id="num-say-'+i+'" type="button" data-lk="num-'+i+'" aria-label="'+esc(t('Say {0}',n.say))+'" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div>':'')+
+    '<p class="num-mean">'+T(n.meaning)+'</p><div class="scope"><b>'+t('Exact scope')+'</b><p>'+T(n.scope)+'</p></div><div class="src">'+T(n.source)+'</div></div>';
+}
 function scriptFaceHTML(){
   var p=cur,f=face.script,h='';
   if(f==='numbers'){
     var ns=numsOf(p),ps=PS(p);
-    if(!ns.length)return emptyHTML('hash','No numbers in this pack.','');
-    h+='<p class="desc">'+(scriptParts(p).length?'The numbers in your script, how to say them, and what they cover.':'The numbers from the slides, and exactly what each one covers.')+'</p>';
-    ns.forEach(function(n,i){
-      h+='<div class="card num" id="num-'+i+'"><div class="num-val">'+T(n.value)+'</div><div class="num-say"><span>“'+T(n.say)+'”</span>'+
-        (SYN?'<button class="icon-btn sm" id="num-say-'+i+'" type="button" data-lk="num-'+i+'" aria-label="Say '+esc(n.say)+'" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div>'+
-        '<p class="num-mean">'+T(n.meaning)+'</p><div class="scope"><b>Exact scope</b><p>'+T(n.scope)+'</p></div><div class="src">'+T(n.source)+'</div></div>';
+    if(!ns.length)return emptyHTML('hash',t('No numbers in this pack.'),'');
+    h+='<p class="desc">'+(scriptParts(p).length?t('The numbers in your script, how to say them, and what they cover.'):t('The numbers from the slides, and exactly what each one covers.'))+'</p>';
+    var hid=LEAN&&!!ps.numHide;
+    if(LEAN)h+='<div class="num-tools"><button class="btn plain compact" id="numbers-hide" type="button" aria-pressed="'+hid+'">'+(hid?t('Show numbers'):t('Hide numbers'))+'</button></div>';
+    var byUnit=[],seenU={};
+    ns.forEach(function(n,i){var k=n.lec!=null?+n.lec:null;if(!seenU[k]){seenU[k]={lec:k,list:[]};byUnit.push(seenU[k])}seenU[k].list.push(i)});
+    var grouped=byUnit.some(function(g){return g.lec!=null});
+    if(grouped){
+      var order=unitOrder(p,byUnit.filter(function(g){return g.lec!=null}).map(function(g){return g.lec}));
+      byUnit=(seenU[null]?[seenU[null]]:[]).concat(order.filter(function(k){return seenU[k]}).map(function(k){return seenU[k]}));
+    }
+    byUnit.forEach(function(g){
+      if(grouped&&g.lec!=null){var ut=unitTitle(p,g.lec);h+='<h2 class="sc-h">'+T(unitName(p,g.lec)+(ut?' · '+ut:''))+'</h2>'}
+      g.list.forEach(function(i){h+=numCardHTML(ns[i],i,hid)});
     });
     var on=!!ps.numbersDone;
-    h+='<div class="numbers-mark"><button class="btn '+(on?'done-soft':'plain')+'" id="numbers-mark" type="button" aria-pressed="'+on+'">'+ic('check')+(on?'Marked as read':'Mark as read')+'</button></div>';
+    h+='<div class="numbers-mark"><button class="btn '+(on?'done-soft':'plain')+'" id="numbers-mark" type="button" aria-pressed="'+on+'">'+ic('check')+(on?t('Marked as read'):t('Mark as read'))+'</button></div>';
     return h;
   }
   var parts=scriptParts(p);
-  if(!parts.length)return emptyHTML('mic','No script in this pack.','');
-  h+='<div class="band"><div class="card practice"><div class="pr-row"><div class="pr-time"><div class="pr-digits" id="timer-digits">3:00</div></div><div class="pr-btns" id="timer-btns"></div><div class="pr-cap"><span id="timer-cap"></span><button class="textbtn" id="timer-reset" type="button" hidden>Reset</button></div></div><div class="tbar" id="timer-bar"><i style="width:0%"></i></div></div></div>';
-  h+='<div class="hint" id="script-hint"'+(G.hints.sentence?' hidden':'')+'>'+ic('tap')+'<span>Tap any sentence to see why it is true.</span></div>';
+  if(!parts.length)return emptyHTML('mic',t('No script in this pack.'),'');
+  h+='<div class="band"><div class="card practice"><div class="pr-row"><div class="pr-time"><div class="pr-digits" id="timer-digits">3:00</div></div><div class="pr-btns" id="timer-btns"></div><div class="pr-cap"><span id="timer-cap"></span><button class="textbtn" id="timer-reset" type="button" hidden>'+t('Reset')+'</button></div></div><div class="tbar" id="timer-bar"><i style="width:0%"></i></div></div></div>';
+  h+='<div class="hint" id="script-hint"'+(G.hints.sentence?' hidden':'')+'>'+ic('tap')+'<span>'+t('Tap any sentence to see why it is true.')+'</span></div>';
   var g=0;
   parts.forEach(function(pt){
     h+='<h2 class="sc-h">'+esc(cap(pt.key))+'</h2>';
@@ -1923,7 +2301,7 @@ function scriptFaceHTML(){
       var sl=s.slide&&s.slide.n?s.slide:null;
       if(sl||!open){
         if(open)h+='</p>';
-        if(sl)h+='<p class="sc-slide"><span class="pill">Slide '+esc(String(sl.n))+'</span><span>'+esc(sl.title||'')+'</span></p>';
+        if(sl)h+='<p class="sc-slide"><span class="pill">'+esc(t('Slide {0}',String(sl.n)))+'</span><span>'+esc(sl.title||'')+'</span></p>';
         h+='<p class="sc-p">';open=true;
       }else h+=' ';
       h+='<span class="sent" role="button" tabindex="0" id="sent-'+esc(pt.key)+'-'+i+'" data-g="'+g+'">'+T(s.sentence)+'</span>';g++;
@@ -1937,7 +2315,7 @@ function renderScript(){
   if(isDaily(cur)){face.script='news';$('script-body').innerHTML='<div id="script-face">'+newsHTML(cur)+'</div>';return}
   var noS=!scriptParts(cur).length;if(noS)face.script='numbers';
   var f=face.script;
-  $('script-body').innerHTML=noS?'<div id="script-face">'+scriptFaceHTML()+'</div>':'<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:'Your script'},{id:'seg-numbers',t:'Numbers'}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';
+  $('script-body').innerHTML=noS?'<div id="script-face">'+scriptFaceHTML()+'</div>':'<div id="script-seg">'+segHTML('seg-script-face',2,f==='numbers'?1:0,[{id:'seg-script',t:t('Your script')},{id:'seg-numbers',t:t('Numbers')}])+'</div><div id="script-face">'+scriptFaceHTML()+'</div>';
   afterScriptFace();
 }
 function afterScriptFace(){
@@ -1975,12 +2353,27 @@ $('script-body').addEventListener('click',function(e){
   }
   var tb=e.target.closest('#timer-btns button,#timer-reset');
   if(tb){timerAction(tb.id);return}
+  var nh=e.target.closest('#numbers-hide');
+  if(nh){
+    var hp=PS(cur);hp.numHide=!hp.numHide;saveP(cur);
+    Object.keys(numShown).forEach(function(k){if(k.indexOf(cur.id+':')===0)delete numShown[k]});
+    stopSpeech();
+    $('script-face').innerHTML=scriptFaceHTML();afterScriptFace();
+    return;
+  }
+  var nc=e.target.closest('.num.is-hidden');
+  if(nc){
+    var ni=+nc.id.replace('num-','');numShown[cur.id+':'+ni]=true;
+    var nv=numsOf(cur)[ni];
+    nc.classList.remove('is-hidden');qs('.num-val',nc).innerHTML=T(nv.value);
+    return;
+  }
   var nm=e.target.closest('#numbers-mark');
   if(nm){
     var ps=PS(cur);ps.numbersDone=ps.numbersDone?null:new Date().toISOString();saveP(cur);
     var on=!!ps.numbersDone;
     nm.className='btn '+(on?'done-soft':'plain');nm.setAttribute('aria-pressed',on);
-    nm.innerHTML=ic('check')+(on?'Marked as read':'Mark as read');playSound('tick');
+    nm.innerHTML=ic('check')+(on?t('Marked as read'):t('Mark as read'));playSound('tick');
   }
 });
 $('script-body').addEventListener('keydown',function(e){
@@ -2024,16 +2417,16 @@ function openSentence(g){
 function sheetSentenceOpenFresh(){return $('sheet-sentence').hidden||!$('sheet-sentence').classList.contains('is-open')}
 function fillSentence(){
   var s=SENTS[sentOpen],x=s.s,pi=s.i+1;
-  $('sheet-kick').textContent=cap(s.part)+' · sentence '+pi+' of '+s.n;
+  $('sheet-kick').textContent=cap(s.part)+' · '+t('sentence {0} of {1}',pi,s.n);
   var wp=PS(cur);wp.why[s.part+':'+s.i]=1;saveP(cur);
   var h='<p class="quote">'+T(x.sentence)+'</p>'+
-    (x.fact?'<div class="blk"><div class="blk-l g">Why it is true</div><p>'+T(x.fact)+'</p></div>':'')+
-    (x.source?'<div class="blk"><div class="blk-l">Source</div><p class="srcp">'+T(x.source)+'</p></div>':'')+
-    (x.question||x.answer?'<div class="ask">'+(x.question?'<div class="blk-l">They might ask</div><p class="q">'+T(x.question)+'</p>':'')+(x.answer?'<div class="blk-l g">You can say</div><p>'+T(x.answer)+'</p>':'')+'</div>':'');
+    (x.fact?'<div class="blk"><div class="blk-l g">'+t('Why it is true')+'</div><p>'+T(x.fact)+'</p></div>':'')+
+    (x.source?'<div class="blk"><div class="blk-l">'+t('Source')+'</div><p class="srcp">'+T(x.source)+'</p></div>':'')+
+    (x.question||x.answer?'<div class="ask">'+(x.question?'<div class="blk-l">'+t('They might ask')+'</div><p class="q">'+T(x.question)+'</p>':'')+(x.answer?'<div class="blk-l g">'+t('You can say')+'</div><p>'+T(x.answer)+'</p>':'')+'</div>':'');
   $('sheet-sentence-body').innerHTML=h;$('sheet-sentence-body').scrollTop=0;
   $('sentence-back').disabled=sentOpen===0;
   var last=sentOpen===SENTS.length-1;
-  $('sentence-next').textContent=last?'Done':'Next sentence';
+  $('sentence-next').textContent=last?t('Done'):t('Next sentence');
 }
 $('sheet-close').addEventListener('click',function(){closeSheet('sheet-sentence')});
 $('sentence-back').addEventListener('click',function(){if(sentOpen>0){sentOpen--;fillSentence();markOpen(sentOpen);var el=sentEl(sentOpen);if(el)el.scrollIntoView({block:'center',behavior:rm()?'auto':'smooth'})}});
@@ -2058,14 +2451,14 @@ function updateTimerUI(){
   var html='',capT='',capOk=false;
   if(TM.msg){capT=TM.msg.t;capOk=TM.msg.ok}
   if(TM.state==='idle'){
-    if(!TM.msg)capT=runs>=2?'2 runs done. One more?':'Practice run '+(runs+1)+' of 2';
-    html=(SYN?btnH('script-listen','plain','vol','Listen','script'):'')+btnH('timer-start','','timer','Start');
+    if(!TM.msg)capT=runs>=2?t('2 runs done. One more?'):t('Practice run {0} of 2',runs+1);
+    html=(SYN?btnH('script-listen','plain','vol',t('Listen'),'script'):'')+btnH('timer-start','','timer',t('Start'));
   }else if(TM.state==='running'){
-    capT=over?'Over 3 minutes':'Read it out loud';
-    html=btnH('timer-pause','plain','pause','Pause')+btnH('timer-done','','check','Done');
+    capT=over?t('Over 3 minutes'):t('Read it out loud');
+    html=btnH('timer-pause','plain','pause',t('Pause'))+btnH('timer-done','','check',t('Done'));
   }else{
-    capT=over?'Paused at +'+mmss((el-180000)/1000):'Paused at '+mmss(Math.ceil(rem/1000));
-    html=btnH('timer-resume','plain','play','Resume')+btnH('timer-done','','check','Done');
+    capT=over?t('Paused at {0}','+'+mmss((el-180000)/1000)):t('Paused at {0}',mmss(Math.ceil(rem/1000)));
+    html=btnH('timer-resume','plain','play',t('Resume'))+btnH('timer-done','','check',t('Done'));
   }
   var rs=$('timer-reset');if(rs)rs.hidden=TM.state!=='paused';
   if(btns.getAttribute('data-st')!==TM.state){btns.innerHTML=html;btns.setAttribute('data-st',TM.state);updateListenUI()}
@@ -2075,7 +2468,7 @@ function updateTimerUI(){
 function timerTick(){
   if(TM.state==='running'){
     var el=elapsedMs();
-    if(!TM.cued&&el>=180000){TM.cued=true;playSound('goal');announce('Three minutes.')}
+    if(!TM.cued&&el>=180000){TM.cued=true;playSound('goal');announce(t('Three minutes.'))}
     if(el>600000){TM.acc+=performance.now()-TM.seg0;TM.state='paused';syncRunning();var b=$('timer-btns');if(b)b.removeAttribute('data-st')}
   }
   updateTimerUI();
@@ -2114,11 +2507,11 @@ function timerDone(){
   if(secs>=RUN_MIN){
     ps.runs.push({at:new Date().toISOString(),secs:secs});saveP(cur);
     var n=ps.runs.length;
-    TM.msg={t:'Run '+n+' saved: '+mmss(secs),ok:true};
+    TM.msg={t:t('Run {0} saved: {1}',n,mmss(secs)),ok:true};
     playSound('tick');
-    announce('Run '+n+' saved, '+Math.floor(secs/60)+' minutes '+(secs%60)+' seconds.');
+    announce(t('Run {0} saved, {1} minutes {2} seconds.',n,Math.floor(secs/60),secs%60));
   }else{
-    TM.msg={t:'Too short to count. A run needs at least 1:30.',ok:false};
+    TM.msg={t:t('Too short to count. A run needs at least 1:30.'),ok:false};
   }
   TM.msgT=later(function(){TM.msg=null;updateTimerUI()},4000);
   syncRunning();
@@ -2129,32 +2522,47 @@ function timerDone(){
 /* ---------- quiz ---------- */
 var QS=null,qDone=false;
 function roundIdx(p,lec){var qz=quizOf(p);return qz.map(function(_,i){return i}).filter(function(i){return !lec||qz[i].lec===lec})}
+var MIX_N=20;
+/* Packs with many units get a mixed round (random questions from the whole pack) and a topics list. */
+function manyUnits(p){return lecsOf(p).length>6}
+function mixIdx(p){return shuffle(roundIdx(p,0)).slice(0,MIX_N)}
 function roundOK(p){
   var r=PS(p).quiz.round,qz=quizOf(p);
+  if(r&&r.mix)return !!(Array.isArray(r.queue)&&r.queue.length&&r.total===Math.min(MIX_N,qz.length)&&r.queue.every(function(i){return !!qz[i]}));
   return !!(r&&Array.isArray(r.queue)&&r.queue.length&&r.total===roundIdx(p,r.lec).length&&r.queue.every(function(i){return !!qz[i]&&(!r.lec||qz[i].lec===r.lec)}));
 }
 function quizStartHTML(){
   var p=cur,ps=PS(p),qz=quizOf(p),n=qz.length,q=ps.quiz;
-  if(!n)return emptyHTML('quiz','No quiz in this pack.','');
-  var pills='';
+  if(!n)return emptyHTML('quiz',t('No quiz in this pack.'),'');
+  var many=manyUnits(p),pills='';
   if(q.history.length){
-    pills=(q.best>0?pillHTML('Best: '+q.best+' of '+n,'soft'):'');
-    lecsOf(p).forEach(function(l){var b=+(q.lecBest||{})[l.lec]||0;if(b>0)pills+=pillHTML('Lecture '+l.lec+': '+b+' of '+l.n,'soft')});
-    pills+=pillHTML('Last: '+q.last+' of '+(q.lastTotal||n));
-  }else pills=pillHTML('No score yet');
+    pills=(q.best>0?pillHTML(t('Best: {0} of {1}',q.best,n),'soft'):'');
+    if(!many)lecsOf(p).forEach(function(l){var b=+(q.lecBest||{})[l.lec]||0;if(b>0)pills+=pillHTML(t('{0}: {1} of {2}',unitName(p,l.lec),b,l.n),'soft')});
+    pills+=pillHTML(t('Last: {0} of {1}',q.last,q.lastTotal||n));
+  }else pills=pillHTML(t('No score yet'));
   if(q.round&&!roundOK(p)){q.round=null;saveP(p)}
-  var h='<div class="card start"><div class="start-icon">'+ic('quiz')+'</div><h2>'+plural(n,'question')+'</h2><div class="pills">'+pills+'</div><p>Pick the answer you think is right. Wrong ones come back later in the round.</p><div class="btn-stack">';
+  var h='<div class="card start"><div class="start-icon">'+ic('quiz')+'</div><h2>'+plural(n,'question')+'</h2><div class="pills">'+pills+'</div><p>'+t('Pick the answer you think is right. Wrong ones come back later in the round.')+'</p><div class="btn-stack">';
   var ls=lecsOf(p);
-  if(q.round)h+='<button class="btn" id="quiz-start" type="button">'+(q.round.lec?'Continue Lecture '+q.round.lec:'Continue quiz')+'</button><button class="btn plain" id="quiz-restart" type="button">Start over</button>';
+  if(q.round)h+='<button class="btn" id="quiz-start" type="button">'+(q.round.mix?t('Continue mixed'):q.round.lec?t('Continue {0}',unitName(p,q.round.lec)):t('Continue quiz'))+'</button><button class="btn plain" id="quiz-restart" type="button">'+t('Start over')+'</button>';
+  else if(many)h+='<button class="btn" id="quiz-mix" type="button">'+t('Mixed {0}',Math.min(MIX_N,n))+'</button>';
   else{
-    h+='<button class="btn" id="quiz-start" type="button">'+(ls.length>1?'All '+n+' questions':'Start quiz')+'</button>';
-    if(ls.length>1)ls.forEach(function(l){h+='<button class="btn plain" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'">Lecture '+l.lec+' only ('+l.n+')</button>'});
+    h+='<button class="btn" id="quiz-start" type="button">'+(ls.length>1?t('All {0} questions',n):t('Start quiz'))+'</button>';
+    if(ls.length>1)ls.forEach(function(l){h+='<button class="btn plain" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'">'+t('{0} only ({1})',unitName(p,l.lec),l.n)+'</button>'});
   }
   h+='</div></div>';
+  if(many&&!q.round){
+    h+='<div class="sec"><h2>'+t('Topics')+'</h2><p>'+t('Tap a topic to quiz yourself on it.')+'</p></div><div style="height:15px"></div>';
+    ls.forEach(function(l){
+      var b=+(q.lecBest||{})[l.lec]||0,lb=unitLabel(p,l.lec),ut=unitTitle(p,l.lec);
+      h+='<button class="lrow row-press" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'"><span class="mini'+(b>0?' on':'')+(lb.length>2?' tx':'')+'">'+esc(lb)+'</span><span class="lrow-text"><span class="lrow-title">'+T(ut||unitName(p,l.lec))+'</span><span class="lrow-detail">'+plural(l.n,'question')+'</span></span>'+(b>0?pillHTML(t('Best {0} of {1}',b,l.n),'soft'):'')+ic('right','chev')+'</button>';
+    });
+    h+='<button class="btn plain" id="quiz-start" type="button">'+t('All questions ({0})',n)+'</button>';
+  }
   if(q.history.length){
-    h+='<div class="sec"><h2>Your rounds</h2><p>'+(q.history.length===1?'Your first round.':'Your recent rounds.')+'</p></div><div class="card rounds" style="margin-top:16px">';
+    h+='<div class="sec"><h2>'+t('Your rounds')+'</h2><p>'+(q.history.length===1?t('Your first round.'):t('Your recent rounds.'))+'</p></div><div class="card rounds" style="margin-top:16px">';
     q.history.slice(0,5).forEach(function(r){
-      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+(r.lec?'L'+r.lec+': ':'')+r.score+' of '+r.total+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
+      var tag=r.mix?t('Mixed')+': ':r.lec?((many||LEAN||p.unitWord)?unitName(p,r.lec)+': ':t('L{0}: ',r.lec)):'';
+      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+esc(tag)+t('{0} of {1}',r.score,r.total)+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
     });
     h+='</div>';
   }
@@ -2164,17 +2572,19 @@ function renderQuiz(){$('quiz-body').innerHTML=quizStartHTML();syncSoundBtns()}
 R.quiz=renderQuiz;
 $('quiz-body').addEventListener('click',function(e){
   if(e.target.closest('#quiz-restart')){PS(cur).quiz.round=null;saveP(cur);if(lecsOf(cur).length>1)renderQuiz();else openQuizRound(true);return}
+  if(e.target.closest('#quiz-mix')){openQuizRound(true,0,true);return}
   var lb=e.target.closest('[data-lec]');if(lb){openQuizRound(true,+lb.getAttribute('data-lec'));return}
   if(e.target.closest('#quiz-start'))openQuizRound(false);
 });
-function openQuizRound(fresh,lec){
+function openQuizRound(fresh,lec,mix){
   var p=cur,ps=PS(p),qz=quizOf(p);if(!qz.length)return;
   stopSpeech();
   var q=ps.quiz;
   if(!roundOK(p))q.round=null;
   if(fresh||!q.round){
-    var idx=roundIdx(p,lec||0);
-    q.round={queue:q.history.length?shuffle(idx):idx,total:idx.length,lec:lec||0,solved:0,first:0,missed:{},at:Date.now()};
+    var idx=mix?mixIdx(p):roundIdx(p,lec||0);
+    q.round={queue:(!mix&&q.history.length)?shuffle(idx):idx,total:idx.length,lec:mix?0:(lec||0),solved:0,first:0,missed:{},at:Date.now()};
+    if(mix)q.round.mix=1;
     saveP(p);
   }
   QS={opts:null,answered:false,t0:Date.now(),from:curScreen,shownAt:0};qDone=false;
@@ -2197,7 +2607,7 @@ function showQuizQ(anim){
   h+='</div></div>';
   var body=$('quiz-round');body.innerHTML=h;body.scrollTop=0;
   quizBar();
-  announce('Question '+(r.solved+1)+' of '+r.total+'.');
+  announce(t('Question {0} of {1}.',r.solved+1,r.total));
 }
 function quizAnswer(k){
   if(!QS||QS.answered||qDone||performance.now()-(QS.shownAt||0)<350)return;
@@ -2223,15 +2633,15 @@ function quizAnswer(k){
   saveP(cur);
   var fb=$('quiz-feedback'),fi=$('quiz-fb-in');
   fb.classList.toggle('bad',!ok);
-  fi.innerHTML='<div class="fb-head"><span class="fb-icon">'+ic(ok?'check':'x')+'</span><span>'+(ok?'Correct':'Not quite')+'</span></div>'+
-    (ok?'':'<p class="fb-ans"><span>Answer:</span> '+T(q.options[q.answer])+'</p>')+
-    '<p class="fb-why">'+T(q.why)+'</p>'+(ok?'':'<p class="fb-note">This one comes back later in the round.</p>')+
-    '<button class="btn'+(ok?'':' red')+'" id="quiz-continue" type="button">Continue</button>';
+  fi.innerHTML='<div class="fb-head"><span class="fb-icon">'+ic(ok?'check':'x')+'</span><span>'+(ok?t('Correct'):t('Not quite'))+'</span></div>'+
+    (ok?'':'<p class="fb-ans"><span>'+t('Answer:')+'</span> '+T(q.options[q.answer])+'</p>')+
+    '<p class="fb-why">'+T(q.why)+'</p>'+(ok?'':'<p class="fb-note">'+t('This one comes back later in the round.')+'</p>')+
+    '<button class="btn'+(ok?'':' red')+'" id="quiz-continue" type="button">'+t('Continue')+'</button>';
   openEl(fb);
   document.documentElement.style.setProperty('--fb-h',fb.offsetHeight+'px');
   var bt=$('quiz-continue');try{bt.focus({preventScroll:true})}catch(e){}
   later(function(){els[k].scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'})},50);
-  announce(ok?'Correct.':'Not quite. The answer is '+q.options[q.answer]+'.');
+  announce(ok?t('Correct.'):t('Not quite. The answer is {0}.',q.options[q.answer]));
 }
 function quizContinue(){
   if(!QS||!QS.answered)return;
@@ -2252,31 +2662,33 @@ function closeQuiz(){
 }
 function quizFinish(){
   qDone=true;
-  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,lec=r.lec||0,lb=ps.quiz.lecBest,old=lec?(+lb[lec]||0):ps.quiz.best;
-  var nb=score>old;
-  if(lec)lb[lec]=Math.max(old,score);else ps.quiz.best=Math.max(old,score);
-  ps.quiz.last=score;ps.quiz.lastTotal=total;if(QS)QS.lec=lec;
-  ps.quiz.history.unshift({at:new Date().toISOString(),score:score,total:total,lec:lec});
+  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,lec=r.lec||0,mix=!!r.mix,lb=ps.quiz.lecBest,old=lec?(+lb[lec]||0):ps.quiz.best;
+  /* a mixed round goes in the history only: it never touches the bests, so readiness stays put */
+  var nb=!mix&&score>old;
+  if(mix){}else if(lec)lb[lec]=Math.max(old,score);else ps.quiz.best=Math.max(old,score);
+  ps.quiz.last=score;ps.quiz.lastTotal=total;if(QS){QS.lec=lec;QS.mix=mix}
+  var he={at:new Date().toISOString(),score:score,total:total,lec:lec};if(mix)he.mix=true;
+  ps.quiz.history.unshift(he);
   ps.quiz.history=ps.quiz.history.slice(0,10);
   ps.quiz.round=null;saveP(p);
   $('quiz-top').hidden=true;
-  var line=score===total?'Every answer right the first time.':score+' of '+total+' right the first time.';
-  $('quiz-round').innerHTML=doneHTML({id:'quiz-done',title:'Quiz done!',line:line,
-    stats:[{v:score,l:'first try'},{v:came,l:'came back'},{v:Math.round(100*score/total),l:'score',suf:'%',g:true}],
-    newBest:nb,buttons:[{id:'quiz-done-again',t:'New round'},{id:'quiz-done-home',t:QS&&QS.from==='home'?'Back to Home':'Done',plain:true}]});
+  var line=score===total?t('Every answer right the first time.'):t('{0} of {1} right the first time.',score,total);
+  $('quiz-round').innerHTML=doneHTML({id:'quiz-done',title:t('Quiz done!'),line:line,
+    stats:[{v:score,l:t('first try')},{v:came,l:t('came back')},{v:Math.round(100*score/total),l:t('score'),suf:'%',g:true}],
+    newBest:nb,buttons:[{id:'quiz-done-again',t:t('New round')},{id:'quiz-done-home',t:QS&&QS.from==='home'?t('Back to Home'):t('Done'),plain:true}]});
   playDone('quiz-done');
   var f=$('quiz-done-again');if(f)f.focus({preventScroll:true});
 }
 $('quiz-close').addEventListener('click',closeQuiz);
 $('quiz-round').addEventListener('click',function(e){
   var o=e.target.closest('.opt');if(o){quizAnswer(+o.getAttribute('data-k'));return}
-  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from,ql=QS&&QS.lec;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true,ql);if(QS)QS.from=qf;return}
+  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from,ql=QS&&QS.lec,qm=QS&&QS.mix;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true,ql,qm);if(QS)QS.from=qf;return}
   if(e.target.closest('#quiz-done-home')){var home_=QS&&QS.from==='home';closeQuiz();if(home_)goTab('home')}
 });
 $('quiz-feedback').addEventListener('click',function(e){if(e.target.closest('#quiz-continue'))quizContinue()});
 document.addEventListener('keydown',function(e){
   var t=topLayer();if(!t||t.el.id!=='quiz-run'||qDone)return;
-  if(e.key>='1'&&e.key<='4'&&QS&&!QS.answered&&QS.opts&&QS.opts[+e.key-1]){quizAnswer(+e.key-1)}
+  if(e.key>='1'&&e.key<='9'&&QS&&!QS.answered&&QS.opts&&QS.opts[+e.key-1]){quizAnswer(+e.key-1)}
   else if(e.key==='Enter'&&QS&&QS.answered&&document.activeElement.id!=='quiz-continue'){e.preventDefault();quizContinue()}
 });
 
@@ -2285,17 +2697,17 @@ var QA=null;
 function qaStatusIcon(s){return s==='got'?'<span class="qdisc got">'+ic('check')+'</span>':s==='again'?'<span class="qdisc">'+ic('reset')+'</span>':'<span class="qdisc"></span>'}
 function qaStartHTML(){
   var p=cur,ps=PS(p),qs_=qaOf(p),n=qs_.length;
-  if(!n)return emptyHTML('qa','No questions in this pack.','');
+  if(!n)return emptyHTML('qa',t('No questions in this pack.'),'');
   var got=qaGot(p),left=n-got;
   var h='<div class="card start"><div class="start-icon">'+ic('qa')+'</div><h2>'+plural(n,'question')+'</h2>'+
-    '<div class="prog-line"><b>Got it</b><span>'+got+' of '+n+'</span></div><div class="pbar" style="--p:'+(got/n)+'"><i></i></div>'+
-    '<p>'+(isExam(p)?'Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.':'Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.')+'</p><div class="btn-stack">';
-  if(got===0)h+='<button class="btn" id="qa-start" type="button">Start questions</button>';
-  else if(left>0)h+='<button class="btn" id="qa-start" type="button">Practise the '+left+' left</button><button class="btn plain" id="qa-all" type="button">All '+n+' questions</button>';
-  else h+='<button class="btn" id="qa-start" type="button">Practise all '+n+' again</button>';
-  h+='</div></div><div class="sec"><h2>All questions</h2><p>Tap one to practise it.</p></div><div style="height:15px"></div>';
+    '<div class="prog-line"><b>'+t('Got it')+'</b><span>'+t('{0} of {1}',got,n)+'</span></div><div class="pbar" style="--p:'+(got/n)+'"><i></i></div>'+
+    '<p>'+(isExam(p)?t('Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.'):t('Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.'))+'</p><div class="btn-stack">';
+  if(got===0)h+='<button class="btn" id="qa-start" type="button">'+t('Start questions')+'</button>';
+  else if(left>0)h+='<button class="btn" id="qa-start" type="button">'+t('Practise the {0} left',left)+'</button><button class="btn plain" id="qa-all" type="button">'+t('All {0} questions',n)+'</button>';
+  else h+='<button class="btn" id="qa-start" type="button">'+t('Practise all {0} again',n)+'</button>';
+  h+='</div></div><div class="sec"><h2>'+t('All questions')+'</h2><p>'+t('Tap one to practise it.')+'</p></div><div style="height:15px"></div>';
   qs_.forEach(function(q,i){
-    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?'Lecturer':q.who==='exam'?'Exam':'Classmate')+'</span></span></button>';
+    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?t('Lecturer'):q.who==='exam'?t('Exam'):t('Classmate'))+'</span></span></button>';
   });
   return h;
 }
@@ -2327,20 +2739,20 @@ function openQaRound(mode){
 function qaBar(){$('qa-bar').style.setProperty('--p',QA.done/QA.total)}
 function showQaQ(anim){
   var q=qaOf(cur)[QA.queue[0]];QA.revealed=false;
-  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?'Lecturer asks':q.who==='exam'?'Exam question':'Classmate asks')+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">'+(q.who==='exam'?'Think first. Say or jot down your answer.':'Think first. Say your answer out loud.')+'</p>'+
-    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>'+(q.who==='exam'?'A strong answer':'You could say')+'</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="Listen to the answer" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
+  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?t('Lecturer asks'):q.who==='exam'?t('Exam question'):t('Classmate asks'))+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">'+(q.who==='exam'?t('Think first. Say or jot down your answer.'):t('Think first. Say your answer out loud.'))+'</p>'+
+    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>'+(q.who==='exam'?t('A strong answer'):t('You could say'))+'</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="'+esc(t('Listen to the answer'))+'" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
   var body=$('qa-round');body.innerHTML=h;body.scrollTop=0;
-  $('qa-actions').innerHTML='<div class="actions" style="grid-template-columns:1fr"><button class="btn" id="qa-reveal" type="button">Show answer</button></div>';
+  $('qa-actions').innerHTML='<div class="actions" style="grid-template-columns:1fr"><button class="btn" id="qa-reveal" type="button">'+t('Show answer')+'</button></div>';
   qaBar();
   var rv=$('qa-reveal');try{rv.focus({preventScroll:true})}catch(e){}
-  announce('Question '+(QA.done+1)+' of '+QA.total+'.');
+  announce(t('Question {0} of {1}.',QA.done+1,QA.total));
 }
 function qaReveal(){
   if(!QA||QA.revealed)return;
   QA.revealed=true;QA.revealAt=performance.now();
   var rb=$('qa-reveal-box');rb.classList.add('is-open');rb.removeAttribute('inert');
   var th=$('qa-think');if(th)th.hidden=true;
-  $('qa-actions').innerHTML='<div class="actions even"><button class="btn plain" id="qa-again" type="button">Again</button><button class="btn" id="qa-gotit" type="button">Got it</button></div>';
+  $('qa-actions').innerHTML='<div class="actions even"><button class="btn plain" id="qa-again" type="button">'+t('Again')+'</button><button class="btn" id="qa-gotit" type="button">'+t('Got it')+'</button></div>';
   playSound('tick');updateListenUI();
   var g=$('qa-gotit');try{g.focus({preventScroll:true})}catch(e){}
   later(function(){var a=qs('#qa-round .qa-ans');if(a)a.scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'})},120);
@@ -2368,17 +2780,17 @@ function qaFinish(){
   var p=cur,ps=PS(p),qs_=qaOf(p),n=QA.total;
   var gotRound=0,againRound=0;
   QA.all.forEach(function(i){if(ps.qa.status[i]==='got')gotRound++;else againRound++});
-  if(QA.single){closeQa();announce(gotRound?'Marked as got it.':'Marked for another go.');return}
+  if(QA.single){closeQa();announce(gotRound?t('Marked as got it.'):t('Marked for another go.'));return}
   var left=qs_.filter(function(_,i){return ps.qa.status[i]!=='got'}).length;
-  var line=QA.single?(gotRound?'Marked as got it.':'Marked for another go.'):gotRound+' of '+n+' marked got it.';
+  var line=QA.single?(gotRound?t('Marked as got it.'):t('Marked for another go.')):t('{0} of {1} marked got it.',gotRound,n);
   var btns=[];
-  if(left>0){btns.push({id:'qa-done-again',t:'Practise the '+left+' left'});btns.push({id:'qa-done-home',t:QA.from==='home'?'Back to Home':'Done',plain:true})}
-  else btns.push({id:'qa-done-home',t:QA.from==='home'?'Back to Home':'Done'});
+  if(left>0){btns.push({id:'qa-done-again',t:t('Practise the {0} left',left)});btns.push({id:'qa-done-home',t:QA.from==='home'?t('Back to Home'):t('Done'),plain:true})}
+  else btns.push({id:'qa-done-home',t:QA.from==='home'?t('Back to Home'):t('Done')});
   $('qa-top').hidden=true;$('qa-actions').innerHTML='';
-  $('qa-round').innerHTML=doneHTML({id:'qa-done',title:'Questions done!',line:line,
-    stats:[{v:gotRound,l:'got it'},{v:againRound,l:'again'},{v:readiness(p),l:'ready',suf:'%',g:true}],buttons:btns});
+  $('qa-round').innerHTML=doneHTML({id:'qa-done',title:t('Questions done!'),line:line,
+    stats:[{v:gotRound,l:t('got it')},{v:againRound,l:t('again')},{v:readiness(p),l:t('ready'),suf:'%',g:true}],buttons:btns});
   playDone('qa-done');
-  announce('Questions done.');
+  announce(t('Questions done.'));
   var f=$('qa-done-again')||$('qa-done-home');if(f)f.focus({preventScroll:true});
 }
 $('qa-close').addEventListener('click',closeQa);
@@ -2405,7 +2817,7 @@ document.addEventListener('keydown',function(e){
 /* daily.json holds one sealed day per date (AES-GCM; the key comes from Arda's passphrase through PBKDF2, see
    tools/daily.mjs). After the first unlock this browser keeps the derived key, never the passphrase. Nobody who has
    not unlocked sees any of it: the only ways in are the small "Daily page" row under Your packs and the #today link. */
-var DKEY='prep.v1.dkey',SELDAY='prep.v1.selDay',DSRC=null,dLoaded=false;
+var DKEY=KP+'dkey',SELDAY=KP+'selDay',DSRC=null,dLoaded=false;
 var SUB=window.crypto&&window.crypto.subtle;
 function b2u(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
 function u2b(a){var s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
@@ -2459,6 +2871,7 @@ function dailyShow(fromLink){
   else refresh();
 }
 function dailyBoot(){
+  if(!DAILY_ON)return;
   var want=/^#today/.test(location.hash),raw=rd(DKEY);
   if(dLoaded||(!raw&&!want))return;
   if(!dailyOK()){if(want)openUnlock('This browser cannot open the daily page. Open Prep in Safari on iOS 16.4 or later.');return}
@@ -2536,14 +2949,23 @@ $('script-body').addEventListener('click',function(e){
 /* ---------- init ---------- */
 document.addEventListener('touchstart',function(){},{passive:true});
 function showError(){
-  $('app').innerHTML=emptyHTML('pres','Nothing to study yet','The study content could not be read.');
+  $('app').innerHTML=emptyHTML('pres',t('Nothing to study yet'),t('The study content could not be read.'));
   $('tabbar').hidden=true;
 }
 /* focus ring only for keyboard users: scripted focus after a tap should not draw it */
 document.documentElement.classList.add('pointer');
 document.addEventListener('pointerdown',function(){document.documentElement.classList.add('pointer')},true);
 document.addEventListener('keydown',function(e){if(e.key==='Tab'||e.key==='Enter'||e.key===' '||(e.key&&e.key.indexOf('Arrow')===0))document.documentElement.classList.remove('pointer')},true);
+/* The shell markup is English; on another language its fixed labels are swapped once, before the first render. */
+function translateStatic(){
+  qsa('body *').forEach(function(el){
+    if(el.tagName==='SCRIPT'||el.tagName==='STYLE')return;
+    if(el.children.length===0&&el.childNodes.length===1&&el.firstChild.nodeType===3){var s=el.textContent;if(TR.hasOwnProperty(s))el.textContent=TR[s]}
+    var a=el.getAttribute('aria-label');if(a&&TR.hasOwnProperty(a))el.setAttribute('aria-label',TR[a]);
+  });
+}
 function init(){
+  if(UI_LANG!=='en')translateStatic();
   if(bad){showError();return}
   setSelected(pickInitialPack());
   syncSoundBtns();

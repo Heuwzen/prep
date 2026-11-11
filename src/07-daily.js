@@ -2,7 +2,7 @@
 /* daily.json holds one sealed day per date (AES-GCM; the key comes from Arda's passphrase through PBKDF2, see
    tools/daily.mjs). After the first unlock this browser keeps the derived key, never the passphrase. Nobody who has
    not unlocked sees any of it: the only ways in are the small "Daily page" row under Your packs and the #today link. */
-var DKEY='prep.v1.dkey',SELDAY='prep.v1.selDay',DSRC=null,dLoaded=false;
+var DKEY=KP+'dkey',SELDAY=KP+'selDay',DSRC=null,dLoaded=false;
 var SUB=window.crypto&&window.crypto.subtle;
 function b2u(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
 function u2b(a){var s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
@@ -56,6 +56,7 @@ function dailyShow(fromLink){
   else refresh();
 }
 function dailyBoot(){
+  if(!DAILY_ON)return;
   var want=/^#today/.test(location.hash),raw=rd(DKEY);
   if(dLoaded||(!raw&&!want))return;
   if(!dailyOK()){if(want)openUnlock('This browser cannot open the daily page. Open Prep in Safari on iOS 16.4 or later.');return}

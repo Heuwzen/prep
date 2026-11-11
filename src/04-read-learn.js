@@ -3,7 +3,7 @@ function doneHTML(o){
   var h='<div class="done" id="'+o.id+'"><div class="dm"><svg class="ring-svg" viewBox="0 0 96 96" aria-hidden="true"><circle class="trk" cx="48" cy="48" r="45.5"/><circle class="arc" cx="48" cy="48" r="45.5"/></svg><div class="disc">'+ic('check')+'</div></div>'+
     '<div class="done-text"><h2>'+esc(o.title)+'</h2><p>'+esc(o.line)+'</p></div><div class="stats">';
   o.stats.forEach(function(s,i){h+='<div class="card stat'+(s.g?' g':'')+'"><b data-to="'+s.v+'" data-suf="'+(s.suf||'')+'">0'+(s.suf||'')+'</b><span>'+esc(s.l)+'</span></div>'});
-  h+='</div>'+(o.newBest?'<div class="new-best">'+pillHTML('New best','soft')+'</div>':'')+'<div class="btn-stack">';
+  h+='</div>'+(o.newBest?'<div class="new-best">'+pillHTML(t('New best'),'soft')+'</div>':'')+'<div class="btn-stack">';
   o.buttons.forEach(function(b){h+='<button class="btn'+(b.plain?' plain':'')+'" id="'+b.id+'" type="button">'+esc(b.t)+'</button>'});
   return h+'</div></div>';
 }
@@ -32,30 +32,30 @@ function readMinutes(p){
   return Math.max(1,Math.ceil(w/200));
 }
 function markBtn(i,on){
-  return '<button class="btn compact '+(on?'done-soft':'plain')+' readmark" id="read-mark-'+i+'" type="button" aria-pressed="'+on+'">'+ic('check')+(on?'Marked as read':'Mark as read')+'</button>';
+  return '<button class="btn compact '+(on?'done-soft':'plain')+' readmark" id="read-mark-'+i+'" type="button" aria-pressed="'+on+'">'+ic('check')+(on?t('Marked as read'):t('Mark as read'))+'</button>';
 }
 function renderRead(){
   var p=cur,ps=PS(p),ch=chaptersOf(p),body=$('read-body'),cb=$('read-chapters');
   cb.hidden=!ch.length;
   if(!ch.length){
     $('rprog').hidden=true;
-    body.innerHTML='<div class="read">'+emptyHTML('read','Reading is coming','The reading for this pack has not arrived yet. It will show up here.',{id:'read-go-lessons',t:'Go to lessons'})+'</div>';
+    body.innerHTML='<div class="read">'+emptyHTML('read',t('Reading is coming'),t('The reading for this pack has not arrived yet. It will show up here.'),{id:'read-go-lessons',t:t('Go to lessons')})+'</div>';
     return;
   }
   $('rprog').hidden=false;
-  var h='<div class="read"><h2 class="read-title">'+T(p.title)+'</h2><div class="read-meta">'+plural(ch.length,'chapter')+' · about '+readMinutes(p)+' min</div>';
+  var h='<div class="read"><h2 class="read-title">'+T(p.title)+'</h2><div class="read-meta">'+plural(ch.length,'chapter')+' · '+t('about {0} min',readMinutes(p))+'</div>';
   ch.forEach(function(c,i){
-    h+='<section class="ch" id="chapter-'+i+'"><div class="ch-label">Chapter '+(i+1)+' of '+ch.length+'</div><h3 class="ch-title">'+T(c.title)+'</h3>';
+    h+='<section class="ch" id="chapter-'+i+'"><div class="ch-label">'+t('Chapter {0} of {1}',i+1,ch.length)+'</div><h3 class="ch-title">'+T(c.title)+'</h3>';
     (c.paragraphs||[]).forEach(function(t,j){h+='<p id="ch-'+i+'-p-'+j+'">'+T(t)+'</p>'});
     h+=markBtn(i,!!ps.chapters[i])+'</section>';
   });
   var ln=(p.links||[]).filter(function(l){return l&&l.title&&/^https?:\/\//.test(l.url||'')});
   if(ln.length){
-    h+='<section class="deeper"><h3 class="ch-title">Go deeper</h3>';
+    h+='<section class="deeper"><h3 class="ch-title">'+t('Go deeper')+'</h3>';
     ln.forEach(function(l){h+='<a class="card deeper-row row-press" href="'+esc(l.url)+'" target="_blank" rel="noopener"><span class="deeper-t">'+T(l.title)+'</span>'+(l.note?'<span class="deeper-n">'+T(l.note)+'</span>':'')+ic('ext')+'</a>'});
     h+='</section>';
   }
-  h+='<p class="read-end">You reached the end.</p></div>';
+  h+='<p class="read-end">'+t('You reached the end.')+'</p></div>';
   body.innerHTML=h;
   updateRprog();
 }
@@ -135,24 +135,25 @@ function learnFaceHTML(){
   var p=cur,ps=PS(p),f=face.learn,h='';
   if(f==='words'){
     var w=wordsOf(p);
-    if(!w.length)h+=emptyHTML('learn','No words in this pack.','');
+    if(!w.length)h+=emptyHTML('learn',t('No words in this pack.'),'');
     else{
-      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":'Words you might hear or use.')+'</p>';
-      w.forEach(function(x){h+='<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'});
+      h+='<p class="desc">'+(isDaily(p)?"New words from today's lesson and news.":t('Words you might hear or use.'))+'</p>';
+      if(LEAN&&w.length>40)h+='<div class="wsearch"><input class="field" id="word-search" type="search" placeholder="'+esc(t('Search terms'))+'" aria-label="'+esc(t('Search terms'))+'" value="'+esc(wordQ)+'" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="search"></div><div id="word-list">'+wordListHTML(w,wordQ)+'</div>';
+      else w.forEach(function(x){h+=wordCardHTML(x)});
     }
   }else if(f==='facts'){
     var facts=factsOf(p);
-    if(!facts.length)h+=emptyHTML('learn','No facts in this pack.','');
+    if(!facts.length)h+=emptyHTML('learn',t('No facts in this pack.'),'');
     else{
-      h+='<p class="desc">Facts you can share in class.</p>';
+      h+='<p class="desc">'+t('Facts you can share in class.')+'</p>';
       facts.forEach(function(x,i){
         h+='<div class="card fact-card" id="inspire-'+i+'"><div class="fact-title">'+T(x.title)+'</div><p class="fact-b">'+T(x.fact)+'</p>'+
-          (x.share?'<div class="scope"><b>You can say</b><p>'+T(x.share)+'</p></div>':'');
+          (x.share?'<div class="scope"><b>'+t('You can say')+'</b><p>'+T(x.share)+'</p></div>':'');
         if(x.why||x.source){
-          h+='<button class="btn compact plain fact-more" id="fact-more-'+i+'" type="button" aria-expanded="false" aria-controls="fact-reveal-'+i+'">Why it matters</button>'+
+          h+='<button class="btn compact plain fact-more" id="fact-more-'+i+'" type="button" aria-expanded="false" aria-controls="fact-reveal-'+i+'">'+t('Why it matters')+'</button>'+
             '<div class="reveal" id="fact-reveal-'+i+'" inert><div>'+
-            (x.why?'<div class="blk"><div class="blk-l">Why it matters</div><p>'+T(x.why)+'</p></div>':'')+
-            (x.source?'<p class="src">Source: '+T(String(x.source).replace(/,?\s*https?:\/\/\S+/g,''))+'</p>':'')+
+            (x.why?'<div class="blk"><div class="blk-l">'+t('Why it matters')+'</div><p>'+T(x.why)+'</p></div>':'')+
+            (x.source?'<p class="src">'+t('Source: ')+T(String(x.source).replace(/,?\s*https?:\/\/\S+/g,''))+'</p>':'')+
             '</div></div>';
         }
         h+='</div>';
@@ -161,15 +162,34 @@ function learnFaceHTML(){
   }else{
     L_(p).forEach(function(l,i){
       var st=ps.lessons[l.id]||{},n=l.cards.length,seen=Math.min(st.seen||0,n);
-      var det=st.done?'Done':seen>0?seen+' of '+n+' cards':plural(n,'card');
+      var det=st.done?t('Done'):seen>0?t('{0} of {1} cards',seen,n):plural(n,'card');
       h+='<button class="lrow row-press" id="lesson-row-'+i+'" type="button" data-i="'+i+'"><span class="mini'+(st.done||seen>0?' on':'')+'">'+(st.done?ic('check'):(i+1))+'</span><span class="lrow-text"><span class="lrow-title">'+T(l.title)+'</span><span class="lrow-detail'+(st.done?' ok':'')+'">'+det+'</span></span>'+ic('right','chev')+'</button>';
     });
   }
   return h;
 }
+/* Faces of the Learn tab. The second site shows only the ones a pack has. */
+var learnFaces=LFACES;
+function learnAvail(){
+  if(!LEAN)return LFACES;
+  var p=cur,has={lessons:L_(p).length>0,words:wordsOf(p).length>0,facts:factsOf(p).length>0};
+  var a=LFACES.filter(function(k){return has[k]});
+  return a.length?a:LFACES;
+}
+var wordQ='';
+function normTr(s){return String(s==null?'':s).toLocaleLowerCase('tr')}
+function wordCardHTML(x){return '<div class="card word"><div class="word-top"><b>'+T(x.term)+'</b>'+(x.tag?'<span class="pill">'+esc(x.tag)+'</span>':'')+'</div><p>'+T(x.meaning)+'</p>'+(x.example?'<p class="word-ex">'+T(x.example)+'</p>':'')+'</div>'}
+function wordListHTML(w,q){
+  var n=normTr(q).trim(),a=w.slice().sort(function(x,y){return String(x.term).localeCompare(String(y.term),'tr')});
+  if(n)a=a.filter(function(x){return (normTr(x.term)+' '+normTr(x.meaning)).indexOf(n)>=0});
+  if(!a.length)return '<p class="desc">'+esc(t('No term matches.'))+'</p>';
+  return a.map(wordCardHTML).join('');
+}
 function renderLearn(){
-  var f=face.learn;
-  $('learn-body').innerHTML='<div id="learn-seg">'+segHTML('seg-learn',3,Math.max(0,LFACES.indexOf(f)),[{id:'seg-lessons',t:'Lessons'},{id:'seg-words',t:'Words'},{id:'seg-facts',t:'Facts'}])+'</div><div id="learn-face">'+learnFaceHTML()+'</div>';
+  var av=learnAvail(),f=face.learn;
+  learnFaces=av;
+  if(av.indexOf(f)<0)f=face.learn=av[0];
+  $('learn-body').innerHTML=(av.length>1?'<div id="learn-seg">'+segHTML('seg-learn',av.length,Math.max(0,av.indexOf(f)),av.map(function(k){return {id:'seg-'+k,t:t(cap(k))}}))+'</div>':'')+'<div id="learn-face">'+learnFaceHTML()+'</div>';
 }
 R.learn=renderLearn;
 $('learn-body').addEventListener('click',function(e){
@@ -187,7 +207,7 @@ $('learn-body').addEventListener('click',function(e){
     if(nf===face.learn)return;
     scrolls[scrollKey()]=window.scrollY;
     face.learn=nf;
-    var seg=$('seg-learn');seg.style.setProperty('--i',LFACES.indexOf(nf));
+    var seg=$('seg-learn');seg.style.setProperty('--i',learnFaces.indexOf(nf));
     qsa('button',seg).forEach(function(b){var on=b===s;b.classList.toggle('is-on',on);b.setAttribute('aria-pressed',on)});
     $('learn-face').innerHTML=learnFaceHTML();
     try{history.replaceState(null,'','#'+(nf==='words'?'words':nf==='facts'?'facts':'learn'))}catch(er){}
@@ -197,12 +217,21 @@ $('learn-body').addEventListener('click',function(e){
   var r=e.target.closest('.lrow');
   if(r)openLesson(+r.getAttribute('data-i'));
 });
+$('learn-body').addEventListener('input',function(e){
+  if(e.target.id!=='word-search')return;
+  wordQ=e.target.value;
+  var l=$('word-list');if(l)l.innerHTML=wordListHTML(wordsOf(cur),wordQ);
+});
 /* ---------- lesson session ---------- */
 var LS=null,sw=null;
+/* A trap or example that opens with its own label ("Dikkat: ...") would repeat the block title. */
+function trapText(s){return String(s).replace(/^\s*(dikkat|watch out)\s*[:!.]\s*/i,'')}
+function exampleText(s){return LEAN?String(s).replace(/^\s*(örnek|example|for example)\s*:\s*/i,''):s}
 function lessonCardHTML(i){
   var l=L_(cur)[LS.i],c=l.cards[i];
-  return '<div class="kicker">'+T(l.title)+' · '+(i+1)+' of '+l.cards.length+'</div><h2>'+T(c.title)+'</h2><p>'+T(c.body)+'</p>'+
-    (c.example?'<div class="example"><b>For example</b><p>'+T(c.example)+'</p></div>':'');
+  return '<div class="kicker">'+t('{0} · {1} of {2}',T(l.title),i+1,l.cards.length)+'</div><h2>'+T(c.title)+'</h2><p>'+T(c.body)+'</p>'+
+    (c.trap?'<div class="trap"><b>'+t('Watch out')+'</b><p>'+T(trapText(c.trap))+'</p></div>':'')+
+    (c.example?'<div class="example"><b>'+t('For example')+'</b><p>'+T(exampleText(c.example))+'</p></div>':'');
 }
 function lessonDots(){
   var n=L_(cur)[LS.i].cards.length,h='';
@@ -213,11 +242,11 @@ function lessonSync(){
   var l=L_(cur)[LS.i],n=l.cards.length;
   qsa('.dot',$('lesson-dots')).forEach(function(d,k){d.className='dot'+(k<LS.card?' seen':k===LS.card?' cur':'')});
   $('lesson-back').disabled=LS.card===0;
-  $('lesson-next').textContent=LS.card===n-1?'Finish':'Next';
+  $('lesson-next').textContent=LS.card===n-1?t('Finish'):t('Next');
 }
 function lessonListenBtn(){
   var w=$('lesson-listen-wrap');
-  w.innerHTML=SYN?'<button class="icon-btn" id="lesson-listen" type="button" data-lk="lesson" aria-label="Listen to this lesson" aria-pressed="false">'+ic('vol')+'</button>':'<span class="slot44"></span>';
+  w.innerHTML=SYN?'<button class="icon-btn" id="lesson-listen" type="button" data-lk="lesson" aria-label="'+esc(t('Listen to this lesson'))+'" aria-pressed="false">'+ic('vol')+'</button>':'<span class="slot44"></span>';
 }
 function openLesson(i){
   var p=cur,ls=L_(p);
@@ -234,7 +263,7 @@ function openLesson(i){
   $('lesson').hidden=false;
   lessonSave();
   pushLayer($('lesson'),closeLesson,$('lesson-close'),true);
-  announce('Card '+(LS.card+1)+' of '+n+'.');
+  announce(t('Card {0} of {1}.',LS.card+1,n));
 }
 function lessonSave(){
   var p=cur,l=L_(p)[LS.i],ps=PS(p),st=ps.lessons[l.id]||(ps.lessons[l.id]={});
@@ -264,7 +293,7 @@ function lessonGo(n,dir,ghostRight){
   card.style.transform='';
   $('lesson-body').scrollTop=0;
   lessonSync();lessonSave();
-  announce('Card '+(n+1)+' of '+l.cards.length+'.');
+  announce(t('Card {0} of {1}.',n+1,l.cards.length));
 }
 function lessonNext(){
   var l=L_(cur)[LS.i],was=speaking&&speakKey==='lesson';
@@ -280,7 +309,7 @@ function lessonBack(sw_){
 }
 function lessonListen(){
   var l=L_(cur)[LS.i],list=[];
-  for(var k=LS.card;k<l.cards.length;k++){var c=l.cards[k];list.push(c.title+'. '+c.body+(c.example?' For example: '+c.example:''))}
+  for(var k=LS.card;k<l.cards.length;k++){var c=l.cards[k];list.push(c.title+'. '+c.body+(c.trap?' '+t('Watch out')+': '+trapText(c.trap):'')+(c.example?' '+t('For example')+': '+exampleText(c.example):''))}
   var base=LS.card;
   speakList(list,'lesson',function(i){if(base+i!==LS.card)lessonGo(base+i,1)});
 }
@@ -297,16 +326,16 @@ function lessonFinish(){
   for(var k=1;k<ls.length;k++){var j=(LS.i+k)%ls.length;if(!(ps.lessons[ls[j].id]||{}).done){nextI=j;break}}
   LS.done=true;
   var btns=[];
-  if(nextI>=0){btns.push({id:'lesson-done-next',t:'Next lesson'});btns.push({id:'lesson-done-home',t:'Back to Home',plain:true})}
-  else btns.push({id:'lesson-done-home',t:'Back to Home'});
+  if(nextI>=0){btns.push({id:'lesson-done-next',t:t('Next lesson')});btns.push({id:'lesson-done-home',t:t('Back to Home'),plain:true})}
+  else btns.push({id:'lesson-done-home',t:t('Back to Home')});
   $('lesson-top').hidden=true;$('lesson-body').hidden=true;$('lesson-actions').hidden=true;
   var db=$('lesson-donebox');
-  db.innerHTML=doneHTML({id:'lesson-done',title:'Lesson done!',line:quick?'That was quick. Go through it once more to count it.':'Lesson '+(LS.i+1)+' of '+ls.length+': '+l.title,
-    stats:[{v:l.cards.length,l:l.cards.length===1?'card':'cards'},{v:mins,l:mins===1?'minute':'minutes'},{v:rd_,l:'ready',suf:'%',g:true}],buttons:btns});
+  db.innerHTML=doneHTML({id:'lesson-done',title:t('Lesson done!'),line:quick?t('That was quick. Go through it once more to count it.'):t('Lesson {0} of {1}: {2}',lessonNo(cur,LS.i),ls.length,l.title),
+    stats:[{v:l.cards.length,l:l.cards.length===1?t('card'):t('cards')},{v:mins,l:mins===1?t('minute'):t('minutes')},{v:rd_,l:t('ready'),suf:'%',g:true}],buttons:btns});
   db.hidden=false;
   LS.nextI=nextI;
   playDone('lesson-done');
-  announce('Lesson done.');
+  announce(t('Lesson done.'));
   var f=$('lesson-done-next')||$('lesson-done-home');if(f)f.focus({preventScroll:true});
 }
 $('lesson-close').addEventListener('click',closeLesson);

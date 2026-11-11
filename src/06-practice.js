@@ -1,32 +1,47 @@
 /* ---------- quiz ---------- */
 var QS=null,qDone=false;
 function roundIdx(p,lec){var qz=quizOf(p);return qz.map(function(_,i){return i}).filter(function(i){return !lec||qz[i].lec===lec})}
+var MIX_N=20;
+/* Packs with many units get a mixed round (random questions from the whole pack) and a topics list. */
+function manyUnits(p){return lecsOf(p).length>6}
+function mixIdx(p){return shuffle(roundIdx(p,0)).slice(0,MIX_N)}
 function roundOK(p){
   var r=PS(p).quiz.round,qz=quizOf(p);
+  if(r&&r.mix)return !!(Array.isArray(r.queue)&&r.queue.length&&r.total===Math.min(MIX_N,qz.length)&&r.queue.every(function(i){return !!qz[i]}));
   return !!(r&&Array.isArray(r.queue)&&r.queue.length&&r.total===roundIdx(p,r.lec).length&&r.queue.every(function(i){return !!qz[i]&&(!r.lec||qz[i].lec===r.lec)}));
 }
 function quizStartHTML(){
   var p=cur,ps=PS(p),qz=quizOf(p),n=qz.length,q=ps.quiz;
-  if(!n)return emptyHTML('quiz','No quiz in this pack.','');
-  var pills='';
+  if(!n)return emptyHTML('quiz',t('No quiz in this pack.'),'');
+  var many=manyUnits(p),pills='';
   if(q.history.length){
-    pills=(q.best>0?pillHTML('Best: '+q.best+' of '+n,'soft'):'');
-    lecsOf(p).forEach(function(l){var b=+(q.lecBest||{})[l.lec]||0;if(b>0)pills+=pillHTML('Lecture '+l.lec+': '+b+' of '+l.n,'soft')});
-    pills+=pillHTML('Last: '+q.last+' of '+(q.lastTotal||n));
-  }else pills=pillHTML('No score yet');
+    pills=(q.best>0?pillHTML(t('Best: {0} of {1}',q.best,n),'soft'):'');
+    if(!many)lecsOf(p).forEach(function(l){var b=+(q.lecBest||{})[l.lec]||0;if(b>0)pills+=pillHTML(t('{0}: {1} of {2}',unitName(p,l.lec),b,l.n),'soft')});
+    pills+=pillHTML(t('Last: {0} of {1}',q.last,q.lastTotal||n));
+  }else pills=pillHTML(t('No score yet'));
   if(q.round&&!roundOK(p)){q.round=null;saveP(p)}
-  var h='<div class="card start"><div class="start-icon">'+ic('quiz')+'</div><h2>'+plural(n,'question')+'</h2><div class="pills">'+pills+'</div><p>Pick the answer you think is right. Wrong ones come back later in the round.</p><div class="btn-stack">';
+  var h='<div class="card start"><div class="start-icon">'+ic('quiz')+'</div><h2>'+plural(n,'question')+'</h2><div class="pills">'+pills+'</div><p>'+t('Pick the answer you think is right. Wrong ones come back later in the round.')+'</p><div class="btn-stack">';
   var ls=lecsOf(p);
-  if(q.round)h+='<button class="btn" id="quiz-start" type="button">'+(q.round.lec?'Continue Lecture '+q.round.lec:'Continue quiz')+'</button><button class="btn plain" id="quiz-restart" type="button">Start over</button>';
+  if(q.round)h+='<button class="btn" id="quiz-start" type="button">'+(q.round.mix?t('Continue mixed'):q.round.lec?t('Continue {0}',unitName(p,q.round.lec)):t('Continue quiz'))+'</button><button class="btn plain" id="quiz-restart" type="button">'+t('Start over')+'</button>';
+  else if(many)h+='<button class="btn" id="quiz-mix" type="button">'+t('Mixed {0}',Math.min(MIX_N,n))+'</button>';
   else{
-    h+='<button class="btn" id="quiz-start" type="button">'+(ls.length>1?'All '+n+' questions':'Start quiz')+'</button>';
-    if(ls.length>1)ls.forEach(function(l){h+='<button class="btn plain" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'">Lecture '+l.lec+' only ('+l.n+')</button>'});
+    h+='<button class="btn" id="quiz-start" type="button">'+(ls.length>1?t('All {0} questions',n):t('Start quiz'))+'</button>';
+    if(ls.length>1)ls.forEach(function(l){h+='<button class="btn plain" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'">'+t('{0} only ({1})',unitName(p,l.lec),l.n)+'</button>'});
   }
   h+='</div></div>';
+  if(many&&!q.round){
+    h+='<div class="sec"><h2>'+t('Topics')+'</h2><p>'+t('Tap a topic to quiz yourself on it.')+'</p></div><div style="height:15px"></div>';
+    ls.forEach(function(l){
+      var b=+(q.lecBest||{})[l.lec]||0,lb=unitLabel(p,l.lec),ut=unitTitle(p,l.lec);
+      h+='<button class="lrow row-press" id="quiz-lec-'+l.lec+'" type="button" data-lec="'+l.lec+'"><span class="mini'+(b>0?' on':'')+(lb.length>2?' tx':'')+'">'+esc(lb)+'</span><span class="lrow-text"><span class="lrow-title">'+T(ut||unitName(p,l.lec))+'</span><span class="lrow-detail">'+plural(l.n,'question')+'</span></span>'+(b>0?pillHTML(t('Best {0} of {1}',b,l.n),'soft'):'')+ic('right','chev')+'</button>';
+    });
+    h+='<button class="btn plain" id="quiz-start" type="button">'+t('All questions ({0})',n)+'</button>';
+  }
   if(q.history.length){
-    h+='<div class="sec"><h2>Your rounds</h2><p>'+(q.history.length===1?'Your first round.':'Your recent rounds.')+'</p></div><div class="card rounds" style="margin-top:16px">';
+    h+='<div class="sec"><h2>'+t('Your rounds')+'</h2><p>'+(q.history.length===1?t('Your first round.'):t('Your recent rounds.'))+'</p></div><div class="card rounds" style="margin-top:16px">';
     q.history.slice(0,5).forEach(function(r){
-      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+(r.lec?'L'+r.lec+': ':'')+r.score+' of '+r.total+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
+      var tag=r.mix?t('Mixed')+': ':r.lec?((many||LEAN||p.unitWord)?unitName(p,r.lec)+': ':t('L{0}: ',r.lec)):'';
+      h+='<div class="round"><span class="round-when">'+esc(fmtRound(new Date(r.at).getTime()))+'</span><span class="round-score">'+esc(tag)+t('{0} of {1}',r.score,r.total)+'</span><span class="round-bar"><i style="width:'+Math.round(100*r.score/r.total)+'%"></i></span></div>';
     });
     h+='</div>';
   }
@@ -36,17 +51,19 @@ function renderQuiz(){$('quiz-body').innerHTML=quizStartHTML();syncSoundBtns()}
 R.quiz=renderQuiz;
 $('quiz-body').addEventListener('click',function(e){
   if(e.target.closest('#quiz-restart')){PS(cur).quiz.round=null;saveP(cur);if(lecsOf(cur).length>1)renderQuiz();else openQuizRound(true);return}
+  if(e.target.closest('#quiz-mix')){openQuizRound(true,0,true);return}
   var lb=e.target.closest('[data-lec]');if(lb){openQuizRound(true,+lb.getAttribute('data-lec'));return}
   if(e.target.closest('#quiz-start'))openQuizRound(false);
 });
-function openQuizRound(fresh,lec){
+function openQuizRound(fresh,lec,mix){
   var p=cur,ps=PS(p),qz=quizOf(p);if(!qz.length)return;
   stopSpeech();
   var q=ps.quiz;
   if(!roundOK(p))q.round=null;
   if(fresh||!q.round){
-    var idx=roundIdx(p,lec||0);
-    q.round={queue:q.history.length?shuffle(idx):idx,total:idx.length,lec:lec||0,solved:0,first:0,missed:{},at:Date.now()};
+    var idx=mix?mixIdx(p):roundIdx(p,lec||0);
+    q.round={queue:(!mix&&q.history.length)?shuffle(idx):idx,total:idx.length,lec:mix?0:(lec||0),solved:0,first:0,missed:{},at:Date.now()};
+    if(mix)q.round.mix=1;
     saveP(p);
   }
   QS={opts:null,answered:false,t0:Date.now(),from:curScreen,shownAt:0};qDone=false;
@@ -69,7 +86,7 @@ function showQuizQ(anim){
   h+='</div></div>';
   var body=$('quiz-round');body.innerHTML=h;body.scrollTop=0;
   quizBar();
-  announce('Question '+(r.solved+1)+' of '+r.total+'.');
+  announce(t('Question {0} of {1}.',r.solved+1,r.total));
 }
 function quizAnswer(k){
   if(!QS||QS.answered||qDone||performance.now()-(QS.shownAt||0)<350)return;
@@ -95,15 +112,15 @@ function quizAnswer(k){
   saveP(cur);
   var fb=$('quiz-feedback'),fi=$('quiz-fb-in');
   fb.classList.toggle('bad',!ok);
-  fi.innerHTML='<div class="fb-head"><span class="fb-icon">'+ic(ok?'check':'x')+'</span><span>'+(ok?'Correct':'Not quite')+'</span></div>'+
-    (ok?'':'<p class="fb-ans"><span>Answer:</span> '+T(q.options[q.answer])+'</p>')+
-    '<p class="fb-why">'+T(q.why)+'</p>'+(ok?'':'<p class="fb-note">This one comes back later in the round.</p>')+
-    '<button class="btn'+(ok?'':' red')+'" id="quiz-continue" type="button">Continue</button>';
+  fi.innerHTML='<div class="fb-head"><span class="fb-icon">'+ic(ok?'check':'x')+'</span><span>'+(ok?t('Correct'):t('Not quite'))+'</span></div>'+
+    (ok?'':'<p class="fb-ans"><span>'+t('Answer:')+'</span> '+T(q.options[q.answer])+'</p>')+
+    '<p class="fb-why">'+T(q.why)+'</p>'+(ok?'':'<p class="fb-note">'+t('This one comes back later in the round.')+'</p>')+
+    '<button class="btn'+(ok?'':' red')+'" id="quiz-continue" type="button">'+t('Continue')+'</button>';
   openEl(fb);
   document.documentElement.style.setProperty('--fb-h',fb.offsetHeight+'px');
   var bt=$('quiz-continue');try{bt.focus({preventScroll:true})}catch(e){}
   later(function(){els[k].scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'})},50);
-  announce(ok?'Correct.':'Not quite. The answer is '+q.options[q.answer]+'.');
+  announce(ok?t('Correct.'):t('Not quite. The answer is {0}.',q.options[q.answer]));
 }
 function quizContinue(){
   if(!QS||!QS.answered)return;
@@ -124,31 +141,33 @@ function closeQuiz(){
 }
 function quizFinish(){
   qDone=true;
-  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,lec=r.lec||0,lb=ps.quiz.lecBest,old=lec?(+lb[lec]||0):ps.quiz.best;
-  var nb=score>old;
-  if(lec)lb[lec]=Math.max(old,score);else ps.quiz.best=Math.max(old,score);
-  ps.quiz.last=score;ps.quiz.lastTotal=total;if(QS)QS.lec=lec;
-  ps.quiz.history.unshift({at:new Date().toISOString(),score:score,total:total,lec:lec});
+  var p=cur,ps=PS(p),r=ps.quiz.round,total=r.total,score=r.first,came=Object.keys(r.missed).length,lec=r.lec||0,mix=!!r.mix,lb=ps.quiz.lecBest,old=lec?(+lb[lec]||0):ps.quiz.best;
+  /* a mixed round goes in the history only: it never touches the bests, so readiness stays put */
+  var nb=!mix&&score>old;
+  if(mix){}else if(lec)lb[lec]=Math.max(old,score);else ps.quiz.best=Math.max(old,score);
+  ps.quiz.last=score;ps.quiz.lastTotal=total;if(QS){QS.lec=lec;QS.mix=mix}
+  var he={at:new Date().toISOString(),score:score,total:total,lec:lec};if(mix)he.mix=true;
+  ps.quiz.history.unshift(he);
   ps.quiz.history=ps.quiz.history.slice(0,10);
   ps.quiz.round=null;saveP(p);
   $('quiz-top').hidden=true;
-  var line=score===total?'Every answer right the first time.':score+' of '+total+' right the first time.';
-  $('quiz-round').innerHTML=doneHTML({id:'quiz-done',title:'Quiz done!',line:line,
-    stats:[{v:score,l:'first try'},{v:came,l:'came back'},{v:Math.round(100*score/total),l:'score',suf:'%',g:true}],
-    newBest:nb,buttons:[{id:'quiz-done-again',t:'New round'},{id:'quiz-done-home',t:QS&&QS.from==='home'?'Back to Home':'Done',plain:true}]});
+  var line=score===total?t('Every answer right the first time.'):t('{0} of {1} right the first time.',score,total);
+  $('quiz-round').innerHTML=doneHTML({id:'quiz-done',title:t('Quiz done!'),line:line,
+    stats:[{v:score,l:t('first try')},{v:came,l:t('came back')},{v:Math.round(100*score/total),l:t('score'),suf:'%',g:true}],
+    newBest:nb,buttons:[{id:'quiz-done-again',t:t('New round')},{id:'quiz-done-home',t:QS&&QS.from==='home'?t('Back to Home'):t('Done'),plain:true}]});
   playDone('quiz-done');
   var f=$('quiz-done-again');if(f)f.focus({preventScroll:true});
 }
 $('quiz-close').addEventListener('click',closeQuiz);
 $('quiz-round').addEventListener('click',function(e){
   var o=e.target.closest('.opt');if(o){quizAnswer(+o.getAttribute('data-k'));return}
-  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from,ql=QS&&QS.lec;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true,ql);if(QS)QS.from=qf;return}
+  if(e.target.closest('#quiz-done-again')){var qf=QS&&QS.from,ql=QS&&QS.lec,qm=QS&&QS.mix;closeQuiz();PS(cur).quiz.round=null;openQuizRound(true,ql,qm);if(QS)QS.from=qf;return}
   if(e.target.closest('#quiz-done-home')){var home_=QS&&QS.from==='home';closeQuiz();if(home_)goTab('home')}
 });
 $('quiz-feedback').addEventListener('click',function(e){if(e.target.closest('#quiz-continue'))quizContinue()});
 document.addEventListener('keydown',function(e){
   var t=topLayer();if(!t||t.el.id!=='quiz-run'||qDone)return;
-  if(e.key>='1'&&e.key<='4'&&QS&&!QS.answered&&QS.opts&&QS.opts[+e.key-1]){quizAnswer(+e.key-1)}
+  if(e.key>='1'&&e.key<='9'&&QS&&!QS.answered&&QS.opts&&QS.opts[+e.key-1]){quizAnswer(+e.key-1)}
   else if(e.key==='Enter'&&QS&&QS.answered&&document.activeElement.id!=='quiz-continue'){e.preventDefault();quizContinue()}
 });
 
@@ -157,17 +176,17 @@ var QA=null;
 function qaStatusIcon(s){return s==='got'?'<span class="qdisc got">'+ic('check')+'</span>':s==='again'?'<span class="qdisc">'+ic('reset')+'</span>':'<span class="qdisc"></span>'}
 function qaStartHTML(){
   var p=cur,ps=PS(p),qs_=qaOf(p),n=qs_.length;
-  if(!n)return emptyHTML('qa','No questions in this pack.','');
+  if(!n)return emptyHTML('qa',t('No questions in this pack.'),'');
   var got=qaGot(p),left=n-got;
   var h='<div class="card start"><div class="start-icon">'+ic('qa')+'</div><h2>'+plural(n,'question')+'</h2>'+
-    '<div class="prog-line"><b>Got it</b><span>'+got+' of '+n+'</span></div><div class="pbar" style="--p:'+(got/n)+'"><i></i></div>'+
-    '<p>'+(isExam(p)?'Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.':'Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.')+'</p><div class="btn-stack">';
-  if(got===0)h+='<button class="btn" id="qa-start" type="button">Start questions</button>';
-  else if(left>0)h+='<button class="btn" id="qa-start" type="button">Practise the '+left+' left</button><button class="btn plain" id="qa-all" type="button">All '+n+' questions</button>';
-  else h+='<button class="btn" id="qa-start" type="button">Practise all '+n+' again</button>';
-  h+='</div></div><div class="sec"><h2>All questions</h2><p>Tap one to practise it.</p></div><div style="height:15px"></div>';
+    '<div class="prog-line"><b>'+t('Got it')+'</b><span>'+t('{0} of {1}',got,n)+'</span></div><div class="pbar" style="--p:'+(got/n)+'"><i></i></div>'+
+    '<p>'+(isExam(p)?t('Answer out loud or on paper, then reveal and compare. A strong exam answer gives a definition, the points, and one example from the slides.'):t('Think of your answer and say it out loud. Then reveal and compare. If a question goes past what you know, say you didn\'t find it, then give the closest fact you do know.'))+'</p><div class="btn-stack">';
+  if(got===0)h+='<button class="btn" id="qa-start" type="button">'+t('Start questions')+'</button>';
+  else if(left>0)h+='<button class="btn" id="qa-start" type="button">'+t('Practise the {0} left',left)+'</button><button class="btn plain" id="qa-all" type="button">'+t('All {0} questions',n)+'</button>';
+  else h+='<button class="btn" id="qa-start" type="button">'+t('Practise all {0} again',n)+'</button>';
+  h+='</div></div><div class="sec"><h2>'+t('All questions')+'</h2><p>'+t('Tap one to practise it.')+'</p></div><div style="height:15px"></div>';
   qs_.forEach(function(q,i){
-    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?'Lecturer':q.who==='exam'?'Exam':'Classmate')+'</span></span></button>';
+    h+='<button class="qrow row-press" id="qa-row-'+i+'" type="button" data-i="'+i+'">'+qaStatusIcon(ps.qa.status[i])+'<span class="qrow-text"><b>'+T(q.q)+'</b><span>'+(q.who==='lecturer'?t('Lecturer'):q.who==='exam'?t('Exam'):t('Classmate'))+'</span></span></button>';
   });
   return h;
 }
@@ -199,20 +218,20 @@ function openQaRound(mode){
 function qaBar(){$('qa-bar').style.setProperty('--p',QA.done/QA.total)}
 function showQaQ(anim){
   var q=qaOf(cur)[QA.queue[0]];QA.revealed=false;
-  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?'Lecturer asks':q.who==='exam'?'Exam question':'Classmate asks')+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">'+(q.who==='exam'?'Think first. Say or jot down your answer.':'Think first. Say your answer out loud.')+'</p>'+
-    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>'+(q.who==='exam'?'A strong answer':'You could say')+'</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="Listen to the answer" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
+  var h='<div class="qwrap'+(anim?' in':'')+'"><div class="card qa-card"><span class="pill">'+(q.who==='lecturer'?t('Lecturer asks'):q.who==='exam'?t('Exam question'):t('Classmate asks'))+'</span><div class="qa-q">'+T(q.q)+'</div><p class="qa-think" id="qa-think">'+(q.who==='exam'?t('Think first. Say or jot down your answer.'):t('Think first. Say your answer out loud.'))+'</p>'+
+    '<div class="reveal" id="qa-reveal-box" inert><div><div class="qa-ans"><div class="qa-ans-h"><span>'+(q.who==='exam'?t('A strong answer'):t('You could say'))+'</span>'+(SYN?'<button class="icon-btn sm" id="qa-listen" type="button" data-lk="qa" aria-label="'+esc(t('Listen to the answer'))+'" aria-pressed="false">'+ic('vol')+'</button>':'')+'</div><p>'+T(q.answer)+'</p></div></div></div></div></div>';
   var body=$('qa-round');body.innerHTML=h;body.scrollTop=0;
-  $('qa-actions').innerHTML='<div class="actions" style="grid-template-columns:1fr"><button class="btn" id="qa-reveal" type="button">Show answer</button></div>';
+  $('qa-actions').innerHTML='<div class="actions" style="grid-template-columns:1fr"><button class="btn" id="qa-reveal" type="button">'+t('Show answer')+'</button></div>';
   qaBar();
   var rv=$('qa-reveal');try{rv.focus({preventScroll:true})}catch(e){}
-  announce('Question '+(QA.done+1)+' of '+QA.total+'.');
+  announce(t('Question {0} of {1}.',QA.done+1,QA.total));
 }
 function qaReveal(){
   if(!QA||QA.revealed)return;
   QA.revealed=true;QA.revealAt=performance.now();
   var rb=$('qa-reveal-box');rb.classList.add('is-open');rb.removeAttribute('inert');
   var th=$('qa-think');if(th)th.hidden=true;
-  $('qa-actions').innerHTML='<div class="actions even"><button class="btn plain" id="qa-again" type="button">Again</button><button class="btn" id="qa-gotit" type="button">Got it</button></div>';
+  $('qa-actions').innerHTML='<div class="actions even"><button class="btn plain" id="qa-again" type="button">'+t('Again')+'</button><button class="btn" id="qa-gotit" type="button">'+t('Got it')+'</button></div>';
   playSound('tick');updateListenUI();
   var g=$('qa-gotit');try{g.focus({preventScroll:true})}catch(e){}
   later(function(){var a=qs('#qa-round .qa-ans');if(a)a.scrollIntoView({block:'nearest',behavior:rm()?'auto':'smooth'})},120);
@@ -240,17 +259,17 @@ function qaFinish(){
   var p=cur,ps=PS(p),qs_=qaOf(p),n=QA.total;
   var gotRound=0,againRound=0;
   QA.all.forEach(function(i){if(ps.qa.status[i]==='got')gotRound++;else againRound++});
-  if(QA.single){closeQa();announce(gotRound?'Marked as got it.':'Marked for another go.');return}
+  if(QA.single){closeQa();announce(gotRound?t('Marked as got it.'):t('Marked for another go.'));return}
   var left=qs_.filter(function(_,i){return ps.qa.status[i]!=='got'}).length;
-  var line=QA.single?(gotRound?'Marked as got it.':'Marked for another go.'):gotRound+' of '+n+' marked got it.';
+  var line=QA.single?(gotRound?t('Marked as got it.'):t('Marked for another go.')):t('{0} of {1} marked got it.',gotRound,n);
   var btns=[];
-  if(left>0){btns.push({id:'qa-done-again',t:'Practise the '+left+' left'});btns.push({id:'qa-done-home',t:QA.from==='home'?'Back to Home':'Done',plain:true})}
-  else btns.push({id:'qa-done-home',t:QA.from==='home'?'Back to Home':'Done'});
+  if(left>0){btns.push({id:'qa-done-again',t:t('Practise the {0} left',left)});btns.push({id:'qa-done-home',t:QA.from==='home'?t('Back to Home'):t('Done'),plain:true})}
+  else btns.push({id:'qa-done-home',t:QA.from==='home'?t('Back to Home'):t('Done')});
   $('qa-top').hidden=true;$('qa-actions').innerHTML='';
-  $('qa-round').innerHTML=doneHTML({id:'qa-done',title:'Questions done!',line:line,
-    stats:[{v:gotRound,l:'got it'},{v:againRound,l:'again'},{v:readiness(p),l:'ready',suf:'%',g:true}],buttons:btns});
+  $('qa-round').innerHTML=doneHTML({id:'qa-done',title:t('Questions done!'),line:line,
+    stats:[{v:gotRound,l:t('got it')},{v:againRound,l:t('again')},{v:readiness(p),l:t('ready'),suf:'%',g:true}],buttons:btns});
   playDone('qa-done');
-  announce('Questions done.');
+  announce(t('Questions done.'));
   var f=$('qa-done-again')||$('qa-done-home');if(f)f.focus({preventScroll:true});
 }
 $('qa-close').addEventListener('click',closeQa);
